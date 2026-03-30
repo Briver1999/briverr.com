@@ -7,39 +7,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--black:#0E0E0D;--gold:#C9A96E;--gold-l:#dfc08a;--white:#FAFAF8;--gray:#6b6b6b;--light:#F5F4F0}
+:root{--black:#0E0E0D;--maroon:#8D4343;--maroon-l:#a85555;--white:#FAFAF8;--gray:#6b6b6b;--light:#F5F4F0}
 body{font-family:'Tajawal',sans-serif;background:var(--light);color:var(--black);min-height:100vh}
-nav{background:var(--black);padding:18px 6%;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:'Montserrat',sans-serif;font-weight:700;font-size:20px;color:var(--gold);letter-spacing:2px;text-decoration:none}
+nav{background:var(--black);padding:16px 6%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Montserrat',sans-serif;font-weight:700;font-size:20px;color:var(--maroon);letter-spacing:2px;text-decoration:none}
 .back{color:rgba(255,255,255,.6);font-size:14px;text-decoration:none;transition:color .2s}
-.back:hover{color:var(--gold)}
+.back:hover{color:var(--maroon)}
 .container{max-width:640px;margin:50px auto;padding:0 20px 60px}
 .card{background:var(--white);border-radius:16px;padding:40px;box-shadow:0 4px 24px rgba(0,0,0,.07)}
 .form-header{text-align:center;margin-bottom:36px}
-.form-header .tag{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px}
+.form-header .tag{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:10px}
 .form-header h1{font-size:28px;font-weight:800;margin-bottom:8px}
 .form-header p{font-size:15px;color:var(--gray)}
 .steps-bar{display:flex;justify-content:center;gap:8px;margin-bottom:36px}
 .step-dot{width:32px;height:4px;border-radius:2px;background:#e0e0db;transition:background .3s}
-.step-dot.active{background:var(--gold)}
+.step-dot.active{background:var(--maroon)}
 .form-group{margin-bottom:22px}
 label{display:block;font-size:14px;font-weight:700;margin-bottom:8px;color:var(--black)}
-label span{color:var(--gold)}
-input,select,textarea{width:100%;padding:12px 16px;border:1.5px solid #e0e0db;border-radius:8px;font-family:'Tajawal',sans-serif;font-size:15px;background:var(--white);color:var(--black);outline:none;transition:border-color .2s}
-input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+label span{color:var(--maroon)}
+input,select,textarea{width:100%;padding:12px 16px;border:1.5px solid #e0e0db;border-radius:8px;font-family:'Tajawal',sans-serif;font-size:15px;background:var(--white);color:var(--black);outline:none;transition:border-color .2s;-webkit-appearance:none}
+input:focus,select:focus,textarea:focus{border-color:var(--maroon)}
 .chips-select{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
-.chip-opt{cursor:pointer;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid #e0e0db;background:var(--white);color:var(--gray);transition:all .2s;user-select:none}
-.chip-opt.selected{border-color:var(--gold);background:rgba(201,169,110,.1);color:var(--black);font-weight:700}
+.chip-opt{cursor:pointer;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid #e0e0db;background:var(--white);color:var(--gray);transition:all .2s;user-select:none;-webkit-user-select:none}
+.chip-opt.selected{border-color:var(--maroon);background:rgba(141,67,67,.1);color:var(--black);font-weight:700}
 .btn-row{display:flex;gap:12px;margin-top:32px}
-.btn-next{flex:1;background:var(--gold);color:var(--black);font-family:'Tajawal',sans-serif;font-weight:700;font-size:16px;padding:14px;border:none;border-radius:8px;cursor:pointer;transition:background .2s}
-.btn-next:hover{background:var(--gold-l)}
+.btn-next{flex:1;background:var(--maroon);color:var(--white);font-family:'Tajawal',sans-serif;font-weight:700;font-size:16px;padding:14px;border:none;border-radius:8px;cursor:pointer;transition:background .2s}
+.btn-next:hover{background:var(--maroon-l)}
 .btn-prev{background:transparent;color:var(--gray);font-family:'Tajawal',sans-serif;font-size:15px;padding:14px 20px;border:1.5px solid #e0e0db;border-radius:8px;cursor:pointer;transition:border-color .2s}
-.btn-prev:hover{border-color:var(--gold)}
+.btn-prev:hover{border-color:var(--maroon)}
 .step-section{display:none}
 .step-section.active{display:block}
-.success-box{text-align:center;padding:20px 0}
-.success-icon{font-size:56px;margin-bottom:16px}
-.note{background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.3);border-radius:8px;padding:14px 16px;font-size:13px;color:var(--gray);margin-top:20px;line-height:1.6}
+.note{background:rgba(141,67,67,.08);border:1px solid rgba(141,67,67,.25);border-radius:8px;padding:14px 16px;font-size:13px;color:var(--gray);margin-top:20px;line-height:1.6}
+@media(max-width:600px){
+.card{padding:24px 18px}
+.container{margin:30px auto;padding:0 14px 40px}
+.form-header h1{font-size:22px}
+.btn-row{flex-direction:column-reverse}
+.btn-prev{text-align:center}
+}
 </style>
 </head>
 <body>
@@ -60,7 +65,6 @@ input:focus,select:focus,textarea:focus{border-color:var(--gold)}
 <div class="step-dot" id="dot3"></div>
 </div>
 <form id="regForm">
-<!-- Step 1 -->
 <div class="step-section active" id="step1">
 <div class="form-group">
 <label>الاسم الكامل <span>*</span></label>
@@ -96,7 +100,6 @@ input:focus,select:focus,textarea:focus{border-color:var(--gold)}
 <button type="button" class="btn-next" onclick="goStep(2)">التالي ←</button>
 </div>
 </div>
-<!-- Step 2 -->
 <div class="step-section" id="step2">
 <div class="form-group">
 <label>المنصات التي تنشر عليها <span>*</span></label>
@@ -134,7 +137,6 @@ input:focus,select:focus,textarea:focus{border-color:var(--gold)}
 <button type="button" class="btn-next" onclick="goStep(3)">التالي ←</button>
 </div>
 </div>
-<!-- Step 3 -->
 <div class="step-section" id="step3">
 <div class="form-group">
 <label>تخصصاتك <span>*</span></label>
@@ -163,58 +165,43 @@ input:focus,select:focus,textarea:focus{border-color:var(--gold)}
 </div>
 <script>
 function setupChips(containerId, hiddenId, multi) {
-  const container = document.getElementById(containerId);
-  const hidden = document.getElementById(hiddenId);
-  container.querySelectorAll('.chip-opt').forEach(chip => {
-    chip.addEventListener('click', () => {
-      if (multi) {
-        chip.classList.toggle('selected');
-        const selected = [...container.querySelectorAll('.chip-opt.selected')].map(c => c.dataset.val);
-        hidden.value = selected.join(', ');
-      } else {
-        container.querySelectorAll('.chip-opt').forEach(c => c.classList.remove('selected'));
-        chip.classList.add('selected');
-        hidden.value = chip.dataset.val;
-      }
-    });
-  });
+var container = document.getElementById(containerId);
+var hidden = document.getElementById(hiddenId);
+container.querySelectorAll('.chip-opt').forEach(function(chip) {
+chip.addEventListener('click', function() {
+if (multi) {
+this.classList.toggle('selected');
+var selected = [].slice.call(container.querySelectorAll('.chip-opt.selected')).map(function(c){return c.dataset.val;});
+hidden.value = selected.join(', ');
+} else {
+container.querySelectorAll('.chip-opt').forEach(function(c){c.classList.remove('selected');});
+this.classList.add('selected');
+hidden.value = this.dataset.val;
 }
-setupChips('gender-chips', 'gender', false);
-setupChips('platform-chips', 'platforms', true);
-setupChips('type-chips', 'contentType', false);
-setupChips('spec-chips', 'specs', true);
-
+});
+});
+}
+setupChips('gender-chips','gender',false);
+setupChips('platform-chips','platforms',true);
+setupChips('type-chips','contentType',false);
+setupChips('spec-chips','specs',true);
 function goStep(n) {
-  document.querySelectorAll('.step-section').forEach((s,i) => {
-    s.classList.toggle('active', i === n-1);
-  });
-  document.querySelectorAll('.step-dot').forEach((d,i) => {
-    d.classList.toggle('active', i < n);
-  });
+document.querySelectorAll('.step-section').forEach(function(s,i){s.classList.toggle('active',i===n-1);});
+document.querySelectorAll('.step-dot').forEach(function(d,i){d.classList.toggle('active',i<n);});
+window.scrollTo(0,0);
 }
-
-document.getElementById('regForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-  const region = document.getElementById('region').value;
-  const gender = document.getElementById('gender').value;
-  const platforms = document.getElementById('platforms').value;
-  const followers = document.getElementById('followers').value;
-  const contentType = document.getElementById('contentType').value;
-  const specs = document.getElementById('specs').value;
-  
-  const msg = `مرحباً، أريد التسجيل في شبكة بريفر كمؤثر:
-الاسم: ${name}
-الجوال: ${phone}
-المنطقة: ${region}
-الجنس: ${gender}
-المنصات: ${platforms}
-المتابعون: ${followers}
-نوع المحتوى: ${contentType}
-التخصصات: ${specs}`;
-
-  window.open('https://wa.me/966538980360?text=' + encodeURIComponent(msg), '_blank');
+document.getElementById('regForm').addEventListener('submit',function(e){
+e.preventDefault();
+var name=document.getElementById('name').value;
+var phone=document.getElementById('phone').value;
+var region=document.getElementById('region').value;
+var gender=document.getElementById('gender').value;
+var platforms=document.getElementById('platforms').value;
+var followers=document.getElementById('followers').value;
+var contentType=document.getElementById('contentType').value;
+var specs=document.getElementById('specs').value;
+var msg='مرحباً، أريد التسجيل في شبكة بريفر كمؤثر:\nالاسم: '+name+'\nالجوال: '+phone+'\nالمنطقة: '+region+'\nالجنس: '+gender+'\nالمنصات: '+platforms+'\nالمتابعون: '+followers+'\nنوع المحتوى: '+contentType+'\nالتخصصات: '+specs;
+window.open('https://wa.me/966538980360?text='+encodeURIComponent(msg),'_blank');
 });
 </script>
 </body>
