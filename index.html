@@ -5,19 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>بريفر | وكالة محتوى المؤثرين السعودية</title>
 <meta name="description" content="بريفر — وكالة UGC سعودية. نقود براندك. نوصّل نتيجتك. +1800 مؤثر سعودي."/>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Montserrat:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Tajawal:wght@300;400;500;700;800&family=Montserrat:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--black:#0E0E0D;--maroon:#8D4343;--maroon-l:#a85555;--white:#FAFAF8;--gray:#6b6b6b;--light:#F5F4F0}
 html{scroll-behavior:smooth}
 body{font-family:'Tajawal',sans-serif;background:var(--white);color:var(--black);line-height:1.7;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:16px 6%;background:rgba(14,14,13,.97);backdrop-filter:blur(10px)}
-.logo{font-family:'Montserrat',sans-serif;font-weight:700;font-size:22px;color:var(--maroon);letter-spacing:2px;text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:12px 6%;background:rgba(14,14,13,.97);backdrop-filter:blur(10px)}
+.logo{display:flex;flex-direction:column;align-items:center;gap:0;text-decoration:none;line-height:1}
+.logo-ar{font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:var(--maroon);letter-spacing:-0.02em;display:block}
+.logo-div{width:100%;height:1px;background:rgba(141,67,67,.55);margin:3px 0;display:block}
+.logo-en{font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:var(--maroon);letter-spacing:3px;display:block;text-align:center}
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{color:var(--white);text-decoration:none;font-size:14px;font-weight:500;opacity:.85;transition:opacity .2s,color .2s}
 .nav-links a:hover{opacity:1;color:var(--maroon)}
 .nav-cta{background:var(--maroon);color:var(--white)!important;padding:9px 22px;border-radius:4px;font-weight:700!important;opacity:1!important}
 .nav-cta:hover{background:var(--maroon-l)!important}
+
+/* HAMBURGER */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
 .hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
@@ -27,7 +34,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .mobile-menu.open{display:flex}
 .mobile-menu a{color:var(--white);text-decoration:none;font-size:16px;font-weight:500;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);display:block}
 .mobile-menu a:last-child{border-bottom:none;margin-top:8px;background:var(--maroon);color:var(--white);text-align:center;padding:14px;border-radius:6px}
-.hero{min-height:100vh;background:var(--black);display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 6% 80px;position:relative;overflow:hidden}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--black);display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 6% 40px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(141,67,67,.15) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%)}
 .badge{display:inline-block;background:rgba(141,67,67,.15);border:1px solid rgba(141,67,67,.4);color:var(--maroon);font-size:13px;font-weight:500;padding:6px 18px;border-radius:20px;margin-bottom:28px}
 .hero h1{font-size:clamp(36px,6vw,72px);font-weight:800;color:var(--white);line-height:1.2;margin-bottom:10px}
@@ -39,11 +48,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .btn-p:hover{background:var(--maroon-l);transform:translateY(-1px)}
 .btn-s{background:transparent;color:var(--white);font-family:'Tajawal',sans-serif;font-weight:500;font-size:16px;padding:14px 36px;border-radius:6px;border:1px solid rgba(255,255,255,.25);text-decoration:none;transition:border-color .2s;display:inline-block}
 .btn-s:hover{border-color:var(--maroon)}
-.stats{background:var(--maroon);padding:28px 6%;display:flex;justify-content:center;gap:60px;flex-wrap:wrap}
+
+/* STATS */
+.stats{background:var(--maroon);padding:24px 6%;display:flex;justify-content:center;gap:60px;flex-wrap:wrap}
 .stat{text-align:center}
-.stat-n{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:700;color:var(--white);display:block}
-.stat-l{font-size:13px;color:rgba(255,255,255,.75);font-weight:500}
-section{padding:90px 6%}
+.stat-n{font-family:'Montserrat',sans-serif;font-size:38px;font-weight:700;color:var(--white);display:block;line-height:1.1}
+.stat-l{font-size:15px;color:rgba(255,255,255,.85);font-weight:500;margin-top:4px;display:block}
+
+/* SECTIONS */
+section{padding:60px 6%}
 .tag{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:14px}
 .sec-title{font-size:clamp(26px,4vw,44px);font-weight:800;line-height:1.3;margin-bottom:16px}
 .sec-sub{font-size:17px;color:var(--gray);max-width:580px;margin-bottom:50px}
@@ -61,45 +74,63 @@ section{padding:90px 6%}
 .bicon{width:48px;height:48px;background:var(--light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
 .bcard h3{font-size:17px;font-weight:700;margin-bottom:8px}
 .bcard p{font-size:14px;color:var(--gray)}
+
+/* INF */
 .inf-cta{background:var(--black);text-align:center;color:var(--white)}
 .inf-cta .sec-sub{color:rgba(255,255,255,.6);margin:0 auto 40px}
 .chips{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:40px}
 .chip{background:rgba(141,67,67,.12);border:1px solid rgba(141,67,67,.3);color:var(--maroon);padding:8px 20px;border-radius:20px;font-size:14px;font-weight:500}
-.quote{background:var(--maroon);padding:60px 6%;text-align:center}
+
+/* QUOTE */
+.quote{background:var(--maroon);padding:50px 6%;text-align:center}
 .quote blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,32px);font-style:italic;color:var(--white);max-width:700px;margin:0 auto 16px;line-height:1.5}
 .quote cite{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,.65);letter-spacing:1px}
-footer{background:var(--black);color:rgba(255,255,255,.55);padding:50px 6% 30px}
-.foot-in{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px;margin-bottom:40px}
+
+/* FOOTER */
+footer{background:var(--black);color:rgba(255,255,255,.55);padding:40px 6% 24px}
+.foot-logo{display:flex;flex-direction:column;align-items:flex-start;gap:0;text-decoration:none;line-height:1;margin-bottom:10px}
+.foot-logo .logo-ar{font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:var(--maroon);letter-spacing:-0.02em;display:block}
+.foot-logo .logo-div{width:100%;height:1px;background:rgba(141,67,67,.55);margin:3px 0;display:block}
+.foot-logo .logo-en{font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;color:var(--maroon);letter-spacing:3px;display:block}
+.foot-in{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px;margin-bottom:32px}
 .foot-links h4{color:var(--white);font-size:13px;font-weight:700;margin-bottom:14px;letter-spacing:1px}
 .foot-links ul{list-style:none}
 .foot-links li{margin-bottom:8px}
 .foot-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px;transition:color .2s}
 .foot-links a:hover{color:var(--maroon)}
-.foot-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .foot-bot p{font-size:12px}
 .ft{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;color:var(--maroon)}
+
+/* MOBILE */
 @media(max-width:768px){
-.nav-links{display:none}
-.hamburger{display:flex}
-.stats{gap:20px;padding:20px 4%}
-.stat-n{font-size:22px}
-section{padding:60px 5%}
-.hero{padding:100px 5% 60px}
-.hero-btns{flex-direction:column;align-items:center}
-.btn-p,.btn-s{width:100%;max-width:300px;text-align:center}
-.steps{grid-template-columns:1fr}
-.brands-grid{grid-template-columns:1fr}
-.chips{gap:8px}
-.chip{font-size:13px;padding:6px 14px}
-.foot-in{flex-direction:column;text-align:center}
-.foot-bot{flex-direction:column;text-align:center}
-.quote{padding:40px 5%}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .stats{gap:0;padding:20px 4%}
+  .stat-n{font-size:32px}
+  .stat-l{font-size:14px}
+  section{padding:40px 5%}
+  .hero{padding:80px 5% 30px}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn-p,.btn-s{width:100%;max-width:300px;text-align:center}
+  .steps{grid-template-columns:1fr}
+  .brands-grid{grid-template-columns:1fr}
+  .chips{gap:8px}
+  .chip{font-size:13px;padding:6px 14px}
+  .foot-in{flex-direction:column;text-align:center}
+  .foot-logo{align-items:center}
+  .foot-bot{flex-direction:column;text-align:center}
+  .quote{padding:36px 5%}
 }
 </style>
 </head>
 <body>
 <nav>
-<a href="/" class="logo">BRIVER</a>
+<a href="/" class="logo">
+  <span class="logo-ar">بريفر</span>
+  <span class="logo-div"></span>
+  <span class="logo-en">BRIVER</span>
+</a>
 <ul class="nav-links">
 <li><a href="#how">كيف نعمل</a></li>
 <li><a href="#brands">للبراندات</a></li>
@@ -118,10 +149,10 @@ section{padding:60px 5%}
 </div>
 <section class="hero">
 <div>
-<span class="badge">وكالة UGC سعودية رائدة</span>
+<span class="badge">وكالة متخصصة بإدارة صنّاع المحتوى</span>
 <h1>نقود <span>براندك</span>.<br/>نوصّل نتيجتك.</h1>
 <p class="hero-en">Brand Driver. Brand Deliver.</p>
-<p>نربط براندك بمؤثرين سعوديين أصيلين يصنعون محتوى حقيقياً يُحوّل المشاهد إلى عميل.</p>
+<p>نربط علامتك التجارية بصنّاع محتوى يحوّل المشاهد الى عميل.</p>
 <div class="hero-btns">
 <a href="https://wa.me/966538980360" class="btn-p">ابدأ حملتك</a>
 <a href="/register.html" class="btn-s">انضم كمؤثر</a>
@@ -129,10 +160,10 @@ section{padding:60px 5%}
 </div>
 </section>
 <div class="stats">
-<div class="stat"><span class="stat-n">+1,800</span><span class="stat-l">مؤثر سعودي نشط</span></div>
-<div class="stat"><span class="stat-n">85%</span><span class="stat-l">نساء</span></div>
-<div class="stat"><span class="stat-n">80%</span><span class="stat-l">فويس أوفر</span></div>
-<div class="stat"><span class="stat-n">KSA</span><span class="stat-l">السوق السعودي</span></div>
+<div class="stat">
+  <span class="stat-n">+1,800</span>
+  <span class="stat-l">صانع محتوى سعودي</span>
+</div>
 </div>
 <section class="how" id="how">
 <span class="tag">كيف نعمل</span>
@@ -156,7 +187,7 @@ section{padding:60px 5%}
 <div class="bcard"><div class="bicon">🍽️</div><h3>مطعم وكافيه</h3><p>زيارات وتجارب حقيقية مع مؤثرين متخصصين</p></div>
 <div class="bcard"><div class="bicon">📱</div><h3>تقنية وإلكترونيات</h3><p>ريفيوهات وتجارب استخدام حقيقية</p></div>
 </div>
-<div style="text-align:center;margin-top:48px"><a href="https://wa.me/966538980360" class="btn-p">اطلب عرض سعر</a></div>
+<div style="text-align:center;margin-top:40px"><a href="https://wa.me/966538980360" class="btn-p">اطلب عرض سعر</a></div>
 </section>
 <section class="inf-cta" id="inf">
 <span class="tag">للمؤثرين</span>
@@ -176,7 +207,14 @@ section{padding:60px 5%}
 </div>
 <footer>
 <div class="foot-in">
-<div><a href="/" class="logo" style="display:block;margin-bottom:10px">BRIVER</a><p style="font-size:13px;max-width:220px">وكالة محتوى UGC سعودية متخصصة.</p></div>
+<div>
+  <a href="/" class="foot-logo">
+    <span class="logo-ar">بريفر</span>
+    <span class="logo-div"></span>
+    <span class="logo-en">BRIVER</span>
+  </a>
+  <p style="font-size:13px;max-width:220px">وكالة محتوى UGC سعودية متخصصة.</p>
+</div>
 <div class="foot-links"><h4>روابط سريعة</h4><ul><li><a href="#how">كيف نعمل</a></li><li><a href="#brands">للبراندات</a></li><li><a href="/register.html">تسجيل مؤثر</a></li></ul></div>
 <div class="foot-links"><h4>تواصل</h4><ul><li><a href="https://wa.me/966538980360">واتساب</a></li><li><a href="mailto:info@briverr.com">info@briverr.com</a></li></ul></div>
 </div>
@@ -185,7 +223,7 @@ section{padding:60px 5%}
 <script>
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', function() {
+hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open');
   mobileMenu.classList.toggle('open');
 });
