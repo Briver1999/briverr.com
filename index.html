@@ -21,7 +21,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{color:var(--white);text-decoration:none;font-size:14px;font-weight:500;opacity:.85;transition:opacity .2s,color .2s}
 .nav-links a:hover{opacity:1;color:var(--maroon)}
-.nav-cta{background:var(--maroon);color:var(--white)!important;padding:9px 22px;border-radius:4px;font-weight:700!important;opacity:1!important}
+.nav-cta{background:var(--maroon);color:var(--white);!important;padding:9px 22px;border-radius:4px;font-weight:700!important;opacity:1!important}
 .nav-cta:hover{background:var(--maroon-l)!important}
 
 /* HAMBURGER */
@@ -36,8 +36,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .mobile-menu a:last-child{border-bottom:none;margin-top:8px;background:var(--maroon);color:var(--white);text-align:center;padding:14px;border-radius:6px}
 
 /* HERO */
-.hero{min-height:100vh;background:var(--black);display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 6% 40px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(141,67,67,.15) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%)}
+.hero{min-height:100vh;background:var(--black);display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 6% 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(141,67,67,.15) 0%transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%)}
 .badge{display:inline-block;background:rgba(141,67,67,.15);border:1px solid rgba(141,67,67,.4);color:var(--maroon);font-size:13px;font-weight:500;padding:6px 18px;border-radius:20px;margin-bottom:28px}
 .hero h1{font-size:clamp(36px,6vw,72px);font-weight:800;color:var(--white);line-height:1.2;margin-bottom:10px}
 .hero h1 span{color:var(--maroon)}
@@ -56,24 +56,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .stat-l{font-size:15px;color:rgba(255,255,255,.85);font-weight:500;margin-top:4px;display:block}
 
 /* SECTIONS */
-section{padding:60px 6%}
+section{padding:56px 6%}
 .tag{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:14px}
 .sec-title{font-size:clamp(26px,4vw,44px);font-weight:800;line-height:1.3;margin-bottom:16px}
-.sec-sub{font-size:17px;color:var(--gray);max-width:580px;margin-bottom:50px}
+.sec-sub{font-size:17px;color:var(--gray);max-width:580px;margin-bottom:40px}
 .how{background:var(--light);text-align:center}
-.how .sec-sub{margin:0 auto 50px}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;max-width:900px;margin:0 auto}
-.step{background:var(--white);border-radius:12px;padding:36px 24px;text-align:center;border:1px solid rgba(141,67,67,.2);transition:transform .25s,box-shadow .25s}
-.step:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
-.step-n{width:50px;height:50px;background:var(--maroon);color:var(--white);font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
-.step h3{font-size:17px;font-weight:700;margin-bottom:10px}
-.step p{font-size:14px;color:var(--gray)}
-.brands-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
-.bcard{border:1px solid #e8e8e4;border-radius:12px;padding:32px 24px;transition:border-color .25s,box-shadow .25s}
-.bcard:hover{border-color:var(--maroon);box-shadow:0 8px 32px rgba(0,0,0,.06)}
-.bicon{width:48px;height:48px;background:var(--light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
-.bcard h3{font-size:17px;font-weight:700;margin-bottom:8px}
-.bcard p{font-size:14px;color:var(--gray)}
+.how .sec-sub{margin:0 auto 40px}
+
+/* STEPS — horizontal card layout */
+.steps{display:grid;grid-template-columns:1fr;gap:8px;max-width:760px;margin:0 auto}
+.step{background:var(--white);border-radius:12px;padding:20px 24px;display:flex;flex-direction:row-reverse;align-items:center;gap:16px;border:1px solid rgba(141,67,67,.2);transition:transform .25s,box-shadow .25s;text-align:right}
+.step:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.07)}
+.step-n{width:36px;height:36px;background:var(--maroon);color:var(--white);font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-text{flex:1}
+.step h3{font-size:15px;font-weight:700;margin-bottom:4px}
+.step p{font-size:13px;color:#666;line-height:1.5}
+
+/* BRANDS / CREATOR TYPES — horizontal card layout */
+.brands-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px}
+.bcard{border:1px solid #e8e8e4;border-radius:12px;padding:16px 20px;transition:border-color .25s,box-shadow .25s;display:flex;flex-direction:row;align-items:center;gap:12px}
+.bcard:hover{border-color:var(--maroon);box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.bicon{width:44px;height:44px;background:var(--light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.bcard-text{flex:1}
+.bcard h3{font-size:15px;font-weight:700;margin-bottom:4px}
+.bcard p{font-size:13px;color:var(--gray);line-height:1.4}
 
 /* INF */
 .inf-cta{background:var(--black);text-align:center;color:var(--white)}
@@ -82,7 +88,7 @@ section{padding:60px 6%}
 .chip{background:rgba(141,67,67,.12);border:1px solid rgba(141,67,67,.3);color:var(--maroon);padding:8px 20px;border-radius:20px;font-size:14px;font-weight:500}
 
 /* QUOTE */
-.quote{background:var(--maroon);padding:50px 6%;text-align:center}
+.quote{background:var(--maroon);padding:48px 6%;text-align:center}
 .quote blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,32px);font-style:italic;color:var(--white);max-width:700px;margin:0 auto 16px;line-height:1.5}
 .quote cite{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,.65);letter-spacing:1px}
 
@@ -108,19 +114,22 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:40px 6% 24px}
   .hamburger{display:flex}
   .stats{gap:0;padding:20px 4%}
   .stat-n{font-size:32px}
-  .stat-l{font-size:14px}
-  section{padding:40px 5%}
-  .hero{padding:80px 5% 30px}
+  .stat-l{font-size:14py}
+  section{padding:32px 5%}
+  .hero{padding:64px 5% 32px}
   .hero-btns{flex-direction:column;align-items:center}
   .btn-p,.btn-s{width:100%;max-width:300px;text-align:center}
-  .steps{grid-template-columns:1fr}
-  .brands-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;gap:6px}
+  .step{padding:14px 16px;gap:12px}
+  .brands-grid{grid-template-columns:1fr;gap:6px}
+  .bcard{padding:12px 16px}
   .chips{gap:8px}
   .chip{font-size:13px;padding:6px 14px}
   .foot-in{flex-direction:column;text-align:center}
   .foot-logo{align-items:center}
   .foot-bot{flex-direction:column;text-align:center}
   .quote{padding:36px 5%}
+  .sec-sub{margin-bottom:28px}
 }
 </style>
 </head>
@@ -137,7 +146,7 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:40px 6% 24px}
 <li><a href="#inf">للمؤثرين</a></li>
 <li><a href="https://wa.me/966538980360" class="nav-cta">تواصل معنا</a></li>
 </ul>
-<button class="hamburger" id="hamburger" aria-label="القائمة">
+<button class="hamburger" id="hamburger" aria-label="امقوم القائ٘">
 <span></span><span></span><span></span>
 </button>
 </nav>
@@ -170,9 +179,27 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:40px 6% 24px}
 <h2 class="sec-title">٣ خطوات بسيطة</h2>
 <p class="sec-sub">من لحظة تواصلك معنا حتى استلامك محتوى جاهزاً للنشر</p>
 <div class="steps">
-<div class="step"><div class="step-n">١</div><h3>شاركنا براندك</h3><p>أخبرنا عن منتجك وجمهورك المستهدف ونوع المحتوى اللي تحتاجه</p></div>
-<div class="step"><div class="step-n">٢</div><h3>نختار المؤثر المناسب</h3><p>من شبكتنا نختار المؤثر الأنسب بالتخصص والمنطقة والجمهور</p></div>
-<div class="step"><div class="step-n">٣</div><h3>تستلم المحتوى</h3><p>خلال ٤٨ ساعة تستلم المحتوى جاهز للنشر على منصاتك</p></div>
+<div class="step">
+  <div class="step-n">١</div>
+  <div class="step-text">
+    <h3>شاركنا براندك</h3>
+    <p>أخبرنا عن منتجك وجمهورك المستهدف ونوع المحتوى اللي تحتاجه</p>
+  </div>
+</div>
+<div class="step">
+  <div class="step-n">٢</div>
+  <div class="step-text">
+    <h3>نختار المؤثر المناسب</h3>
+    <p>من شبكتنا نختار المؤثر الأنسب بالتخصص والمنطقة والجمهور</p>
+  </div>
+</div>
+<div class="step">
+  <div class="step-n">٣</div>
+  <div class="step-text">
+    <h3>تستلم المحتوى</h3>
+    <p>خلال ٤٨ ساعة تستلم المحتوى جاهز للنشر على منصاتك</p>
+  </div>
+</div>
 </div>
 </section>
 <section id="brands">
@@ -180,26 +207,44 @@ footer{background:var(--black);color:rgba(255,255,255,.55);padding:40px 6% 24px}
 <h2 class="sec-title">محتوى يبيع، مش بس يزيّن</h2>
 <p class="sec-sub">نتخصص في أنواع محتوى ثبتت فاعليتها في السوق السعودي</p>
 <div class="brands-grid">
-<div class="bcard"><div class="bicon">🎙️</div><h3>فويس أوفر</h3><p>المؤثر يصوّر المنتج بصوته دون ظهور وجهه</p></div>
-<div class="bcard"><div class="bicon">🎥</div><h3>أمام الكاميرا</h3><p>ظهور كامل مع المنتج لأقصى مصداقية وتأثير</p></div>
-<div class="bcard"><div class="bicon">✨</div><h3>جمال وعناية</h3><p>متخصصون في جمال وسكين كير وعطور</p></div>
-<div class="bcard"><div class="bicon">🏠</div><h3>لايف ستايل وديكور</h3><p>محتوى أصيل يعكس هوية السوق السعودي</p></div>
-<div class="bcard"><div class="bicon">🍽️</div><h3>مطعم وكافيه</h3><p>زيارات وتجارب حقيقية مع مؤثرين متخصصين</p></div>
-<div class="bcard"><div class="bicon">📱</div><h3>تقنية وإلكترونيات</h3><p>ريفيوهات وتجارب استخدام حقيقية</p></div>
+<div class="bcard">
+  <div class="bicon">😙️</div>
+  <div class="bcard-text"><h3>فويس أوفر</h3><p>المؤثر يصوّر المنتج بصوته دون ظهور وجهه</p></div>
 </div>
-<div style="text-align:center;margin-top:40px"><a href="https://wa.me/966538980360" class="btn-p">اطلب عرض سعر</a></div>
+<div class="bcard">
+  <div class="bicon">🎥</div>
+  <div class="bcard-text"><h3>أمام الكاميرا</h3><p>ظهور كامل مع المنتج لأقصى مصداقية وتأثير</p></div>
+</div>
+<div class="bcard">
+  <div class="bicon">✨</div>
+  <div class="bcard-text"><h3>جمال وعناية</h3><p>متخصصون في جمال وسكين كير وعطور</p></div>
+</div>
+<div class="bcard">
+  <div class="bicon">🏠</div>
+  <div class="bcard-text"><h3>لايف ستايل وديكور</h3><p>محتوى أصيل يعكس هوية السوق السعودي</p></div>
+</div>
+<div class="bcard">
+  <div class="bicon">🍽️</div>
+  <div class="bcard-text"><h3>مطعم وكافيه</h3><p>زيارات وتجارب حقيقية مع مؤثرين متخصصين</p></div>
+</div>
+<div class="bcard">
+  <div class="bicon">📱</div>
+  <div class="bcard-text"><h3>تقنية وإلكترونيات</h3><p>ريفيوهات وتجارب استخدام حقيقية</p></div>
+</div>
+</div>
+<div style="text-align:center;margin-top:32px"><a href="https://wa.me/966538980360" class="btn-p">اطلب عرض سعر</a></div>
 </section>
 <section class="inf-cta" id="inf">
-<span class="tag">للمؤثرين</span>
+<span class="tag">لممؤثرين</span>
 <h2 class="sec-title" style="color:#fff">انضم لشبكة بريفر</h2>
-<p class="sec-sub">+١٨٠٠ مؤثر سعودي يعملون معنا. لما يجي براند يناسب تخصصك نتواصل معك مباشرة.</p>
+<p class="sec-sub">+١٨٠٠ مؤثر سعودي يعملون معنا. مما يجي براند يناسب تخصصك نتواصل معك مباشرة.</p>
 <div class="chips">
 <span class="chip">جمال وعناية</span><span class="chip">فاشن وعباية</span><span class="chip">مطبخ وأكل</span>
-<span class="chip">ديكور ومنزل</span><span class="chip">صحة ولياقة</span><span class="chip">تقنية</span>
+<span class="chip">ديكور ومنزل</span><span class="chip">صحة ومياقة</span><span class="chip">تقنية</span>
 <span class="chip">سيارات</span><span class="chip">سفر وسياحة</span>
 </div>
 <a href="/register.html" class="btn-p">سجّل بياناتك — مجاناً</a>
-<p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.4)">✦ التسجيل مجاني ويأخذ أقل من ٣ دقائق</p>
+<p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.4)">✦ التسجيل مجاني ويأخذ أقل من ٣ دفائق</p>
 </section>
 <div class="quote">
 <blockquote>"نقود براندك. نوصّل نتيجتك."</blockquote>
