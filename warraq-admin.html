@@ -208,8 +208,11 @@ document.getElementById('btnLogin').addEventListener('click', function() {
   if (pass !== PWD) { err.textContent = 'كلمة السر غلط'; return; }
   if (!url || !key) { err.textContent = 'أدخل URL و Key'; return; }
 
-  SB_URL = url.replace(/\/$/, '');
-  SB_KEY = key;
+  SB_URL = url.replace(/^[<>]/g, '').replace(/[<>]$/g, '').replace(/\/$/, '');
+  SB_KEY = key.replace(/^[<>]/g, '').replace(/[<>]$/g, '');
+
+  if (!SB_URL.startsWith('https://')) { err.textContent = 'الـ URL يجب أن يبدأ بـ https://'; return; }
+
   err.textContent = 'جاري الاتصال...';
 
   sb('profiles', '?select=id&limit=1').then(() => {
@@ -218,7 +221,8 @@ document.getElementById('btnLogin').addEventListener('click', function() {
     document.getElementById('dash').style.display = 'block';
     loadAll();
   }).catch(e => {
-    err.textContent = 'فشل الاتصال: ' + (e.message || 'تحقق من URL و Key');
+    const msg = (e.message || '').substring(0, 80);
+    err.textContent = 'فشل الاتصال — تحقق من URL و Key' + (msg ? ': ' + msg : '');
   });
 });
 
