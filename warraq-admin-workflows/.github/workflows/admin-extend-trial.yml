@@ -1,0 +1,54 @@
+name: ⏳ Admin — تمديد التجربة المجانية
+
+on:
+  workflow_dispatch:
+    inputs:
+      email:
+        description: 'إيميل المستخدم'
+        required: true
+        type: string
+      days:
+        description: 'عدد الأيام الإضافية'
+        required: true
+        default: '7'
+        type: choice
+        options:
+          - '3'
+          - '7'
+          - '14'
+          - '21'
+          - '30'
+
+jobs:
+  extend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: تمديد التجربة
+        run: |
+          USER_ID=$(curl -s \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/profiles?select=id,trial_ends_at&email=eq.${{ github.event.inputs.email }}" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data[0]['id'] if data else '')")
+
+          if [ -z "$USER_ID" ]; then
+            echo "❌ المستخدم غير موجود: ${{ github.event.inputs.email }}" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+          NEW_DATE=$(python3 -c "
+          from datetime import datetime, timedelta, timezone
+          new_date = datetime.now(timezone.utc) + timedelta(days=${{ github.event.inputs.days }})
+          print(new_date.isoformat())
+          ")
+
+          curl -s -X PATCH \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/profiles?id=eq.$USER_ID" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"trial_ends_at\": \"$NEW_DATE\"}"
+
+          echo "## ✅ تم تمديد التجربة" >> $GITHUB_STEP_SUMMARY
+          echo "- المستخدم: ${{ github.event.inputs.email }}" >> $GITHUB_STEP_SUMMARY
+          echo "- الأيام المضافة: ${{ github.event.inputs.days }}" >> $GITHUB_STEP_SUMMARY
+          echo "- تاريخ الانتهاء الجديد: $NEW_DATE" >> $GITHUB_STEP_SUMMARY

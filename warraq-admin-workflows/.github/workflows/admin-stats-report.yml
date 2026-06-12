@@ -1,0 +1,73 @@
+name: 📊 Admin — تقرير الإحصائيات
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'  # كل إثنين الساعة 6 صباحاً
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: إحصائيات المستخدمين
+        run: |
+          TOTAL=$(curl -s \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/profiles?select=count" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Prefer: count=exact" \
+            -I | grep -i content-range | awk -F'/' '{print $2}' | tr -d '\r')
+
+          NEW_7=$(curl -s \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/profiles?select=count&created_at=gte.$(date -d '7 days ago' -u +%Y-%m-%dT%H:%M:%SZ)" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Prefer: count=exact" \
+            -I | grep -i content-range | awk -F'/' '{print $2}' | tr -d '\r')
+
+          TRIAL=$(curl -s \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/profiles?select=count&trial_ends_at=gte.$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Prefer: count=exact" \
+            -I | grep -i content-range | awk -F'/' '{print $2}' | tr -d '\r')
+
+          echo "## 📊 تقرير ورق الأسبوعي" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| المقياس | العدد |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| إجمالي المستخدمين | ${TOTAL:-0} |" >> $GITHUB_STEP_SUMMARY
+          echo "| مستخدمون جدد (7 أيام) | ${NEW_7:-0} |" >> $GITHUB_STEP_SUMMARY
+          echo "| في التجربة المجانية | ${TRIAL:-0} |" >> $GITHUB_STEP_SUMMARY
+
+      - name: إحصائيات العناصر
+        run: |
+          TASKS=$(curl -s \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/items?select=count&type=eq.task" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Prefer: count=exact" \
+            -I | grep -i content-range | awk -F'/' '{print $2}' | tr -d '\r')
+
+          IDEAS=$(curl -s \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/items?select=count&type=eq.idea" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Prefer: count=exact" \
+            -I | grep -i content-range | awk -F'/' '{print $2}' | tr -d '\r')
+
+          DECISIONS=$(curl -s \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/items?select=count&type=eq.decision" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Prefer: count=exact" \
+            -I | grep -i content-range | awk -F'/' '{print $2}' | tr -d '\r')
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| نوع العنصر | العدد |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| مهام | ${TASKS:-0} |" >> $GITHUB_STEP_SUMMARY
+          echo "| أفكار | ${IDEAS:-0} |" >> $GITHUB_STEP_SUMMARY
+          echo "| قرارات | ${DECISIONS:-0} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> تاريخ التقرير: $(date '+%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY

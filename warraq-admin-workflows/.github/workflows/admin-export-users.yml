@@ -1,0 +1,52 @@
+name: 📥 Admin — تصدير قائمة المستخدمين
+
+on:
+  workflow_dispatch:
+    inputs:
+      filter:
+        description: 'تصفية المستخدمين'
+        required: true
+        type: choice
+        options:
+          - all
+          - trial_active
+          - trial_expired
+          - paid
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: تصدير البيانات
+        run: |
+          FILTER="${{ github.event.inputs.filter }}"
+          NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+          if [ "$FILTER" = "all" ]; then
+            QUERY="profiles?select=id,email,created_at,trial_ends_at"
+          elif [ "$FILTER" = "trial_active" ]; then
+            QUERY="profiles?select=id,email,created_at,trial_ends_at&trial_ends_at=gte.$NOW"
+          elif [ "$FILTER" = "trial_expired" ]; then
+            QUERY="profiles?select=id,email,created_at,trial_ends_at&trial_ends_at=lt.$NOW"
+          fi
+
+          curl -s \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/$QUERY&order=created_at.desc" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Accept: text/csv" \
+            > users_export.csv
+
+          COUNT=$(tail -n +2 users_export.csv | wc -l)
+
+          echo "## 📥 تم تصدير المستخدمين" >> $GITHUB_STEP_SUMMARY
+          echo "- الفلتر: $FILTER" >> $GITHUB_STEP_SUMMARY
+          echo "- العدد: $COUNT مستخدم" >> $GITHUB_STEP_SUMMARY
+          echo "- الملف: users_export.csv (في الـ Artifacts)" >> $GITHUB_STEP_SUMMARY
+
+      - name: رفع الملف
+        uses: actions/upload-artifact@v4
+        with:
+          name: users-export-${{ github.event.inputs.filter }}-${{ github.run_number }}
+          path: users_export.csv
+          retention-days: 7

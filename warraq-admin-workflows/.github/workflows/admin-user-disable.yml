@@ -1,0 +1,56 @@
+name: 🚫 Admin — تعطيل / تفعيل مستخدم
+
+on:
+  workflow_dispatch:
+    inputs:
+      email:
+        description: 'إيميل المستخدم'
+        required: true
+        type: string
+      action:
+        description: 'الإجراء'
+        required: true
+        type: choice
+        options:
+          - disable
+          - enable
+      reason:
+        description: 'السبب (للسجل)'
+        required: false
+        type: string
+
+jobs:
+  manage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: تعطيل / تفعيل الحساب
+        run: |
+          ACTION="${{ github.event.inputs.action }}"
+          IS_DISABLED=$([ "$ACTION" = "disable" ] && echo "true" || echo "false")
+
+          curl -s -X POST \
+            "${{ secrets.SUPABASE_URL }}/auth/v1/admin/users/search" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"email\": \"${{ github.event.inputs.email }}\"}" > /tmp/user.json
+
+          USER_ID=$(python3 -c "import sys,json; data=json.load(open('/tmp/user.json')); print(data['users'][0]['id'] if data.get('users') else '')")
+
+          if [ -z "$USER_ID" ]; then
+            echo "❌ المستخدم غير موجود" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+          curl -s -X PUT \
+            "${{ secrets.SUPABASE_URL }}/auth/v1/admin/users/$USER_ID" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"ban_duration\": $([ \"$ACTION\" = \"disable\" ] && echo '\"876600h\"' || echo '\"none\"')}"
+
+          ICON=$([ "$ACTION" = "disable" ] && echo "🚫" || echo "✅")
+          echo "## $ICON تم ${ACTION}" >> $GITHUB_STEP_SUMMARY
+          echo "- المستخدم: ${{ github.event.inputs.email }}" >> $GITHUB_STEP_SUMMARY
+          echo "- السبب: ${{ github.event.inputs.reason }}" >> $GITHUB_STEP_SUMMARY
+          echo "- بواسطة: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
