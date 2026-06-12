@@ -2,154 +2,169 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>ورق — لوحة الإدارة</title>
 <style>
-  body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #0a0a0a; color: #e5e5e5; }
-  .card { background: #111; border: 1px solid #222; border-radius: 12px; }
-  .stat-card { background: linear-gradient(135deg, #1a1a1a, #111); border: 1px solid #2a2a2a; }
-  .btn-gold { background: #c9a84c; color: #000; font-weight: 700; border-radius: 8px; padding: 10px 20px; cursor: pointer; border: none; font-size: 16px; width: 100%; }
-  .btn-gold:active { background: #e0ba60; }
-  .btn-red { background: #7f1d1d; color: #fca5a5; border-radius: 8px; padding: 6px 14px; cursor: pointer; border: none; font-size: 14px; }
-  .btn-green { background: #14532d; color: #86efac; border-radius: 8px; padding: 6px 14px; cursor: pointer; border: none; font-size: 14px; }
-  .btn-sm { background: #1e3a5f; color: #93c5fd; border-radius: 6px; padding: 4px 10px; cursor: pointer; border: none; font-size: 12px; }
-  .inp { background: #1a1a1a; border: 1px solid #333; color: #e5e5e5; border-radius: 8px; padding: 10px 14px; width: 100%; font-size: 15px; box-sizing: border-box; }
-  .inp:focus { outline: none; border-color: #c9a84c; }
-  .tab { padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; color: #888; }
-  .tab.on { border-bottom-color: #c9a84c; color: #c9a84c; }
-  .badge-t { background: #1e3a5f; color: #93c5fd; border-radius: 999px; padding: 2px 8px; font-size: 11px; }
-  .badge-e { background: #3b0000; color: #fca5a5; border-radius: 999px; padding: 2px 8px; font-size: 11px; }
-  .badge-p { background: #14532d; color: #86efac; border-radius: 999px; padding: 2px 8px; font-size: 11px; }
-  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-  #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #222; border: 1px solid #444; padding: 12px 24px; border-radius: 10px; z-index: 9999; display: none; white-space: nowrap; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Tahoma,sans-serif;background:#0a0a0a;color:#e5e5e5;min-height:100vh;}
+.card{background:#111;border:1px solid #1e1e1e;border-radius:14px;}
+.inp{background:#161616;border:1px solid #2a2a2a;color:#e5e5e5;border-radius:10px;padding:12px 16px;width:100%;font-size:15px;transition:border .2s;}
+.inp:focus{outline:none;border-color:#c9a84c;}
+select.inp{cursor:pointer;}textarea.inp{resize:vertical;}
+.btn{border:none;border-radius:10px;padding:11px 20px;cursor:pointer;font-size:15px;font-weight:600;transition:all .15s;}
+.btn-gold{background:#c9a84c;color:#000;}.btn-gold:active{background:#e0ba60;transform:scale(.98);}
+.btn-red{background:#500;color:#fca5a5;}.btn-red:active{background:#700;}
+.btn-green{background:#052e16;color:#86efac;}.btn-green:active{background:#14532d;}
+.btn-sm{background:#1e1e1e;color:#aaa;border-radius:7px;padding:5px 12px;font-size:12px;border:none;cursor:pointer;}
+.tab{padding:12px 18px;cursor:pointer;border-bottom:2px solid transparent;color:#666;white-space:nowrap;font-size:14px;transition:all .2s;}
+.tab.on{border-bottom-color:#c9a84c;color:#c9a84c;}
+.badge{border-radius:999px;padding:3px 10px;font-size:11px;font-weight:600;}
+.bt{background:#1e3a5f;color:#93c5fd;}.be{background:#3b0000;color:#fca5a5;}.bp{background:#052e16;color:#86efac;}
+.stat{background:linear-gradient(135deg,#161616,#111);border:1px solid #1e1e1e;border-radius:14px;padding:18px;}
+.row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #161616;}
+.row:last-child{border-bottom:none;}
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#1e1e1e;border:1px solid #333;padding:13px 26px;border-radius:12px;z-index:9999;display:none;font-size:14px;white-space:nowrap;box-shadow:0 4px 20px #0008;}
+.spin{display:inline-block;width:18px;height:18px;border:2px solid #333;border-top-color:#c9a84c;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.g4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(min-width:640px){.g4{grid-template-columns:repeat(4,1fr);}}
+.tbl{width:100%;font-size:13px;border-collapse:collapse;}
+.tbl th{padding:10px 12px;text-align:right;color:#555;font-weight:500;border-bottom:1px solid #1e1e1e;}
+.tbl td{padding:9px 12px;border-bottom:1px solid #111;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:#111;}
 </style>
 </head>
 <body>
 
 <div id="loginScreen" style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;">
-  <div class="card" style="padding:40px;width:100%;max-width:380px;text-align:center;">
-    <div style="font-size:48px;font-family:serif;color:#c9a84c;font-weight:900;margin-bottom:4px;">ورق</div>
-    <div style="color:#666;font-size:14px;margin-bottom:32px;">لوحة الإدارة السرية</div>
-    <input id="inUrl" class="inp" placeholder="Supabase URL" type="text" style="margin-bottom:12px;" />
-    <input id="inKey" class="inp" placeholder="Secret Key" type="password" style="margin-bottom:12px;" />
-    <input id="inPass" class="inp" placeholder="كلمة سر الداشبورد" type="password" style="margin-bottom:24px;" />
-    <button id="btnLogin" class="btn-gold">دخول</button>
-    <div id="loginErr" style="color:#f87171;font-size:14px;margin-top:16px;min-height:20px;"></div>
+  <div class="card" style="padding:36px;width:100%;max-width:380px;text-align:center;">
+    <div style="font-size:52px;font-family:serif;color:#c9a84c;font-weight:900;line-height:1;margin-bottom:4px;">ورق</div>
+    <div style="color:#555;font-size:13px;margin-bottom:32px;">لوحة الإدارة السرية</div>
+    <input id="inUrl" class="inp" placeholder="Supabase URL" type="text" style="margin-bottom:10px;">
+    <input id="inKey" class="inp" placeholder="Service Role Key (eyJ...)" type="password" style="margin-bottom:10px;">
+    <input id="inPass" class="inp" placeholder="كلمة سر الداشبورد" type="password" style="margin-bottom:20px;">
+    <button id="btnLogin" class="btn btn-gold" style="width:100%;font-size:17px;padding:14px;">دخول</button>
+    <div id="loginErr" style="color:#f87171;font-size:13px;margin-top:14px;min-height:18px;line-height:1.6;"></div>
   </div>
 </div>
 
 <div id="dash" style="display:none;">
-  <div style="background:#0a0a0a;border-bottom:1px solid #222;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <span style="font-size:22px;font-family:serif;color:#c9a84c;font-weight:900;">ورق</span>
-      <span style="color:#555;font-size:13px;">لوحة الإدارة</span>
+  <div style="background:#0a0a0a;border-bottom:1px solid #1a1a1a;padding:0 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;height:52px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span style="font-size:20px;font-family:serif;color:#c9a84c;font-weight:900;">ورق</span>
+      <span style="color:#444;font-size:12px;padding-right:10px;border-right:1px solid #222;">الإدارة</span>
+      <span id="connDot" title="متصل" style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
     </div>
-    <div style="display:flex;gap:12px;align-items:center;">
-      <span id="lastUp" style="color:#444;font-size:12px;"></span>
-      <button id="btnRefresh" class="btn-sm" style="background:#c9a84c;color:#000;padding:6px 14px;">تحديث</button>
-      <button id="btnLogout" style="background:none;border:none;color:#666;cursor:pointer;font-size:13px;">خروج</button>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <span id="lastUp" style="color:#444;font-size:11px;"></span>
+      <button id="btnRefresh" class="btn-sm" style="background:#c9a84c22;color:#c9a84c;">↺ تحديث</button>
+      <button id="btnLogout" class="btn-sm">خروج</button>
     </div>
   </div>
 
-  <div style="display:flex;border-bottom:1px solid #222;padding:0 20px;overflow-x:auto;">
-    <div class="tab on" id="t-overview" data-tab="overview">نظرة عامة</div>
-    <div class="tab" id="t-users" data-tab="users">المستخدمون</div>
-    <div class="tab" id="t-items" data-tab="items">العناصر</div>
-    <div class="tab" id="t-notif" data-tab="notif">الإشعارات</div>
-    <div class="tab" id="t-actions" data-tab="actions">الإجراءات</div>
+  <div style="display:flex;border-bottom:1px solid #1a1a1a;padding:0 16px;overflow-x:auto;background:#0a0a0a;">
+    <div class="tab on" data-tab="overview">📊 نظرة عامة</div>
+    <div class="tab" data-tab="users">👥 المستخدمون</div>
+    <div class="tab" data-tab="items">📝 العناصر</div>
+    <div class="tab" data-tab="notif">🔔 الإشعارات</div>
+    <div class="tab" data-tab="actions">⚡ الإجراءات</div>
+    <div class="tab" data-tab="explorer">🗄️ الجداول</div>
   </div>
 
-  <div style="padding:20px;max-width:1200px;margin:0 auto;">
+  <div style="padding:20px;max-width:1100px;margin:0 auto;">
 
     <div id="tab-overview">
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px;" id="statsGrid"></div>
-      <div class="card" style="padding:16px;">
-        <div style="color:#888;font-size:13px;margin-bottom:12px;">أحدث التسجيلات</div>
-        <div id="recentList"></div>
+      <div class="g4" id="statsGrid" style="margin-bottom:16px;"></div>
+      <div class="g2" style="margin-bottom:16px;">
+        <div class="card" style="padding:16px;"><div style="color:#888;font-size:12px;margin-bottom:12px;">أحدث التسجيلات</div><div id="recentList"><div class="spin"></div></div></div>
+        <div class="card" style="padding:16px;"><div style="color:#888;font-size:12px;margin-bottom:12px;">إحصاء العناصر</div><div id="itemTypeStats"><div class="spin"></div></div></div>
       </div>
     </div>
 
     <div id="tab-users" style="display:none;">
-      <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
-        <input id="srchUser" class="inp" placeholder="بحث بالإيميل..." style="flex:1;min-width:200px;" />
-        <select id="fltStatus" class="inp" style="width:140px;">
-          <option value="all">الكل</option>
-          <option value="trial">في التجربة</option>
-          <option value="expired">منتهية</option>
-          <option value="paid">مدفوع</option>
+      <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center;">
+        <input id="srchUser" class="inp" placeholder="🔍 بحث بالإيميل..." style="flex:1;min-width:180px;">
+        <select id="fltStatus" class="inp" style="width:130px;">
+          <option value="all">الكل</option><option value="trial">في التجربة</option>
+          <option value="expired">منتهية</option><option value="paid">مدفوع</option>
         </select>
-        <button id="btnExport" class="btn-sm" style="background:#c9a84c;color:#000;padding:8px 16px;">تصدير CSV</button>
+        <button id="btnExport" class="btn-sm" style="background:#c9a84c22;color:#c9a84c;padding:7px 14px;">تصدير CSV</button>
       </div>
       <div class="card" style="overflow:auto;">
-        <table style="width:100%;font-size:13px;border-collapse:collapse;">
-          <thead>
-            <tr style="border-bottom:1px solid #222;color:#666;">
-              <th style="padding:10px;text-align:right;">الإيميل</th>
-              <th style="padding:10px;text-align:right;">الحالة</th>
-              <th style="padding:10px;text-align:right;">تسجيل</th>
-              <th style="padding:10px;text-align:right;">انتهاء التجربة</th>
-              <th style="padding:10px;text-align:right;">إجراء</th>
-            </tr>
-          </thead>
-          <tbody id="usersBody"></tbody>
-        </table>
+        <table class="tbl"><thead><tr><th>الإيميل</th><th>الحالة</th><th>تسجيل</th><th>انتهاء التجربة</th><th>إجراء</th></tr></thead>
+        <tbody id="usersBody"><tr><td colspan="5" style="text-align:center;padding:24px;"><div class="spin"></div></td></tr></tbody></table>
       </div>
+      <div id="userCount" style="color:#555;font-size:12px;padding:8px 4px;"></div>
     </div>
 
     <div id="tab-items" style="display:none;">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;" id="itemStats"></div>
-      <div class="card" style="padding:16px;">
-        <div style="color:#888;font-size:13px;margin-bottom:12px;">آخر 20 عنصر</div>
-        <div id="itemsList"></div>
-      </div>
+      <div class="g3" id="itemStats" style="margin-bottom:16px;"></div>
+      <div class="card" style="padding:16px;"><div style="color:#888;font-size:12px;margin-bottom:12px;">آخر 30 عنصر</div><div id="itemsList"><div class="spin"></div></div></div>
     </div>
 
     <div id="tab-notif" style="display:none;">
-      <div class="card" style="padding:20px;">
-        <div style="color:#888;font-size:13px;margin-bottom:16px;">إرسال إشعار</div>
-        <select id="notifTarget" class="inp" style="margin-bottom:12px;">
+      <div class="card" style="padding:20px;max-width:600px;">
+        <div style="font-weight:600;margin-bottom:16px;color:#c9a84c;">إرسال إشعار</div>
+        <select id="notifTarget" class="inp" style="margin-bottom:10px;">
           <option value="all">كل المستخدمين</option>
-          <option value="trial">في التجربة</option>
+          <option value="trial">في التجربة فقط</option>
           <option value="single">مستخدم واحد</option>
         </select>
-        <input id="notifEmail" class="inp" placeholder="إيميل المستخدم" style="display:none;margin-bottom:12px;" />
-        <input id="notifTitle" class="inp" placeholder="عنوان الإشعار" style="margin-bottom:12px;" />
-        <textarea id="notifBody" class="inp" rows="3" placeholder="نص الإشعار" style="margin-bottom:16px;resize:vertical;"></textarea>
-        <button id="btnSendNotif" class="btn-gold" style="width:auto;padding:10px 30px;">إرسال</button>
+        <input id="notifEmail" class="inp" placeholder="إيميل المستخدم" style="display:none;margin-bottom:10px;">
+        <input id="notifTitle" class="inp" placeholder="عنوان الإشعار" style="margin-bottom:10px;">
+        <textarea id="notifBody" class="inp" rows="4" placeholder="نص الإشعار" style="margin-bottom:16px;"></textarea>
+        <button id="btnSendNotif" class="btn btn-gold" style="padding:12px 32px;">إرسال الإشعار</button>
+        <div id="notifResult" style="margin-top:12px;font-size:13px;color:#86efac;"></div>
       </div>
     </div>
 
     <div id="tab-actions" style="display:none;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;">
         <div class="card" style="padding:20px;">
           <div style="color:#c9a84c;font-weight:600;margin-bottom:14px;">⏳ تمديد التجربة</div>
-          <input id="extEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:10px;" />
+          <input id="extEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:10px;">
           <select id="extDays" class="inp" style="margin-bottom:14px;">
-            <option value="3">3 أيام</option>
-            <option value="7">7 أيام</option>
-            <option value="14">14 يوم</option>
-            <option value="21">21 يوم</option>
-            <option value="30">30 يوم</option>
+            <option value="3">+3 أيام</option><option value="7" selected>+7 أيام</option>
+            <option value="14">+14 يوم</option><option value="21">+21 يوم</option><option value="30">+30 يوم</option>
           </select>
-          <button id="btnExtend" class="btn-gold">تمديد</button>
+          <button id="btnExtend" class="btn btn-gold" style="width:100%;">تمديد التجربة</button>
         </div>
         <div class="card" style="padding:20px;">
-          <div style="color:#93c5fd;font-weight:600;margin-bottom:14px;">🔍 بحث عن مستخدم</div>
-          <input id="lookEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:10px;" />
-          <button id="btnLookup" class="btn-gold" style="margin-bottom:12px;">بحث</button>
-          <div id="lookResult" style="font-size:12px;color:#aaa;background:#0d0d0d;border-radius:8px;padding:12px;display:none;line-height:1.8;"></div>
+          <div style="color:#93c5fd;font-weight:600;margin-bottom:14px;">🔍 بحث مفصّل</div>
+          <input id="lookEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:10px;">
+          <button id="btnLookup" class="btn btn-gold" style="width:100%;margin-bottom:12px;">بحث</button>
+          <div id="lookResult" style="display:none;font-size:12px;color:#aaa;background:#0d0d0d;border-radius:10px;padding:14px;line-height:2;border:1px solid #1e1e1e;"></div>
         </div>
         <div class="card" style="padding:20px;">
-          <div style="color:#fca5a5;font-weight:600;margin-bottom:14px;">🚫 تعطيل مستخدم</div>
-          <input id="banEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:10px;" />
-          <input id="banReason" class="inp" placeholder="السبب" style="margin-bottom:14px;" />
-          <button id="btnBan" class="btn-red" style="width:100%;padding:10px;">تعطيل الحساب</button>
+          <div style="color:#fca5a5;font-weight:600;margin-bottom:14px;">🚫 تعطيل حساب</div>
+          <input id="banEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:10px;">
+          <input id="banReason" class="inp" placeholder="السبب (اختياري)" style="margin-bottom:14px;">
+          <button id="btnBan" class="btn btn-red" style="width:100%;padding:11px;">تعطيل</button>
         </div>
         <div class="card" style="padding:20px;">
-          <div style="color:#86efac;font-weight:600;margin-bottom:14px;">✅ تفعيل مستخدم</div>
-          <input id="unbanEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:14px;" />
-          <button id="btnUnban" class="btn-green" style="width:100%;padding:10px;">رفع الحظر</button>
+          <div style="color:#86efac;font-weight:600;margin-bottom:14px;">✅ رفع الحظر</div>
+          <input id="unbanEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:14px;">
+          <button id="btnUnban" class="btn btn-green" style="width:100%;padding:11px;">تفعيل الحساب</button>
         </div>
+      </div>
+    </div>
+
+    <div id="tab-explorer" style="display:none;">
+      <div class="card" style="padding:20px;margin-bottom:16px;">
+        <div style="font-weight:600;margin-bottom:14px;color:#c9a84c;">🗄️ الجداول المكتشفة</div>
+        <div id="tableList"><div class="spin"></div></div>
+      </div>
+      <div class="card" style="padding:20px;">
+        <div style="font-weight:600;margin-bottom:14px;color:#888;">📋 استعراض جدول</div>
+        <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+          <input id="exploreTable" class="inp" placeholder="اسم الجدول" style="flex:1;">
+          <input id="exploreLimit" class="inp" placeholder="عدد الصفوف" style="width:120px;" type="number" value="10">
+          <button id="btnExplore" class="btn btn-gold" style="padding:11px 20px;">استعراض</button>
+        </div>
+        <div id="exploreResult" style="overflow:auto;"></div>
       </div>
     </div>
 
@@ -159,321 +174,277 @@
 <div id="toast"></div>
 
 <script>
-const PWD = 'warraq-admin-2026';
-let SB_URL = '', SB_KEY = '';
-let allUsers = [];
+const PWD='warraq-admin-2026';
+let SB_URL='',SB_KEY='',allUsers=[];
+let T={users:null,items:null,notif:null};
 
-// ─── Supabase REST helper ───────────────────────────────────────────
-async function sb(table, params = '') {
-  const r = await fetch(SB_URL + '/rest/v1/' + table + params, {
-    headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Accept': 'application/json' }
-  });
-  if (!r.ok) throw new Error(await r.text());
-  return r.json();
+async function sbGet(path){
+  const r=await fetch(SB_URL+'/rest/v1/'+path,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Accept':'application/json'}});
+  const txt=await r.text();
+  if(!r.ok)throw new Error(txt.substring(0,120));
+  return txt?JSON.parse(txt):[];
+}
+async function sbCount(path){
+  const r=await fetch(SB_URL+'/rest/v1/'+path,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'count=exact','Accept':'application/json'}});
+  const cr=r.headers.get('content-range');
+  return cr?(parseInt(cr.split('/')[1])||0):0;
+}
+async function sbPost(table,body){
+  const r=await fetch(SB_URL+'/rest/v1/'+table,{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(body)});
+  if(!r.ok)throw new Error(await r.text());
+}
+async function sbPatch(table,match,body){
+  const r=await fetch(SB_URL+'/rest/v1/'+table+'?'+match,{method:'PATCH',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(body)});
+  if(!r.ok)throw new Error(await r.text());
+}
+async function tryTable(names,q='?select=id&limit=1'){
+  for(const n of names){try{await sbGet(n+q);return n;}catch{}}return null;
+}
+async function discoverTables(){
+  T.users=await tryTable(['profiles','users','user_profiles','accounts','members','auth_users']);
+  T.items=await tryTable(['items','tasks','notes','entries','todos','cards','records']);
+  T.notif=await tryTable(['notifications','notifs','alerts','messages','inbox']);
 }
 
-async function sbCount(table, params = '') {
-  const r = await fetch(SB_URL + '/rest/v1/' + table + params, {
-    headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Prefer': 'count=exact', 'Accept': 'application/json' }
-  });
-  const count = r.headers.get('content-range');
-  return count ? parseInt(count.split('/')[1]) : 0;
-}
-
-async function sbPost(table, body) {
-  const r = await fetch(SB_URL + '/rest/v1/' + table, {
-    method: 'POST',
-    headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
-    body: JSON.stringify(body)
-  });
-  if (!r.ok) throw new Error(await r.text());
-}
-
-async function sbPatch(table, match, body) {
-  const r = await fetch(SB_URL + '/rest/v1/' + table + '?' + match, {
-    method: 'PATCH',
-    headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
-    body: JSON.stringify(body)
-  });
-  if (!r.ok) throw new Error(await r.text());
-}
-
-// ─── Login ─────────────────────────────────────────────────────────
-document.getElementById('btnLogin').addEventListener('click', function() {
-  const url = document.getElementById('inUrl').value.trim();
-  const key = document.getElementById('inKey').value.trim();
-  const pass = document.getElementById('inPass').value;
-  const err = document.getElementById('loginErr');
-
-  if (pass !== PWD) { err.textContent = 'كلمة السر غلط'; return; }
-  if (!url || !key) { err.textContent = 'أدخل URL و Key'; return; }
-
-  SB_URL = url.replace(/^[<>]/g, '').replace(/[<>]$/g, '').replace(/\/$/, '');
-  SB_KEY = key.replace(/^[<>]/g, '').replace(/[<>]$/g, '');
-
-  if (!SB_URL.startsWith('https://')) { err.textContent = 'الـ URL يجب أن يبدأ بـ https://'; return; }
-
-  err.textContent = 'جاري الاتصال...';
-
-  fetch(SB_URL + '/rest/v1/', {
-    headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY }
-  }).then(r => {
-    if (!r.ok && r.status === 401) throw new Error('المفتاح غير صحيح');
-    try { sessionStorage.setItem('su', SB_URL); sessionStorage.setItem('sk', SB_KEY); } catch {}
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('dash').style.display = 'block';
+document.getElementById('btnLogin').addEventListener('click',async function(){
+  const url=document.getElementById('inUrl').value.trim().replace(/[<>]/g,'').replace(/\/$/,'');
+  const key=document.getElementById('inKey').value.trim().replace(/[<>]/g,'');
+  const pass=document.getElementById('inPass').value;
+  const err=document.getElementById('loginErr');
+  if(pass!==PWD){err.textContent='كلمة السر غلط';return;}
+  if(!url||!key){err.textContent='أدخل URL و Key';return;}
+  if(!url.startsWith('https://')){err.textContent='الـ URL يجب أن يبدأ بـ https://';return;}
+  SB_URL=url;SB_KEY=key;
+  err.innerHTML='<span class="spin"></span> جاري الاتصال...';
+  try{
+    const r=await fetch(SB_URL+'/rest/v1/',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
+    if(r.status===401)throw new Error('المفتاح غير صحيح');
+    try{sessionStorage.setItem('su',SB_URL);sessionStorage.setItem('sk',SB_KEY);}catch{}
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('dash').style.display='block';
+    await discoverTables();
     loadAll();
-  }).catch(e => {
-    err.textContent = 'فشل الاتصال: ' + (e.message || 'تحقق من URL و Key');
+  }catch(e){SB_URL='';SB_KEY='';err.textContent='فشل الاتصال: '+(e.message||'تحقق من البيانات');}
+});
+
+document.getElementById('btnLogout').addEventListener('click',()=>{try{sessionStorage.clear();}catch{}location.reload();});
+document.getElementById('btnRefresh').addEventListener('click',loadAll);
+
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('[id^="tab-"]').forEach(x=>x.style.display='none');
+    this.classList.add('on');
+    const n=this.getAttribute('data-tab');
+    document.getElementById('tab-'+n).style.display='block';
+    if(n==='users')loadUsers();
+    if(n==='items')loadItems();
+    if(n==='explorer')loadExplorer();
   });
 });
 
-document.getElementById('btnLogout').addEventListener('click', function() {
-  try { sessionStorage.clear(); } catch {}
-  location.reload();
-});
-
-document.getElementById('btnRefresh').addEventListener('click', loadAll);
-
-// ─── Tabs ────────────────────────────────────────────────────────────
-document.querySelectorAll('.tab').forEach(function(t) {
-  t.addEventListener('click', function() {
-    document.querySelectorAll('.tab').forEach(function(x) { x.classList.remove('on'); });
-    document.querySelectorAll('[id^="tab-"]').forEach(function(x) { x.style.display = 'none'; });
-    t.classList.add('on');
-    var name = t.getAttribute('data-tab');
-    document.getElementById('tab-' + name).style.display = 'block';
-    if (name === 'users') renderUsers(allUsers);
-    if (name === 'items') loadItems();
-  });
-});
-
-// ─── Stats ──────────────────────────────────────────────────────────
-async function loadAll() {
-  document.getElementById('lastUp').textContent = 'جاري التحديث...';
-  try { await Promise.all([loadStats(), loadUsers()]); } catch {}
-  document.getElementById('lastUp').textContent = 'آخر تحديث: ' + new Date().toLocaleTimeString('ar');
+async function loadAll(){
+  document.getElementById('lastUp').textContent='⟳';
+  await Promise.allSettled([loadStats(),loadUsers()]);
+  document.getElementById('lastUp').textContent=new Date().toLocaleTimeString('ar');
 }
 
-async function loadStats() {
-  const now = new Date().toISOString();
-  const week = new Date(Date.now() - 7*24*60*60*1000).toISOString();
-  const today = new Date(); today.setHours(0,0,0,0);
+async function loadStats(){
+  const now=new Date().toISOString(),week=new Date(Date.now()-7*864e5).toISOString(),day=new Date();day.setHours(0,0,0,0);
+  let total=0,trial=0,expired=0,paid=0,newU=0,totalItems=0,todayItems=0;
 
-  const [users, totalItems, todayItems] = await Promise.all([
-    sb('profiles', '?select=id,created_at,trial_ends_at,paddle_subscription_id'),
-    sbCount('items', '?select=id'),
-    sbCount('items', '?select=id&created_at=gte.' + today.toISOString())
-  ]);
+  if(T.users){
+    try{
+      const users=await sbGet(T.users+'?select=id,created_at,trial_ends_at,paddle_subscription_id');
+      total=users.length;
+      trial=users.filter(u=>u.trial_ends_at&&u.trial_ends_at>now).length;
+      paid=users.filter(u=>u.paddle_subscription_id).length;
+      expired=users.filter(u=>!u.paddle_subscription_id&&(!u.trial_ends_at||u.trial_ends_at<=now)).length;
+      newU=users.filter(u=>u.created_at>week).length;
+      const recent=await sbGet(T.users+'?select=email,created_at&order=created_at.desc&limit=6');
+      document.getElementById('recentList').innerHTML=recent.map(u=>'<div class="row"><span style="color:#ccc;font-size:13px;">'+(u.email||'—')+'</span><span style="color:#555;font-size:11px;">'+fmtDate(u.created_at)+'</span></div>').join('')||'<div style="color:#555;padding:8px;">لا يوجد مستخدمون بعد</div>';
+    }catch(e){document.getElementById('recentList').innerHTML='<div style="color:#f87171;font-size:12px;">'+e.message.substring(0,80)+'</div>';}
+  }else{document.getElementById('recentList').innerHTML='<div style="color:#666;font-size:13px;padding:8px;">لم يُكتشف جدول المستخدمين — راجع تبويب الجداول 🗄️</div>';}
 
-  const total = users.length;
-  const trial = users.filter(u => u.trial_ends_at && u.trial_ends_at > now).length;
-  const expired = users.filter(u => !u.paddle_subscription_id && (!u.trial_ends_at || u.trial_ends_at <= now)).length;
-  const paid = users.filter(u => u.paddle_subscription_id).length;
-  const newU = users.filter(u => u.created_at > week).length;
+  if(T.items){
+    try{
+      totalItems=await sbCount(T.items+'?select=id');
+      todayItems=await sbCount(T.items+'?select=id&created_at=gte.'+day.toISOString());
+      const byType=await sbGet(T.items+'?select=type');
+      const tc={},cols={task:'#93c5fd',idea:'#fde68a',decision:'#86efac',note:'#f9a8d4'};
+      const labs={task:'مهمة',idea:'فكرة',decision:'قرار',note:'ملاحظة'};
+      byType.forEach(i=>{tc[i.type||'other']=(tc[i.type||'other']||0)+1;});
+      document.getElementById('itemTypeStats').innerHTML=Object.entries(tc).slice(0,5).map(([k,v])=>'<div class="row"><span style="color:'+(cols[k]||'#aaa')+';font-size:13px;">'+(labs[k]||k)+'</span><span style="font-weight:600;color:#888;">'+v+'</span></div>').join('')||'<div style="color:#555;padding:8px;">لا يوجد عناصر بعد</div>';
+    }catch{}
+  }else{document.getElementById('itemTypeStats').innerHTML='<div style="color:#666;font-size:13px;padding:8px;">لم يُكتشف جدول العناصر</div>';}
 
-  const stats = [
-    { label: 'إجمالي المستخدمين', val: total, color: '#fff' },
-    { label: 'في التجربة', val: trial, color: '#93c5fd' },
-    { label: 'منتهية التجربة', val: expired, color: '#fca5a5' },
-    { label: 'مدفوعون', val: paid, color: '#86efac' },
-    { label: 'جدد (7 أيام)', val: newU, color: '#c9a84c' },
-    { label: 'إجمالي العناصر', val: totalItems, color: '#d8b4fe' },
-    { label: 'عناصر اليوم', val: todayItems, color: '#f9a8d4' },
+  const stats=[
+    {l:'إجمالي المستخدمين',v:total,c:'#fff'},
+    {l:'في التجربة',v:trial,c:'#93c5fd'},
+    {l:'انتهت تجربتهم',v:expired,c:'#fca5a5'},
+    {l:'مدفوعون',v:paid,c:'#86efac'},
+    {l:'جدد (7 أيام)',v:newU,c:'#c9a84c'},
+    {l:'إجمالي العناصر',v:totalItems,c:'#d8b4fe'},
+    {l:'عناصر اليوم',v:todayItems,c:'#f9a8d4'},
+    {l:'جداول مكتشفة',v:Object.values(T).filter(Boolean).length+'/3',c:'#6ee7b7'},
   ];
-  document.getElementById('statsGrid').innerHTML = stats.map(s =>
-    '<div class="stat-card" style="padding:16px;border-radius:12px;"><div style="color:#666;font-size:11px;margin-bottom:4px;">' + s.label + '</div>' +
-    '<div style="font-size:28px;font-weight:700;color:' + s.color + ';">' + s.val + '</div></div>'
-  ).join('');
-
-  const recent = await sb('profiles', '?select=email,created_at&order=created_at.desc&limit=5');
-  document.getElementById('recentList').innerHTML = recent.map(u =>
-    '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #1a1a1a;">' +
-    '<span style="color:#ccc;font-size:13px;">' + (u.email || '—') + '</span>' +
-    '<span style="color:#555;font-size:12px;">' + new Date(u.created_at).toLocaleDateString('ar') + '</span></div>'
-  ).join('');
+  document.getElementById('statsGrid').innerHTML=stats.map(s=>'<div class="stat"><div style="color:#555;font-size:11px;margin-bottom:6px;">'+s.l+'</div><div style="font-size:26px;font-weight:700;color:'+s.c+';">'+s.v+'</div></div>').join('');
 }
 
-// ─── Users ──────────────────────────────────────────────────────────
-async function loadUsers() {
-  const data = await sb('profiles', '?select=id,email,created_at,trial_ends_at,paddle_subscription_id&order=created_at.desc');
-  allUsers = data;
-  renderUsers(data);
+async function loadUsers(){
+  if(!T.users){document.getElementById('usersBody').innerHTML='<tr><td colspan="5" style="text-align:center;padding:24px;color:#666;">لم يُكتشف جدول المستخدمين — راجع تبويب الجداول 🗄️</td></tr>';return;}
+  try{
+    const data=await sbGet(T.users+'?select=id,email,created_at,trial_ends_at,paddle_subscription_id&order=created_at.desc');
+    allUsers=data;renderUsers(data);
+  }catch(e){document.getElementById('usersBody').innerHTML='<tr><td colspan="5" style="color:#f87171;padding:16px;">'+e.message+'</td></tr>';}
+}
+function renderUsers(users){
+  const now=new Date().toISOString(),q=(document.getElementById('srchUser').value||'').toLowerCase(),f=document.getElementById('fltStatus').value;
+  let list=users.filter(u=>(u.email||'').toLowerCase().includes(q));
+  if(f==='trial')list=list.filter(u=>u.trial_ends_at&&u.trial_ends_at>now);
+  else if(f==='expired')list=list.filter(u=>!u.paddle_subscription_id&&(!u.trial_ends_at||u.trial_ends_at<=now));
+  else if(f==='paid')list=list.filter(u=>u.paddle_subscription_id);
+  document.getElementById('userCount').textContent='يظهر '+list.length+' من '+users.length;
+  document.getElementById('usersBody').innerHTML=list.length?list.map(u=>{
+    const isPaid=u.paddle_subscription_id,isTrial=!isPaid&&u.trial_ends_at&&u.trial_ends_at>now;
+    const badge=isPaid?'<span class="badge bp">مدفوع</span>':isTrial?'<span class="badge bt">تجربة</span>':'<span class="badge be">منتهية</span>';
+    return '<tr><td style="color:#ccc;">'+(u.email||'—')+'</td><td>'+badge+'</td><td style="color:#555;font-size:11px;">'+fmtDate(u.created_at)+'</td><td style="color:#555;font-size:11px;">'+(u.trial_ends_at?fmtDate(u.trial_ends_at):'—')+'</td><td><button class="btn-sm" onclick="quickExtend(\''+esc(u.email)+'\')">+7</button> <button class="btn-sm" style="color:#fca5a5;" onclick="quickBan(\''+esc(u.email)+'\')">حظر</button></td></tr>';
+  }).join(''):'<tr><td colspan="5" style="text-align:center;padding:20px;color:#555;">لا توجد نتائج</td></tr>';
+}
+document.getElementById('srchUser').addEventListener('input',()=>renderUsers(allUsers));
+document.getElementById('fltStatus').addEventListener('change',()=>renderUsers(allUsers));
+document.getElementById('btnExport').addEventListener('click',()=>{
+  if(!allUsers.length)return toast('لا يوجد بيانات للتصدير');
+  const csv=['email,created_at,trial_ends_at,paid',...allUsers.map(u=>[u.email,u.created_at,u.trial_ends_at||'',u.paddle_subscription_id?'yes':'no'].join(','))].join('\n');
+  dl(csv,'warraq-users-'+new Date().toISOString().split('T')[0]+'.csv','text/csv');
+  toast('تم تصدير '+allUsers.length+' مستخدم ✅');
+});
+
+async function loadItems(){
+  if(!T.items){document.getElementById('itemStats').innerHTML='<div style="color:#666;grid-column:1/-1;padding:8px;">لم يُكتشف جدول العناصر</div>';return;}
+  try{
+    const[byType,recent]=await Promise.all([sbGet(T.items+'?select=type'),sbGet(T.items+'?select=type,created_at&order=created_at.desc&limit=30')]);
+    const tc={},cols={task:'#93c5fd',idea:'#fde68a',decision:'#86efac',note:'#f9a8d4'};
+    const labs={task:'مهمة',idea:'فكرة',decision:'قرار',note:'ملاحظة'};
+    byType.forEach(i=>{tc[i.type||'other']=(tc[i.type||'other']||0)+1;});
+    document.getElementById('itemStats').innerHTML=Object.entries(tc).map(([k,v])=>'<div class="stat" style="text-align:center;"><div style="font-size:28px;font-weight:700;color:'+(cols[k]||'#aaa')+';">'+v+'</div><div style="color:#666;font-size:12px;margin-top:4px;">'+(labs[k]||k)+'</div></div>').join('')||'<div style="color:#666;">لا يوجد بيانات</div>';
+    document.getElementById('itemsList').innerHTML=recent.map(i=>'<div class="row"><span style="color:'+(cols[i.type]||'#aaa')+';font-size:13px;">'+(labs[i.type]||i.type||'—')+'</span><span style="color:#555;font-size:11px;">'+fmtDate(i.created_at)+'</span></div>').join('');
+  }catch(e){document.getElementById('itemStats').innerHTML='<div style="color:#f87171;">'+e.message.substring(0,80)+'</div>';}
 }
 
-function renderUsers(users) {
-  const now = new Date().toISOString();
-  const q = (document.getElementById('srchUser').value || '').toLowerCase();
-  const f = document.getElementById('fltStatus').value;
-  let list = users.filter(u => (u.email || '').toLowerCase().includes(q));
-  if (f === 'trial') list = list.filter(u => u.trial_ends_at && u.trial_ends_at > now);
-  else if (f === 'expired') list = list.filter(u => !u.paddle_subscription_id && (!u.trial_ends_at || u.trial_ends_at <= now));
-  else if (f === 'paid') list = list.filter(u => u.paddle_subscription_id);
-
-  document.getElementById('usersBody').innerHTML = list.map(u => {
-    const isTrial = u.trial_ends_at && u.trial_ends_at > now;
-    const isPaid = u.paddle_subscription_id;
-    const badge = isPaid ? '<span class="badge-p">مدفوع</span>' : isTrial ? '<span class="badge-t">تجربة</span>' : '<span class="badge-e">منتهية</span>';
-    return '<tr style="border-bottom:1px solid #111;">' +
-      '<td style="padding:8px 10px;color:#ccc;">' + (u.email || '—') + '</td>' +
-      '<td style="padding:8px 10px;">' + badge + '</td>' +
-      '<td style="padding:8px 10px;color:#555;font-size:11px;">' + new Date(u.created_at).toLocaleDateString('ar') + '</td>' +
-      '<td style="padding:8px 10px;color:#555;font-size:11px;">' + (u.trial_ends_at ? new Date(u.trial_ends_at).toLocaleDateString('ar') : '—') + '</td>' +
-      '<td style="padding:8px 10px;">' +
-        '<button class="btn-sm" onclick="quickExtend(\'' + u.email + '\')">+7</button> ' +
-        '<button class="btn-sm" style="background:#3b0000;color:#fca5a5;" onclick="quickBan(\'' + u.email + '\')">حظر</button>' +
-      '</td></tr>';
-  }).join('');
-}
-
-document.getElementById('srchUser').addEventListener('input', function() { renderUsers(allUsers); });
-document.getElementById('fltStatus').addEventListener('change', function() { renderUsers(allUsers); });
-document.getElementById('btnExport').addEventListener('click', function() {
-  const csv = ['email,created_at,trial_ends_at', ...allUsers.map(u => [u.email, u.created_at, u.trial_ends_at || ''].join(','))].join('\n');
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
-  a.download = 'warraq-' + new Date().toISOString().split('T')[0] + '.csv';
-  a.click();
-  toast('تم تصدير CSV ✅');
+document.getElementById('notifTarget').addEventListener('change',function(){document.getElementById('notifEmail').style.display=this.value==='single'?'block':'none';});
+document.getElementById('btnSendNotif').addEventListener('click',async()=>{
+  if(!T.notif)return toast('جدول الإشعارات غير موجود');
+  if(!T.users)return toast('جدول المستخدمين غير موجود');
+  const target=document.getElementById('notifTarget').value,title=document.getElementById('notifTitle').value.trim(),body=document.getElementById('notifBody').value.trim();
+  if(!title||!body)return toast('أدخل العنوان والنص');
+  document.getElementById('notifResult').textContent='';
+  try{
+    const now=new Date().toISOString();let users=[];
+    if(target==='single'){const em=document.getElementById('notifEmail').value.trim();users=await sbGet(T.users+'?select=id&email=eq.'+encodeURIComponent(em));}
+    else if(target==='trial'){users=await sbGet(T.users+'?select=id&trial_ends_at=gte.'+now);}
+    else{users=await sbGet(T.users+'?select=id');}
+    for(const u of users)await sbPost(T.notif,{user_id:u.id,type:'admin',title,body,read:false});
+    document.getElementById('notifResult').textContent='تم الإرسال لـ '+users.length+' مستخدم ✅';
+    document.getElementById('notifTitle').value='';document.getElementById('notifBody').value='';
+    toast('تم إرسال '+users.length+' إشعار ✅');
+  }catch(e){toast('خطأ: '+e.message.substring(0,60));}
 });
 
-// ─── Items ─────────────────────────────────────────────────────────
-async function loadItems() {
-  const [tasks, ideas, decs, recent] = await Promise.all([
-    sbCount('items', '?select=id&type=eq.task'),
-    sbCount('items', '?select=id&type=eq.idea'),
-    sbCount('items', '?select=id&type=eq.decision'),
-    sb('items', '?select=id,type,created_at&order=created_at.desc&limit=20')
-  ]);
-  document.getElementById('itemStats').innerHTML = [
-    { label: 'مهام', val: tasks, color: '#93c5fd' },
-    { label: 'أفكار', val: ideas, color: '#fde68a' },
-    { label: 'قرارات', val: decs, color: '#86efac' },
-  ].map(s => '<div class="stat-card" style="padding:16px;border-radius:12px;text-align:center;">' +
-    '<div style="font-size:24px;font-weight:700;color:' + s.color + ';">' + s.val + '</div>' +
-    '<div style="color:#666;font-size:12px;margin-top:4px;">' + s.label + '</div></div>').join('');
-
-  const cols = { task: '#93c5fd', idea: '#fde68a', decision: '#86efac' };
-  const labs = { task: 'مهمة', idea: 'فكرة', decision: 'قرار' };
-  document.getElementById('itemsList').innerHTML = recent.map(i =>
-    '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #1a1a1a;">' +
-    '<span style="color:' + (cols[i.type] || '#aaa') + ';font-size:13px;">' + (labs[i.type] || i.type) + '</span>' +
-    '<span style="color:#555;font-size:12px;">' + new Date(i.created_at).toLocaleString('ar') + '</span></div>'
-  ).join('');
-}
-
-// ─── Notifications ──────────────────────────────────────────────────
-document.getElementById('notifTarget').addEventListener('change', function() {
-  document.getElementById('notifEmail').style.display = this.value === 'single' ? 'block' : 'none';
-});
-document.getElementById('btnSendNotif').addEventListener('click', async function() {
-  const target = document.getElementById('notifTarget').value;
-  const title = document.getElementById('notifTitle').value.trim();
-  const body = document.getElementById('notifBody').value.trim();
-  if (!title || !body) return toast('أدخل العنوان والنص');
-  try {
-    let users = [];
-    const now = new Date().toISOString();
-    if (target === 'single') {
-      const email = document.getElementById('notifEmail').value.trim();
-      users = await sb('profiles', '?select=id&email=eq.' + encodeURIComponent(email));
-    } else if (target === 'trial') {
-      users = await sb('profiles', '?select=id&trial_ends_at=gte.' + now);
-    } else {
-      users = await sb('profiles', '?select=id');
-    }
-    for (const u of users) {
-      await sbPost('notifications', { user_id: u.id, type: 'admin', title, body, read: false });
-    }
-    toast('تم إرسال الإشعار لـ ' + users.length + ' مستخدم ✅');
-  } catch(e) { toast('خطأ: ' + e.message); }
+document.getElementById('btnExtend').addEventListener('click',async()=>{
+  if(!T.users)return toast('جدول المستخدمين غير موجود');
+  const email=document.getElementById('extEmail').value.trim(),days=parseInt(document.getElementById('extDays').value);
+  if(!email)return toast('أدخل الإيميل');
+  try{
+    const rows=await sbGet(T.users+'?select=id,trial_ends_at&email=eq.'+encodeURIComponent(email));
+    if(!rows.length)return toast('المستخدم غير موجود ❌');
+    const base=rows[0].trial_ends_at&&rows[0].trial_ends_at>new Date().toISOString()?new Date(rows[0].trial_ends_at):new Date();
+    base.setDate(base.getDate()+days);
+    await sbPatch(T.users,'email=eq.'+encodeURIComponent(email),{trial_ends_at:base.toISOString()});
+    toast('تم تمديد '+email+' بـ +'+days+' أيام ✅');loadAll();
+  }catch(e){toast('خطأ: '+e.message.substring(0,60));}
 });
 
-// ─── Actions ────────────────────────────────────────────────────────
-document.getElementById('btnExtend').addEventListener('click', async function() {
-  const email = document.getElementById('extEmail').value.trim();
-  const days = parseInt(document.getElementById('extDays').value);
-  if (!email) return toast('أدخل الإيميل');
-  try {
-    const users = await sb('profiles', '?select=id,trial_ends_at&email=eq.' + encodeURIComponent(email));
-    if (!users.length) return toast('المستخدم غير موجود ❌');
-    const u = users[0];
-    const base = u.trial_ends_at && u.trial_ends_at > new Date().toISOString() ? new Date(u.trial_ends_at) : new Date();
-    base.setDate(base.getDate() + days);
-    await sbPatch('profiles', 'email=eq.' + encodeURIComponent(email), { trial_ends_at: base.toISOString() });
-    toast('تم تمديد ' + email + ' +' + days + ' أيام ✅');
-    loadAll();
-  } catch(e) { toast('خطأ: ' + e.message); }
+document.getElementById('btnLookup').addEventListener('click',async()=>{
+  if(!T.users)return toast('جدول المستخدمين غير موجود');
+  const email=document.getElementById('lookEmail').value.trim(),res=document.getElementById('lookResult');
+  if(!email)return;
+  try{
+    const rows=await sbGet(T.users+'?select=*&email=eq.'+encodeURIComponent(email));
+    if(!rows.length){res.innerHTML='<span style="color:#f87171;">المستخدم غير موجود</span>';res.style.display='block';return;}
+    const u=rows[0],cnt=T.items?await sbCount(T.items+'?select=id&user_id=eq.'+u.id):'—';
+    res.innerHTML=['📧 '+(u.email||'—'),'🆔 '+u.id,'📅 تسجيل: '+fmtDate(u.created_at),'⏳ انتهاء التجربة: '+(u.trial_ends_at?fmtDate(u.trial_ends_at):'—'),'💳 Paddle ID: '+(u.paddle_subscription_id||'—'),'📝 عدد العناصر: '+cnt,'🚫 محظور: '+(u.banned?'✓ نعم':'لا')].join('<br>');
+    res.style.display='block';
+  }catch(e){res.innerHTML='<span style="color:#f87171;">'+e.message+'</span>';res.style.display='block';}
 });
 
-document.getElementById('btnLookup').addEventListener('click', async function() {
-  const email = document.getElementById('lookEmail').value.trim();
-  const res = document.getElementById('lookResult');
-  if (!email) return;
-  try {
-    const users = await sb('profiles', '?select=*&email=eq.' + encodeURIComponent(email));
-    if (!users.length) { res.textContent = 'غير موجود'; res.style.display = 'block'; return; }
-    const u = users[0];
-    const cnt = await sbCount('items', '?select=id&user_id=eq.' + u.id);
-    res.innerHTML = '📧 ' + u.email + '<br>📅 تسجيل: ' + new Date(u.created_at).toLocaleDateString('ar') +
-      '<br>⏳ انتهاء التجربة: ' + (u.trial_ends_at ? new Date(u.trial_ends_at).toLocaleDateString('ar') : '—') +
-      '<br>📝 عدد العناصر: ' + cnt + '<br>🚫 محظور: ' + (u.banned ? 'نعم' : 'لا');
-    res.style.display = 'block';
-  } catch(e) { res.textContent = 'خطأ: ' + e.message; res.style.display = 'block'; }
+document.getElementById('btnBan').addEventListener('click',async()=>{
+  if(!T.users)return toast('جدول المستخدمين غير موجود');
+  const email=document.getElementById('banEmail').value.trim(),reason=document.getElementById('banReason').value;
+  if(!email)return toast('أدخل الإيميل');
+  if(!confirm('تعطيل حساب '+email+'؟'))return;
+  try{await sbPatch(T.users,'email=eq.'+encodeURIComponent(email),{banned:true,ban_reason:reason});toast('تم تعطيل '+email+' 🚫');loadAll();}
+  catch(e){toast('خطأ: '+e.message.substring(0,60));}
 });
 
-document.getElementById('btnBan').addEventListener('click', async function() {
-  const email = document.getElementById('banEmail').value.trim();
-  const reason = document.getElementById('banReason').value;
-  if (!email) return toast('أدخل الإيميل');
-  if (!confirm('تعطيل ' + email + '؟')) return;
-  try {
-    await sbPatch('profiles', 'email=eq.' + encodeURIComponent(email), { banned: true, ban_reason: reason });
-    toast('تم تعطيل ' + email + ' 🚫');
-    loadAll();
-  } catch(e) { toast('خطأ: ' + e.message); }
+document.getElementById('btnUnban').addEventListener('click',async()=>{
+  if(!T.users)return toast('جدول المستخدمين غير موجود');
+  const email=document.getElementById('unbanEmail').value.trim();
+  if(!email)return toast('أدخل الإيميل');
+  try{await sbPatch(T.users,'email=eq.'+encodeURIComponent(email),{banned:false,ban_reason:null});toast('تم تفعيل '+email+' ✅');loadAll();}
+  catch(e){toast('خطأ: '+e.message.substring(0,60));}
 });
 
-document.getElementById('btnUnban').addEventListener('click', async function() {
-  const email = document.getElementById('unbanEmail').value.trim();
-  if (!email) return toast('أدخل الإيميل');
-  try {
-    await sbPatch('profiles', 'email=eq.' + encodeURIComponent(email), { banned: false, ban_reason: null });
-    toast('تم تفعيل ' + email + ' ✅');
-    loadAll();
-  } catch(e) { toast('خطأ: ' + e.message); }
-});
-
-function quickExtend(email) {
-  document.getElementById('extEmail').value = email;
-  document.getElementById('extDays').value = '7';
+function quickExtend(email){
+  document.getElementById('extEmail').value=email;document.getElementById('extDays').value='7';
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));document.querySelectorAll('[id^="tab-"]').forEach(x=>x.style.display='none');
+  document.querySelector('[data-tab="actions"]').classList.add('on');document.getElementById('tab-actions').style.display='block';
   document.getElementById('btnExtend').click();
 }
-function quickBan(email) {
-  document.getElementById('banEmail').value = email;
+function quickBan(email){
+  document.getElementById('banEmail').value=email;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));document.querySelectorAll('[id^="tab-"]').forEach(x=>x.style.display='none');
+  document.querySelector('[data-tab="actions"]').classList.add('on');document.getElementById('tab-actions').style.display='block';
   document.getElementById('btnBan').click();
 }
 
-// ─── Toast ──────────────────────────────────────────────────────────
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.style.display = 'block';
-  setTimeout(() => { t.style.display = 'none'; }, 3500);
+async function loadExplorer(){
+  const el=document.getElementById('tableList');el.innerHTML='<div class="spin"></div>';
+  try{
+    const r=await fetch(SB_URL+'/rest/v1/',{headers:{'apikey':SB_KEY}});
+    const spec=await r.json();
+    const tables=Object.keys(spec.paths||{}).map(p=>p.replace('/','').split('?')[0]).filter(Boolean);
+    if(!tables.length){el.innerHTML='<div style="color:#666;">لم يتم اكتشاف أي جداول</div>';return;}
+    el.innerHTML='<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">'+
+      tables.map(t=>'<span style="background:#1e1e1e;border:1px solid #2a2a2a;border-radius:8px;padding:6px 14px;font-size:13px;cursor:pointer;color:#c9a84c;" onclick="document.getElementById(\'exploreTable\').value=\''+t+'\'">'+t+'</span>').join('')+
+      '</div><div style="color:#555;font-size:12px;">اضغط على أي جدول لاستعراضه ↓</div>'+
+      '<div style="margin-top:14px;padding-top:14px;border-top:1px solid #1e1e1e;font-size:12px;color:#666;">✦ المستخدمون: <b style="color:#c9a84c;">'+(T.users||'غير محدد')+'</b>  ✦ العناصر: <b style="color:#c9a84c;">'+(T.items||'غير محدد')+'</b>  ✦ الإشعارات: <b style="color:#c9a84c;">'+(T.notif||'غير محدد')+'</b></div>';
+  }catch(e){el.innerHTML='<div style="color:#f87171;">'+e.message+'</div>';}
 }
 
-// ─── Auto-login ─────────────────────────────────────────────────────
-(function() {
-  try {
-    const u = sessionStorage.getItem('su');
-    const k = sessionStorage.getItem('sk');
-    if (u && k) {
-      SB_URL = u; SB_KEY = k;
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('dash').style.display = 'block';
-      loadAll();
-    }
-  } catch {}
+document.getElementById('btnExplore').addEventListener('click',async()=>{
+  const tbl=document.getElementById('exploreTable').value.trim(),lim=document.getElementById('exploreLimit').value||10,el=document.getElementById('exploreResult');
+  if(!tbl)return;el.innerHTML='<div class="spin"></div>';
+  try{
+    const data=await sbGet(tbl+'?select=*&limit='+lim);
+    if(!data.length){el.innerHTML='<div style="color:#666;padding:12px;">الجدول فارغ أو غير موجود</div>';return;}
+    const cols=Object.keys(data[0]);
+    el.innerHTML='<div style="overflow:auto;"><table class="tbl" style="margin-top:4px;"><thead><tr>'+cols.map(c=>'<th>'+c+'</th>').join('')+'</tr></thead><tbody>'+
+      data.map(row=>'<tr>'+cols.map(c=>{const v=row[c];return'<td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#aaa;">'+(v===null?'<i style="color:#333;">null</i>':String(v).substring(0,80))+'</td>';}).join('')+'</tr>').join('')+
+      '</tbody></table></div><div style="color:#555;font-size:11px;margin-top:8px;">'+data.length+' صف</div>';
+  }catch(e){el.innerHTML='<div style="color:#f87171;padding:12px;">'+e.message+'</div>';}
+});
+
+function fmtDate(d){return d?new Date(d).toLocaleDateString('ar-SA',{year:'2-digit',month:'short',day:'numeric'}):'—';}
+function esc(s){return(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
+function dl(content,name,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';clearTimeout(t._t);t._t=setTimeout(()=>t.style.display='none',3500);}
+
+(async function(){
+  try{
+    const u=sessionStorage.getItem('su'),k=sessionStorage.getItem('sk');
+    if(u&&k){SB_URL=u;SB_KEY=k;document.getElementById('loginScreen').style.display='none';document.getElementById('dash').style.display='block';await discoverTables();loadAll();}
+  }catch{}
 })();
 </script>
 </body>
