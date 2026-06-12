@@ -8,173 +8,217 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Segoe UI',Tahoma,sans-serif;background:#0a0a0a;color:#e5e5e5;min-height:100vh;}
 .card{background:#111;border:1px solid #1e1e1e;border-radius:14px;}
-.inp{background:#161616;border:1px solid #2a2a2a;color:#e5e5e5;border-radius:10px;padding:12px 16px;width:100%;font-size:15px;transition:border .2s;}
+.inp{background:#161616;border:1px solid #2a2a2a;color:#e5e5e5;border-radius:10px;padding:11px 14px;width:100%;font-size:14px;transition:border .2s;}
 .inp:focus{outline:none;border-color:#c9a84c;}
 select.inp{cursor:pointer;}textarea.inp{resize:vertical;}
-.btn{border:none;border-radius:10px;padding:11px 20px;cursor:pointer;font-size:15px;font-weight:600;transition:all .15s;}
+.btn{border:none;border-radius:10px;padding:11px 20px;cursor:pointer;font-size:14px;font-weight:600;transition:all .15s;}
 .btn-gold{background:#c9a84c;color:#000;}.btn-gold:active{background:#e0ba60;transform:scale(.98);}
-.btn-gold:disabled{background:#5a4920;color:#666;cursor:not-allowed;}
+.btn-gold:disabled{background:#5a4920;color:#555;cursor:not-allowed;}
 .btn-red{background:#500;color:#fca5a5;}.btn-red:active{background:#700;}
-.btn-green{background:#052e16;color:#86efac;}.btn-green:active{background:#14532d;}
-.btn-sm{background:#1e1e1e;color:#aaa;border-radius:7px;padding:5px 12px;font-size:12px;border:none;cursor:pointer;transition:background .15s;}
+.btn-grn{background:#052e16;color:#86efac;}.btn-grn:active{background:#14532d;}
+.btn-sm{background:#1e1e1e;color:#aaa;border-radius:7px;padding:5px 11px;font-size:11px;border:none;cursor:pointer;transition:background .15s;white-space:nowrap;}
 .btn-sm:hover{background:#2a2a2a;}
-.tab{padding:12px 18px;cursor:pointer;border-bottom:2px solid transparent;color:#666;white-space:nowrap;font-size:14px;transition:all .2s;user-select:none;-webkit-tap-highlight-color:transparent;}
+.tab{padding:11px 14px;cursor:pointer;border-bottom:2px solid transparent;color:#666;white-space:nowrap;font-size:12px;transition:all .2s;user-select:none;-webkit-tap-highlight-color:transparent;}
 .tab.on{border-bottom-color:#c9a84c;color:#c9a84c;}
-.badge{border-radius:999px;padding:3px 10px;font-size:11px;font-weight:600;}
-.bt{background:#1e3a5f;color:#93c5fd;}.be{background:#3b0000;color:#fca5a5;}.bp{background:#052e16;color:#86efac;}
-.stat{background:linear-gradient(135deg,#161616,#111);border:1px solid #1e1e1e;border-radius:14px;padding:18px;}
-.row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #161616;}
+.badge{border-radius:999px;padding:2px 9px;font-size:11px;font-weight:600;}
+.bt{background:#1e3a5f;color:#93c5fd;}.be{background:#3b0000;color:#fca5a5;}.bp{background:#052e16;color:#86efac;}.bn{background:#161616;color:#555;}
+.stat{background:linear-gradient(135deg,#161616,#111);border:1px solid #1e1e1e;border-radius:12px;padding:16px;}
+.row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #161616;}
 .row:last-child{border-bottom:none;}
-#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#1e1e1e;border:1px solid #333;padding:13px 26px;border-radius:12px;z-index:9999;display:none;font-size:14px;white-space:nowrap;box-shadow:0 4px 20px #0008;}
-.spin{display:inline-block;width:18px;height:18px;border:2px solid #333;border-top-color:#c9a84c;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;}
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:#1e1e1e;border:1px solid #333;padding:12px 24px;border-radius:12px;z-index:9999;display:none;font-size:13px;white-space:nowrap;box-shadow:0 4px 20px #0008;}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid #333;border-top-color:#c9a84c;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;}
 @keyframes spin{to{transform:rotate(360deg)}}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-.g4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-@media(min-width:640px){.g4{grid-template-columns:repeat(4,1fr);}}
-.tbl{width:100%;font-size:13px;border-collapse:collapse;}
-.tbl th{padding:10px 12px;text-align:right;color:#555;font-weight:500;border-bottom:1px solid #1e1e1e;}
-.tbl td{padding:9px 12px;border-bottom:1px solid #111;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;}
+.g4{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;}
+@media(min-width:600px){.g4{grid-template-columns:repeat(4,1fr);}}
+.tbl{width:100%;font-size:12px;border-collapse:collapse;}
+.tbl th{padding:9px 11px;text-align:right;color:#555;font-weight:500;border-bottom:1px solid #1e1e1e;}
+.tbl td{padding:8px 11px;border-bottom:1px solid #111;}
 .tbl tr:last-child td{border-bottom:none;}
-.tbl tr:hover td{background:#111;}
-.chip-tbl{background:#1e1e1e;border:1px solid #2a2a2a;border-radius:8px;padding:6px 14px;font-size:13px;cursor:pointer;color:#c9a84c;display:inline-block;transition:background .15s;}
-.chip-tbl:hover{background:#2a2a2a;}
-.lock-bar{background:#3b1a00;border:1px solid #7a3500;border-radius:10px;padding:12px 16px;font-size:13px;color:#fb923c;margin-bottom:14px;display:none;}
+.tbl tr:hover td{background:#0f0f0f;}
+.chip{background:#1e1e1e;border:1px solid #2a2a2a;border-radius:7px;padding:5px 12px;font-size:12px;cursor:pointer;color:#c9a84c;display:inline-block;transition:background .15s;}
+.chip:hover{background:#2a2a2a;}
+.seg{background:#0d0d0d;border:1px solid #1e1e1e;border-radius:12px;padding:14px;}
+.elist{max-height:150px;overflow-y:auto;font-size:11px;color:#666;direction:ltr;text-align:right;margin-top:9px;border-top:1px solid #1a1a1a;padding-top:8px;line-height:1.8;word-break:break-all;}
+.warn{background:#1a0a00;border:1px solid #7a3500;border-radius:10px;padding:13px;margin-bottom:12px;font-size:12px;color:#fb923c;}
+.lock-bar{background:#3b1a00;border:1px solid #7a3500;border-radius:10px;padding:11px 14px;font-size:12px;color:#fb923c;margin-bottom:12px;display:none;}
+.funnel{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;padding:10px 0;}
+.fstep{text-align:center;min-width:70px;}
+.farr{color:#2a2a2a;font-size:18px;margin-top:-8px;}
 </style>
 </head>
 <body>
 
+<!-- ═══ LOGIN ═══ -->
 <div id="loginScreen" style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;">
-  <div class="card" style="padding:36px;width:100%;max-width:380px;text-align:center;">
-    <div style="font-size:52px;font-family:serif;color:#c9a84c;font-weight:900;line-height:1;margin-bottom:4px;">ورق</div>
-    <div style="color:#555;font-size:13px;margin-bottom:32px;">لوحة الإدارة السرية</div>
-    <div id="lockBar" class="lock-bar">🔒 تم القفل — حاول بعد <span id="lockMin"></span> دقيقة</div>
-    <input id="inUrl" class="inp" placeholder="Supabase URL" type="text" style="margin-bottom:10px;" autocomplete="off" autocorrect="off" spellcheck="false">
-    <input id="inKey" class="inp" placeholder="Service Role Key (eyJ...)" type="password" style="margin-bottom:10px;" autocomplete="off">
-    <input id="inPass" class="inp" placeholder="كلمة سر الداشبورد" type="password" style="margin-bottom:20px;" autocomplete="off">
-    <button id="btnLogin" class="btn btn-gold" style="width:100%;font-size:17px;padding:14px;">دخول</button>
-    <div id="loginErr" style="color:#f87171;font-size:13px;margin-top:14px;min-height:18px;line-height:1.6;"></div>
+  <div class="card" style="padding:32px;width:100%;max-width:360px;text-align:center;">
+    <div style="font-size:50px;font-family:serif;color:#c9a84c;font-weight:900;line-height:1;margin-bottom:4px;">ورق</div>
+    <div style="color:#444;font-size:12px;margin-bottom:28px;">Admin Dashboard</div>
+    <div id="lockBar" class="lock-bar">🔒 محاولات كثيرة — حاول بعد <span id="lockMin"></span> دقيقة</div>
+    <input id="inUrl" class="inp" placeholder="Supabase URL" type="text" style="margin-bottom:9px;" autocomplete="off" spellcheck="false">
+    <input id="inKey" class="inp" placeholder="Service Role Key (eyJ...)" type="password" style="margin-bottom:9px;" autocomplete="off">
+    <input id="inPass" class="inp" placeholder="كلمة سر الداشبورد" type="password" style="margin-bottom:18px;" autocomplete="off">
+    <button id="btnLogin" class="btn btn-gold" style="width:100%;font-size:16px;padding:13px;">دخول</button>
+    <div id="loginErr" style="color:#f87171;font-size:12px;margin-top:12px;min-height:16px;line-height:1.6;"></div>
   </div>
 </div>
 
+<!-- ═══ DASHBOARD ═══ -->
 <div id="dash" style="display:none;">
-  <div style="background:#0a0a0a;border-bottom:1px solid #1a1a1a;padding:0 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;height:52px;">
-    <div style="display:flex;align-items:center;gap:10px;">
-      <span style="font-size:20px;font-family:serif;color:#c9a84c;font-weight:900;">ورق</span>
-      <span style="color:#444;font-size:12px;padding-right:10px;border-right:1px solid #222;">الإدارة</span>
-      <span id="connDot" title="متصل" style="width:7px;height:7px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
+
+  <!-- Header -->
+  <div style="background:#0a0a0a;border-bottom:1px solid #1a1a1a;padding:0 14px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;height:48px;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="font-size:18px;font-family:serif;color:#c9a84c;font-weight:900;">ورق</span>
+      <span style="color:#333;font-size:10px;padding-right:8px;border-right:1px solid #1e1e1e;">Admin</span>
+      <span id="connDot" style="width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block;" title="متصل"></span>
     </div>
-    <div style="display:flex;gap:8px;align-items:center;">
-      <span id="lastUp" style="color:#444;font-size:11px;"></span>
-      <select id="autoRefresh" class="inp" style="width:auto;padding:4px 8px;font-size:11px;background:#111;border-color:#222;color:#666;">
-        <option value="0">يدوي</option>
-        <option value="5">٥ د</option>
-        <option value="15">١٥ د</option>
-        <option value="30">٣٠ د</option>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <span id="lastUp" style="color:#333;font-size:10px;"></span>
+      <select id="autoRefresh" class="inp" style="width:auto;padding:3px 6px;font-size:10px;background:#111;border-color:#1e1e1e;color:#555;">
+        <option value="0">يدوي</option><option value="5">٥د</option><option value="15">١٥د</option><option value="30">٣٠د</option>
       </select>
       <button id="btnRefresh" class="btn-sm" style="background:#c9a84c22;color:#c9a84c;">↺</button>
       <button id="btnLogout" class="btn-sm">خروج</button>
     </div>
   </div>
 
-  <div style="display:flex;border-bottom:1px solid #1a1a1a;padding:0 8px;overflow-x:auto;background:#0a0a0a;-webkit-overflow-scrolling:touch;scrollbar-width:none;" id="tabBar">
-    <div class="tab on" data-tab="overview">📊 نظرة عامة</div>
+  <!-- Tabs -->
+  <div style="display:flex;border-bottom:1px solid #1a1a1a;padding:0 6px;overflow-x:auto;background:#0a0a0a;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
+    <div class="tab on" data-tab="overview">📊 عامة</div>
+    <div class="tab" data-tab="finance">💰 المالية</div>
     <div class="tab" data-tab="users">👥 المستخدمون</div>
-    <div class="tab" data-tab="items">📝 العناصر</div>
+    <div class="tab" data-tab="outreach">📢 التواصل</div>
     <div class="tab" data-tab="notif">🔔 الإشعارات</div>
     <div class="tab" data-tab="actions">⚡ الإجراءات</div>
     <div class="tab" data-tab="explorer">🗄️ الجداول</div>
   </div>
 
-  <div style="padding:16px;max-width:1100px;margin:0 auto;">
+  <div style="padding:14px;max-width:1100px;margin:0 auto;">
 
+    <!-- ── Overview ── -->
     <div id="tab-overview">
-      <div class="g4" id="statsGrid" style="margin-bottom:14px;"></div>
-      <div class="g2" style="margin-bottom:14px;">
-        <div class="card" style="padding:16px;"><div style="color:#888;font-size:12px;margin-bottom:10px;">أحدث التسجيلات</div><div id="recentList"><div class="spin"></div></div></div>
-        <div class="card" style="padding:16px;"><div style="color:#888;font-size:12px;margin-bottom:10px;">إحصاء العناصر حسب النوع</div><div id="itemTypeStats"><div class="spin"></div></div></div>
+      <div id="emailWarn" class="warn" style="display:none;">⚠️ هناك مستخدمون لم يؤكدوا إيميلاتهم. تأكد من إعداد SMTP في Supabase → Authentication → SMTP Settings. راجع تبويب 📢 التواصل للقائمة الكاملة.</div>
+      <div class="g4" id="statsGrid" style="margin-bottom:12px;"></div>
+      <div class="g2">
+        <div class="card" style="padding:14px;"><div style="color:#666;font-size:11px;margin-bottom:8px;">أحدث التسجيلات</div><div id="recentList"><div class="spin"></div></div></div>
+        <div class="card" style="padding:14px;"><div style="color:#666;font-size:11px;margin-bottom:8px;">ملخص للمستثمرين</div><div id="investorBox"><div class="spin"></div></div></div>
       </div>
     </div>
 
+    <!-- ── Finance ── -->
+    <div id="tab-finance" style="display:none;">
+      <div class="card" style="padding:14px;margin-bottom:12px;">
+        <div style="color:#c9a84c;font-size:13px;font-weight:600;margin-bottom:10px;">⚙️ التسعير</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <span style="color:#888;font-size:12px;">سعر الاشتراك الشهري:</span>
+          <input id="planPrice" type="number" class="inp" placeholder="0" style="width:100px;" min="0">
+          <select id="planCur" class="inp" style="width:90px;"><option value="ريال">ريال</option><option value="USD">USD</option></select>
+          <button id="btnCalc" class="btn btn-gold" style="padding:9px 18px;font-size:13px;">احسب</button>
+        </div>
+      </div>
+      <div class="g4" id="finMetrics" style="margin-bottom:12px;"></div>
+      <div class="card" style="padding:14px;margin-bottom:12px;">
+        <div style="color:#666;font-size:11px;margin-bottom:10px;">Conversion Funnel</div>
+        <div class="funnel" id="funnel"></div>
+      </div>
+      <div class="card" style="padding:14px;">
+        <div style="color:#c9a84c;font-size:13px;font-weight:600;margin-bottom:10px;">📋 Investor Summary</div>
+        <div id="investorDeck"></div>
+      </div>
+    </div>
+
+    <!-- ── Users ── -->
     <div id="tab-users" style="display:none;">
-      <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;align-items:center;">
-        <input id="srchUser" class="inp" placeholder="🔍 بحث بالإيميل..." style="flex:1;min-width:180px;">
-        <select id="fltStatus" class="inp" style="width:130px;">
-          <option value="all">الكل</option><option value="trial">في التجربة</option>
-          <option value="expired">منتهية</option><option value="paid">مدفوع</option>
+      <div style="display:flex;gap:8px;margin-bottom:11px;flex-wrap:wrap;align-items:center;">
+        <input id="srchUser" class="inp" placeholder="🔍 بحث بالإيميل..." style="flex:1;min-width:150px;">
+        <select id="fltStatus" class="inp" style="width:120px;">
+          <option value="all">الكل</option>
+          <option value="unconfirmed">غير مؤكد</option>
+          <option value="never">لم يعد</option>
+          <option value="trial">تجربة</option>
+          <option value="expired">منتهية</option>
+          <option value="paid">مدفوع</option>
         </select>
-        <button id="btnExport" class="btn-sm" style="background:#c9a84c22;color:#c9a84c;padding:7px 14px;">تصدير CSV</button>
+        <button id="btnExport" class="btn-sm" style="background:#c9a84c22;color:#c9a84c;padding:6px 12px;">↓ CSV</button>
       </div>
       <div class="card" style="overflow:auto;">
-        <table class="tbl"><thead><tr><th>الإيميل</th><th>الحالة</th><th>تسجيل</th><th>انتهاء التجربة</th><th>إجراء</th></tr></thead>
-        <tbody id="usersBody"><tr><td colspan="5" style="text-align:center;padding:24px;"><div class="spin"></div></td></tr></tbody></table>
+        <table class="tbl">
+          <thead><tr><th>الإيميل</th><th>الحالة</th><th>الإيميل</th><th>آخر دخول</th><th>تسجيل</th><th>إجراء</th></tr></thead>
+          <tbody id="usersBody"><tr><td colspan="6" style="text-align:center;padding:22px;"><div class="spin"></div></td></tr></tbody>
+        </table>
       </div>
-      <div id="userCount" style="color:#555;font-size:12px;padding:8px 4px;"></div>
+      <div id="userCount" style="color:#444;font-size:11px;padding:7px 3px;"></div>
     </div>
 
-    <div id="tab-items" style="display:none;">
-      <div class="g3" id="itemStats" style="margin-bottom:14px;"></div>
-      <div class="card" style="padding:16px;"><div style="color:#888;font-size:12px;margin-bottom:10px;">آخر 30 عنصر</div><div id="itemsList"><div class="spin"></div></div></div>
+    <!-- ── Outreach ── -->
+    <div id="tab-outreach" style="display:none;">
+      <div style="color:#555;font-size:11px;margin-bottom:11px;">مستخدمون يحتاجون تواصل — اضغط "نسخ الإيميلات" لاستخدامها في أي أداة إرسال</div>
+      <div class="g2" id="outreachGrid"></div>
     </div>
 
+    <!-- ── Notifications ── -->
     <div id="tab-notif" style="display:none;">
-      <div class="card" style="padding:20px;max-width:600px;">
-        <div style="font-weight:600;margin-bottom:14px;color:#c9a84c;">📢 إرسال إشعار</div>
-        <select id="notifTarget" class="inp" style="margin-bottom:10px;">
+      <div class="card" style="padding:18px;max-width:580px;">
+        <div style="color:#c9a84c;font-weight:600;margin-bottom:12px;">📢 إشعار داخلي</div>
+        <select id="notifTarget" class="inp" style="margin-bottom:9px;">
           <option value="all">كل المستخدمين</option>
           <option value="trial">في التجربة فقط</option>
           <option value="single">مستخدم واحد</option>
         </select>
-        <input id="notifEmail" class="inp" placeholder="إيميل المستخدم" style="display:none;margin-bottom:10px;">
-        <input id="notifTitle" class="inp" placeholder="عنوان الإشعار" style="margin-bottom:10px;">
-        <textarea id="notifBody" class="inp" rows="4" placeholder="نص الإشعار" style="margin-bottom:16px;"></textarea>
-        <button id="btnSendNotif" class="btn btn-gold" style="padding:12px 32px;">إرسال الإشعار</button>
-        <div id="notifResult" style="margin-top:12px;font-size:13px;color:#86efac;"></div>
+        <input id="notifEmail" class="inp" placeholder="إيميل المستخدم" style="display:none;margin-bottom:9px;">
+        <input id="notifTitle" class="inp" placeholder="عنوان الإشعار" style="margin-bottom:9px;">
+        <textarea id="notifBody" class="inp" rows="3" placeholder="نص الإشعار" style="margin-bottom:13px;"></textarea>
+        <button id="btnSendNotif" class="btn btn-gold" style="padding:11px 26px;">إرسال</button>
+        <div id="notifResult" style="margin-top:9px;font-size:12px;color:#86efac;"></div>
       </div>
     </div>
 
+    <!-- ── Actions ── -->
     <div id="tab-actions" style="display:none;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;">
-        <div class="card" style="padding:20px;">
-          <div style="color:#c9a84c;font-weight:600;margin-bottom:14px;">⏳ تمديد التجربة</div>
-          <input id="extEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:10px;">
-          <select id="extDays" class="inp" style="margin-bottom:14px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;">
+        <div class="card" style="padding:16px;">
+          <div style="color:#c9a84c;font-weight:600;font-size:13px;margin-bottom:11px;">⏳ تمديد التجربة</div>
+          <input id="extEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:8px;">
+          <select id="extDays" class="inp" style="margin-bottom:11px;">
             <option value="3">+3 أيام</option><option value="7" selected>+7 أيام</option>
-            <option value="14">+14 يوم</option><option value="21">+21 يوم</option><option value="30">+30 يوم</option>
+            <option value="14">+14 يوم</option><option value="30">+30 يوم</option>
           </select>
-          <button id="btnExtend" class="btn btn-gold" style="width:100%;">تمديد التجربة</button>
+          <button id="btnExtend" class="btn btn-gold" style="width:100%;padding:10px;">تمديد</button>
         </div>
-        <div class="card" style="padding:20px;">
-          <div style="color:#93c5fd;font-weight:600;margin-bottom:14px;">🔍 بحث مفصّل</div>
-          <input id="lookEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:10px;">
-          <button id="btnLookup" class="btn btn-gold" style="width:100%;margin-bottom:12px;">بحث</button>
-          <div id="lookResult" style="display:none;font-size:12px;color:#aaa;background:#0d0d0d;border-radius:10px;padding:14px;line-height:2.2;border:1px solid #1e1e1e;"></div>
+        <div class="card" style="padding:16px;">
+          <div style="color:#93c5fd;font-weight:600;font-size:13px;margin-bottom:11px;">🔍 بحث مفصّل</div>
+          <input id="lookEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:8px;">
+          <button id="btnLookup" class="btn btn-gold" style="width:100%;padding:10px;margin-bottom:9px;">بحث</button>
+          <div id="lookResult" style="display:none;font-size:11px;color:#aaa;background:#0d0d0d;border-radius:9px;padding:11px;line-height:2.1;border:1px solid #1e1e1e;"></div>
         </div>
-        <div class="card" style="padding:20px;">
-          <div style="color:#fca5a5;font-weight:600;margin-bottom:14px;">🚫 تعطيل حساب</div>
-          <input id="banEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:10px;">
-          <input id="banReason" class="inp" placeholder="السبب (اختياري)" style="margin-bottom:14px;">
-          <button id="btnBan" class="btn btn-red" style="width:100%;padding:11px;">تعطيل</button>
+        <div class="card" style="padding:16px;">
+          <div style="color:#fca5a5;font-weight:600;font-size:13px;margin-bottom:11px;">🚫 تعطيل حساب</div>
+          <input id="banEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:8px;">
+          <input id="banReason" class="inp" placeholder="السبب (اختياري)" style="margin-bottom:11px;">
+          <button id="btnBan" class="btn btn-red" style="width:100%;padding:10px;">تعطيل</button>
         </div>
-        <div class="card" style="padding:20px;">
-          <div style="color:#86efac;font-weight:600;margin-bottom:14px;">✅ رفع الحظر</div>
-          <input id="unbanEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:14px;">
-          <button id="btnUnban" class="btn btn-green" style="width:100%;padding:11px;">تفعيل الحساب</button>
+        <div class="card" style="padding:16px;">
+          <div style="color:#86efac;font-weight:600;font-size:13px;margin-bottom:11px;">✅ رفع الحظر</div>
+          <input id="unbanEmail" class="inp" placeholder="إيميل المستخدم" style="margin-bottom:11px;">
+          <button id="btnUnban" class="btn btn-grn" style="width:100%;padding:10px;">تفعيل الحساب</button>
         </div>
       </div>
     </div>
 
+    <!-- ── Explorer ── -->
     <div id="tab-explorer" style="display:none;">
-      <div class="card" style="padding:20px;margin-bottom:14px;">
-        <div style="font-weight:600;margin-bottom:14px;color:#c9a84c;">🗄️ الجداول المكتشفة في قاعدة البيانات</div>
+      <div class="card" style="padding:16px;margin-bottom:12px;">
+        <div style="color:#c9a84c;font-weight:600;font-size:13px;margin-bottom:11px;">🗄️ الجداول</div>
         <div id="tableList"><div class="spin"></div></div>
       </div>
-      <div class="card" style="padding:20px;">
-        <div style="font-weight:600;margin-bottom:14px;color:#888;">📋 استعراض جدول</div>
-        <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+      <div class="card" style="padding:16px;">
+        <div style="color:#666;font-size:12px;margin-bottom:10px;">استعراض جدول</div>
+        <div style="display:flex;gap:8px;margin-bottom:11px;flex-wrap:wrap;">
           <input id="exploreTable" class="inp" placeholder="اسم الجدول" style="flex:1;">
-          <input id="exploreLimit" class="inp" placeholder="عدد الصفوف" style="width:110px;" type="number" value="10">
-          <button id="btnExplore" class="btn btn-gold" style="padding:11px 20px;">استعراض</button>
+          <input id="exploreLimit" type="number" class="inp" value="10" style="width:90px;">
+          <button id="btnExplore" class="btn btn-gold" style="padding:9px 16px;font-size:13px;">استعراض</button>
         </div>
         <div id="exploreResult" style="overflow:auto;"></div>
       </div>
@@ -187,59 +231,84 @@ select.inp{cursor:pointer;}textarea.inp{resize:vertical;}
 
 <script>
 const PWD='warraq-admin-2026';
-const MAX_ATTEMPTS=5,LOCKOUT_MS=10*60*1000;
-let SB_URL='',SB_KEY='',allUsers=[];
+const MAX_ATT=5,LOCK_MS=10*60*1000;
+let SB_URL='',SB_KEY='';
+let authUsers=[],profData=[],mergedUsers=[];
 let T={users:null,items:null,notif:null};
-let autoRefreshTimer=null;
+let autoTimer=null;
 
-// --- Core API (native fetch, zero CDN) ---
-async function sbGet(path){
-  const r=await fetch(SB_URL+'/rest/v1/'+path,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Accept':'application/json'}});
-  const txt=await r.text();
-  if(!r.ok)throw new Error(txt.substring(0,120));
-  return txt?JSON.parse(txt):[];
+// ── API helpers ──
+async function sbGet(p){
+  const r=await fetch(SB_URL+'/rest/v1/'+p,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Accept':'application/json'}});
+  const t=await r.text();if(!r.ok)throw new Error(t.substring(0,120));
+  return t?JSON.parse(t):[];
 }
-async function sbCount(path){
-  const r=await fetch(SB_URL+'/rest/v1/'+path,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'count=exact','Accept':'application/json'}});
-  const cr=r.headers.get('content-range');
-  return cr?(parseInt(cr.split('/')[1])||0):0;
+async function sbCount(p){
+  const r=await fetch(SB_URL+'/rest/v1/'+p,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'count=exact','Accept':'application/json'}});
+  const c=r.headers.get('content-range');return c?(parseInt(c.split('/')[1])||0):0;
 }
-async function sbPost(table,body){
-  const r=await fetch(SB_URL+'/rest/v1/'+table,{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(body)});
+async function sbPost(tbl,body){
+  const r=await fetch(SB_URL+'/rest/v1/'+tbl,{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(body)});
   if(!r.ok)throw new Error(await r.text());
 }
-async function sbPatch(table,match,body){
-  const r=await fetch(SB_URL+'/rest/v1/'+table+'?'+match,{method:'PATCH',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(body)});
+async function sbPatch(tbl,q,body){
+  const r=await fetch(SB_URL+'/rest/v1/'+tbl+'?'+q,{method:'PATCH',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(body)});
   if(!r.ok)throw new Error(await r.text());
 }
-async function tryTable(names,q='?select=id&limit=1'){
-  for(const n of names){try{await sbGet(n+q);return n;}catch{}}return null;
+
+// ── Auth users (complete registry from Supabase Auth) ──
+async function fetchAuthUsers(){
+  let all=[],offset=0;
+  try{
+    while(true){
+      const r=await fetch(SB_URL+'/auth/v1/admin/users?limit=1000&offset='+offset,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
+      if(!r.ok)break;
+      const d=await r.json();const batch=d.users||[];
+      all=all.concat(batch);if(batch.length<1000)break;offset+=1000;
+    }
+  }catch{}
+  authUsers=all;return all;
+}
+
+// ── Profiles (subscription data) ──
+async function fetchProfiles(){
+  if(!T.users){profData=[];return[];}
+  try{profData=await sbGet(T.users+'?select=id,email,trial_ends_at,paddle_subscription_id,banned');return profData;}
+  catch{profData=[];return[];}
+}
+
+// ── Merge auth + profiles ──
+function merge(){
+  const map={};profData.forEach(p=>map[p.id]=p);
+  mergedUsers=authUsers.map(u=>({...u,...(map[u.id]||{})}));
+  return mergedUsers;
+}
+
+// ── Table discovery ──
+async function tryTable(names){
+  for(const n of names){try{await sbGet(n+'?select=id&limit=1');return n;}catch{}}return null;
 }
 async function discoverTables(){
-  try{const c=sessionStorage.getItem('st');if(c){const p=JSON.parse(c);T.users=p.users;T.items=p.items;T.notif=p.notif;return;}}catch{}
-  T.users=await tryTable(['profiles','users','user_profiles','accounts','members','auth_users']);
-  T.items=await tryTable(['items','tasks','notes','entries','todos','cards','records','papers','waraqs']);
+  try{const c=sessionStorage.getItem('_st');if(c){const p=JSON.parse(c);T.users=p.u;T.items=p.i;T.notif=p.n;return;}}catch{}
+  T.users=await tryTable(['profiles','users','user_profiles','accounts','members']);
+  T.items=await tryTable(['items','tasks','notes','entries','todos','cards','records','waraqs','papers']);
   T.notif=await tryTable(['notifications','notifs','alerts','messages','inbox']);
-  try{sessionStorage.setItem('st',JSON.stringify(T));}catch{}
+  try{sessionStorage.setItem('_st',JSON.stringify({u:T.users,i:T.items,n:T.notif}));}catch{}
 }
 
-// --- Brute-force protection (sessionStorage to avoid iOS private mode crash) ---
+// ── Login ──
 function getLS(){try{const r=sessionStorage.getItem('_la');return r?JSON.parse(r):{a:0,l:0};}catch{return{a:0,l:0};}}
 function setLS(s){try{sessionStorage.setItem('_la',JSON.stringify(s));}catch{}}
 
-// --- Login ---
 document.getElementById('btnLogin').addEventListener('click',doLogin);
-['inUrl','inKey','inPass'].forEach(id=>{
-  document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
-});
+['inUrl','inKey','inPass'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();}));
 
 async function doLogin(){
   const st=getLS();
   if(Date.now()<st.l){
-    const m=Math.ceil((st.l-Date.now())/60000);
     document.getElementById('lockBar').style.display='block';
-    document.getElementById('lockMin').textContent=m;
-    setLoginErr('');return;
+    document.getElementById('lockMin').textContent=Math.ceil((st.l-Date.now())/60000);
+    return;
   }
   document.getElementById('lockBar').style.display='none';
   const url=document.getElementById('inUrl').value.trim().replace(/[<>]/g,'').replace(/\/+$/,'');
@@ -247,175 +316,258 @@ async function doLogin(){
   const pass=document.getElementById('inPass').value;
   if(pass!==PWD){
     st.a=(st.a||0)+1;
-    const left=MAX_ATTEMPTS-st.a;
-    if(st.a>=MAX_ATTEMPTS){st.l=Date.now()+LOCKOUT_MS;st.a=0;setLS(st);setLoginErr('تم القفل 10 دقائق (5 محاولات فاشلة)');return;}
-    setLS(st);setLoginErr('كلمة السر غلط — '+left+' محاولة متبقية');return;
+    if(st.a>=MAX_ATT){st.l=Date.now()+LOCK_MS;st.a=0;setLS(st);setErr('تم القفل 10 دقائق');return;}
+    setLS(st);setErr('كلمة السر غلط — '+(MAX_ATT-st.a)+' محاولة متبقية');return;
   }
-  if(!url||!key){setLoginErr('أدخل Supabase URL و Service Key');return;}
-  if(!url.startsWith('https://')){setLoginErr('الـ URL يجب أن يبدأ بـ https://');return;}
+  if(!url||!key){setErr('أدخل URL و Service Key');return;}
+  if(!url.startsWith('https://')){setErr('URL يجب أن يبدأ بـ https://');return;}
   SB_URL=url;SB_KEY=key;
-  const btn=document.getElementById('btnLogin');
-  btn.disabled=true;btn.innerHTML='<span class="spin"></span>';
-  setLoginErr('');
+  const btn=document.getElementById('btnLogin');btn.disabled=true;btn.innerHTML='<span class="spin"></span>';setErr('');
   try{
     const r=await fetch(SB_URL+'/rest/v1/',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
-    if(r.status===401)throw new Error('المفتاح غير صحيح (401) — استخدم Legacy JWT (eyJ...)');
-    if(!r.ok)throw new Error('فشل الاتصال ('+r.status+')');
+    if(r.status===401)throw new Error('المفتاح غير صحيح (401) — استخدم Legacy JWT eyJ...');
+    if(!r.ok)throw new Error('فشل ('+r.status+')');
     setLS({a:0,l:0});
     try{sessionStorage.setItem('su',SB_URL);sessionStorage.setItem('sk',SB_KEY);}catch{}
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('dash').style.display='block';
     await discoverTables();
-    loadAll();
-  }catch(e){SB_URL='';SB_KEY='';setLoginErr('فشل الاتصال: '+(e.message||'تحقق من البيانات'));}
+    await Promise.allSettled([fetchAuthUsers(),fetchProfiles()]);
+    merge();loadAll();
+  }catch(e){SB_URL='';SB_KEY='';setErr('فشل: '+(e.message||'تحقق من البيانات'));}
   finally{btn.disabled=false;btn.textContent='دخول';}
 }
-function setLoginErr(msg){document.getElementById('loginErr').textContent=msg;}
+function setErr(m){document.getElementById('loginErr').textContent=m;}
 
-document.getElementById('btnLogout').addEventListener('click',()=>{
-  try{sessionStorage.clear();}catch{}location.reload();
-});
+document.getElementById('btnLogout').addEventListener('click',()=>{try{sessionStorage.clear();}catch{}location.reload();});
 document.getElementById('btnRefresh').addEventListener('click',loadAll);
 document.getElementById('autoRefresh').addEventListener('change',function(){
-  clearInterval(autoRefreshTimer);autoRefreshTimer=null;
-  if(this.value!=='0')autoRefreshTimer=setInterval(loadAll,parseInt(this.value)*60000);
+  clearInterval(autoTimer);autoTimer=null;
+  if(this.value!=='0')autoTimer=setInterval(loadAll,parseInt(this.value)*60000);
 });
 
-// --- Tab switching ---
+// ── Tabs ──
 document.querySelectorAll('.tab').forEach(t=>{
   t.addEventListener('click',function(){
-    const n=this.getAttribute('data-tab');
-    switchToTab(n);
-    if(n==='users')loadUsers();
-    if(n==='items')loadItems();
+    const n=this.getAttribute('data-tab');switchTab(n);
+    if(n==='outreach')loadOutreach();
+    if(n==='finance')loadFinance();
     if(n==='explorer')loadExplorer();
   });
 });
-function switchToTab(n){
+function switchTab(n){
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
   document.querySelectorAll('[id^="tab-"]').forEach(x=>x.style.display='none');
-  const t=document.querySelector('[data-tab="'+n+'"]');
-  if(t)t.classList.add('on');
-  const p=document.getElementById('tab-'+n);
-  if(p)p.style.display='block';
+  const t=document.querySelector('[data-tab="'+n+'"]');if(t)t.classList.add('on');
+  const p=document.getElementById('tab-'+n);if(p)p.style.display='block';
 }
 
-// --- Load All ---
+// ── Main load ──
 async function loadAll(){
   document.getElementById('lastUp').textContent='⟳';
-  await Promise.allSettled([loadStats(),loadUsers()]);
+  await Promise.allSettled([fetchAuthUsers(),fetchProfiles()]);
+  merge();
+  loadStats();
+  renderUsers(mergedUsers);
   document.getElementById('lastUp').textContent=new Date().toLocaleTimeString('ar');
 }
 
-// --- Stats ---
-async function loadStats(){
-  const now=new Date().toISOString(),week=new Date(Date.now()-7*864e5).toISOString(),day=new Date();
-  day.setHours(0,0,0,0);
-  let total=0,trial=0,expired=0,paid=0,newU=0,totalItems=0,todayItems=0;
+// ── Stats ──
+function loadStats(){
+  const now=new Date().toISOString(),week=new Date(Date.now()-7*864e5).toISOString();
+  const total=authUsers.length;
+  const confirmed=authUsers.filter(u=>u.email_confirmed_at).length;
+  const unconf=total-confirmed;
+  const paid=mergedUsers.filter(u=>u.paddle_subscription_id).length;
+  const trial=mergedUsers.filter(u=>!u.paddle_subscription_id&&u.trial_ends_at&&u.trial_ends_at>now).length;
+  const expired=mergedUsers.filter(u=>!u.paddle_subscription_id&&u.trial_ends_at&&u.trial_ends_at<=now).length;
+  const newU=authUsers.filter(u=>u.created_at>week).length;
 
-  if(T.users){
-    try{
-      const users=await sbGet(T.users+'?select=id,created_at,trial_ends_at,paddle_subscription_id');
-      total=users.length;
-      trial=users.filter(u=>u.trial_ends_at&&u.trial_ends_at>now).length;
-      paid=users.filter(u=>u.paddle_subscription_id).length;
-      expired=users.filter(u=>!u.paddle_subscription_id&&(!u.trial_ends_at||u.trial_ends_at<=now)).length;
-      newU=users.filter(u=>u.created_at>week).length;
-      const recent=await sbGet(T.users+'?select=email,created_at&order=created_at.desc&limit=6');
-      document.getElementById('recentList').innerHTML=recent.length?recent.map(u=>'<div class="row"><span style="color:#ccc;font-size:13px;direction:ltr;">'+(u.email||'—')+'</span><span style="color:#555;font-size:11px;">'+fmtDate(u.created_at)+'</span></div>').join(''):'<div style="color:#555;padding:8px;font-size:13px;">لا يوجد مستخدمون بعد</div>';
-    }catch(e){document.getElementById('recentList').innerHTML='<div style="color:#f87171;font-size:12px;padding:8px;">'+e.message.substring(0,100)+'</div>';}
-  }else{document.getElementById('recentList').innerHTML='<div style="color:#666;font-size:13px;padding:8px;">لم يُكتشف جدول المستخدمين — افتح تبويب 🗄️ الجداول</div>';}
-
-  if(T.items){
-    try{
-      totalItems=await sbCount(T.items+'?select=id');
-      todayItems=await sbCount(T.items+'?select=id&created_at=gte.'+day.toISOString());
-      const byType=await sbGet(T.items+'?select=type');
-      const tc={},cols={task:'#93c5fd',idea:'#fde68a',decision:'#86efac',note:'#f9a8d4'};
-      const labs={task:'مهمة',idea:'فكرة',decision:'قرار',note:'ملاحظة'};
-      byType.forEach(i=>{tc[i.type||'other']=(tc[i.type||'other']||0)+1;});
-      document.getElementById('itemTypeStats').innerHTML=Object.entries(tc).slice(0,6).map(([k,v])=>'<div class="row"><span style="color:'+(cols[k]||'#aaa')+';font-size:13px;">'+(labs[k]||k)+'</span><span style="font-weight:700;color:#ccc;">'+v+'</span></div>').join('')||'<div style="color:#555;padding:8px;font-size:13px;">لا يوجد عناصر بعد</div>';
-    }catch{}
-  }else{document.getElementById('itemTypeStats').innerHTML='<div style="color:#666;font-size:13px;padding:8px;">لم يُكتشف جدول العناصر</div>';}
+  if(unconf>0)document.getElementById('emailWarn').style.display='block';
 
   const stats=[
-    {l:'إجمالي المستخدمين',v:total,c:'#fff'},
+    {l:'إجمالي المسجلين',v:total,c:'#fff'},
+    {l:'مؤكدو الإيميل',v:confirmed,c:'#86efac'},
     {l:'في التجربة',v:trial,c:'#93c5fd'},
+    {l:'مدفوعون',v:paid,c:'#c9a84c'},
+    {l:'جدد (7 أيام)',v:newU,c:'#fde68a'},
     {l:'انتهت تجربتهم',v:expired,c:'#fca5a5'},
-    {l:'مدفوعون',v:paid,c:'#86efac'},
-    {l:'جدد (7 أيام)',v:newU,c:'#c9a84c'},
-    {l:'إجمالي العناصر',v:totalItems,c:'#d8b4fe'},
-    {l:'عناصر اليوم',v:todayItems,c:'#f9a8d4'},
-    {l:'جداول مكتشفة',v:Object.values(T).filter(Boolean).length+'/3',c:'#6ee7b7'},
+    {l:'غير مؤكدين',v:unconf,c:'#fb923c'},
+    {l:'مرتبط',v:Object.values(T).filter(Boolean).length+'/3',c:'#6ee7b7'},
   ];
-  document.getElementById('statsGrid').innerHTML=stats.map(s=>'<div class="stat"><div style="color:#555;font-size:11px;margin-bottom:6px;">'+s.l+'</div><div style="font-size:26px;font-weight:700;color:'+s.c+';">'+s.v+'</div></div>').join('');
+  document.getElementById('statsGrid').innerHTML=stats.map(s=>'<div class="stat"><div style="color:#444;font-size:10px;margin-bottom:4px;">'+s.l+'</div><div style="font-size:22px;font-weight:700;color:'+s.c+';">'+s.v+'</div></div>').join('');
+
+  const recent=authUsers.slice().sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)).slice(0,7);
+  document.getElementById('recentList').innerHTML=recent.length
+    ?recent.map(u=>'<div class="row"><span style="color:#ccc;font-size:11px;direction:ltr;">'+escH(u.email||'—')+'</span><span style="color:#444;font-size:10px;">'+fmtD(u.created_at)+(u.email_confirmed_at?'':' <span style="color:#fb923c;">✗</span>')+'</span></div>').join('')
+    :'<div style="color:#444;padding:8px;font-size:12px;">لا يوجد مستخدمون بعد</div>';
+
+  const price=parseFloat(sessionStorage.getItem('_pp'))||0;
+  const mrr=paid*price,arr=mrr*12;
+  const conv=total>0?(paid/total*100).toFixed(1):0;
+  const activ=total>0?(confirmed/total*100).toFixed(1):0;
+  document.getElementById('investorBox').innerHTML=[
+    mkRow('إجمالي المسجلين',total,'#fff'),
+    mkRow('معدل التفعيل',activ+'%','#86efac'),
+    mkRow('معدل التحويل (trial→paid)',conv+'%','#c9a84c'),
+    mkRow('MRR',price?fmtM(mrr)+' '+(sessionStorage.getItem('_pc')||'ريال'):'أدخل السعر في تبويب المالية','#fde68a'),
+    mkRow('ARR',price?fmtM(arr)+' '+(sessionStorage.getItem('_pc')||'ريال'):'—','#f9a8d4'),
+  ].join('');
+}
+function mkRow(l,v,c){return'<div class="row"><span style="color:#555;font-size:11px;">'+l+'</span><b style="color:'+c+';font-size:12px;">'+v+'</b></div>';}
+
+// ── Finance ──
+function loadFinance(){
+  const p=parseFloat(sessionStorage.getItem('_pp'))||0;
+  if(p)document.getElementById('planPrice').value=p;
+  const c=sessionStorage.getItem('_pc')||'ريال';
+  document.getElementById('planCur').value=c;
+  calcFin();
+}
+document.getElementById('btnCalc').addEventListener('click',()=>{
+  const p=parseFloat(document.getElementById('planPrice').value)||0;
+  const c=document.getElementById('planCur').value;
+  try{sessionStorage.setItem('_pp',p);sessionStorage.setItem('_pc',c);}catch{}
+  calcFin();toast('تم الحساب ✅');
+});
+document.getElementById('planPrice').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btnCalc').click();});
+
+function calcFin(){
+  const now=new Date().toISOString(),week=new Date(Date.now()-7*864e5).toISOString();
+  const price=parseFloat(sessionStorage.getItem('_pp'))||0;
+  const cur=sessionStorage.getItem('_pc')||'ريال';
+  const total=authUsers.length;
+  const confirmed=authUsers.filter(u=>u.email_confirmed_at).length;
+  const paid=mergedUsers.filter(u=>u.paddle_subscription_id).length;
+  const trial=mergedUsers.filter(u=>!u.paddle_subscription_id&&u.trial_ends_at&&u.trial_ends_at>now).length;
+  const expired=mergedUsers.filter(u=>!u.paddle_subscription_id&&u.trial_ends_at&&u.trial_ends_at<=now).length;
+  const mrr=paid*price,arr=mrr*12,arpu=paid>0?mrr/paid:0;
+  const conv=total>0?(paid/total*100).toFixed(1):0;
+  const activ=total>0?(confirmed/total*100).toFixed(1):0;
+  const newU7=authUsers.filter(u=>u.created_at>week).length;
+
+  document.getElementById('finMetrics').innerHTML=[
+    {l:'MRR',v:price?fmtM(mrr)+' '+cur:'أدخل السعر',c:'#c9a84c'},
+    {l:'ARR',v:price?fmtM(arr)+' '+cur:'—',c:'#fde68a'},
+    {l:'ARPU',v:price?fmtM(arpu)+' '+cur:'—',c:'#93c5fd'},
+    {l:'معدل التحويل',v:conv+'%',c:'#86efac'},
+    {l:'معدل التفعيل',v:activ+'%',c:'#f9a8d4'},
+    {l:'مدفوعون',v:paid,c:'#c9a84c'},
+    {l:'تجربة نشطة',v:trial,c:'#93c5fd'},
+    {l:'جدد (7 أيام)',v:newU7,c:'#fde68a'},
+  ].map(s=>'<div class="stat"><div style="color:#444;font-size:10px;margin-bottom:4px;">'+s.l+'</div><div style="font-size:19px;font-weight:700;color:'+s.c+';">'+s.v+'</div></div>').join('');
+
+  const steps=[{n:'مسجلون',v:total,c:'#555'},{n:'مؤكدون',v:confirmed,c:'#86efac'},{n:'تجربة',v:trial,c:'#93c5fd'},{n:'مدفوعون',v:paid,c:'#c9a84c'}];
+  document.getElementById('funnel').innerHTML=steps.map((s,i)=>{
+    const pct=i===0?'':(steps[i-1].v?'('+(s.v/steps[i-1].v*100).toFixed(0)+'%)':'(0%)');
+    return(i?'<div class="farr">→</div>':'')+'<div class="fstep"><div style="font-size:22px;font-weight:700;color:'+s.c+';">'+s.v+'</div><div style="font-size:10px;color:#555;margin-top:3px;">'+s.n+'</div><div style="font-size:10px;color:#333;">'+pct+'</div></div>';
+  }).join('');
+
+  const d=new Date().toLocaleDateString('en-US',{month:'short',year:'numeric'});
+  document.getElementById('investorDeck').innerHTML='<div style="background:#0d0d0d;border:1px solid #1e1e1e;border-radius:9px;padding:14px;direction:ltr;text-align:left;">'+
+    '<div style="color:#c9a84c;font-weight:700;margin-bottom:10px;font-size:13px;">ورق SaaS — Investor Metrics ('+d+')</div>'+
+    '<table style="width:100%;font-size:11px;border-collapse:collapse;">'+
+    [['Total Registered Users',total],['Email Confirmed',confirmed+' ('+activ+'%)'],
+     ['Free Trial Active',trial],['Paying Subscribers',paid],
+     ['Expired Trial (Upsell)',expired],['New Users (7d)',newU7],
+     ['Trial→Paid Conversion',conv+'%'],
+     ['MRR',price?fmtM(mrr)+' '+cur:'TBD'],['ARR',price?fmtM(arr)+' '+cur:'TBD']
+    ].map(([l,v])=>'<tr style="border-bottom:1px solid #1a1a1a;"><td style="color:#555;padding:5px 0;">'+l+'</td><td style="color:#e5e5e5;font-weight:600;text-align:right;padding:5px 0;">'+v+'</td></tr>').join('')+
+    '</table></div>';
 }
 
-// --- Users ---
-async function loadUsers(){
-  if(!T.users){document.getElementById('usersBody').innerHTML='<tr><td colspan="5" style="text-align:center;padding:24px;color:#666;">لم يُكتشف جدول المستخدمين — افتح تبويب 🗄️ الجداول</td></tr>';return;}
-  try{
-    const data=await sbGet(T.users+'?select=id,email,created_at,trial_ends_at,paddle_subscription_id&order=created_at.desc');
-    allUsers=data;renderUsers(data);
-  }catch(e){document.getElementById('usersBody').innerHTML='<tr><td colspan="5" style="color:#f87171;padding:16px;">'+e.message+'</td></tr>';}
-}
+// ── Users tab ──
 function renderUsers(users){
-  const now=new Date().toISOString(),q=(document.getElementById('srchUser').value||'').toLowerCase(),f=document.getElementById('fltStatus').value;
+  const now=new Date().toISOString();
+  const q=(document.getElementById('srchUser').value||'').toLowerCase();
+  const f=document.getElementById('fltStatus').value;
   let list=users.filter(u=>(u.email||'').toLowerCase().includes(q));
-  if(f==='trial')list=list.filter(u=>u.trial_ends_at&&u.trial_ends_at>now);
-  else if(f==='expired')list=list.filter(u=>!u.paddle_subscription_id&&(!u.trial_ends_at||u.trial_ends_at<=now));
+  if(f==='unconfirmed')list=list.filter(u=>!u.email_confirmed_at);
+  else if(f==='never')list=list.filter(u=>u.email_confirmed_at&&(!u.last_sign_in_at||Math.abs(new Date(u.last_sign_in_at)-new Date(u.created_at))<5*60*1000));
+  else if(f==='trial')list=list.filter(u=>!u.paddle_subscription_id&&u.trial_ends_at&&u.trial_ends_at>now);
+  else if(f==='expired')list=list.filter(u=>!u.paddle_subscription_id&&u.trial_ends_at&&u.trial_ends_at<=now);
   else if(f==='paid')list=list.filter(u=>u.paddle_subscription_id);
-  document.getElementById('userCount').textContent='يظهر '+list.length+' من '+users.length+' مستخدم';
+  document.getElementById('userCount').textContent='يظهر '+list.length+' من '+users.length;
   document.getElementById('usersBody').innerHTML=list.length?list.map(u=>{
     const isPaid=!!u.paddle_subscription_id,isTrial=!isPaid&&u.trial_ends_at&&u.trial_ends_at>now;
-    const badge=isPaid?'<span class="badge bp">مدفوع</span>':isTrial?'<span class="badge bt">تجربة</span>':'<span class="badge be">منتهية</span>';
-    const email=escH(u.email||'—');
-    return '<tr><td style="color:#ccc;direction:ltr;text-align:right;">'+email+'</td><td>'+badge+'</td><td style="color:#555;font-size:11px;">'+fmtDate(u.created_at)+'</td><td style="color:#555;font-size:11px;">'+(u.trial_ends_at?fmtDate(u.trial_ends_at):'—')+'</td><td style="white-space:nowrap;"><button class="btn-sm q-ext" data-email="'+email+'" style="margin-left:4px;">+7</button><button class="btn-sm q-ban" data-email="'+email+'" style="color:#fca5a5;">حظر</button></td></tr>';
-  }).join(''):'<tr><td colspan="5" style="text-align:center;padding:20px;color:#555;">لا توجد نتائج</td></tr>';
+    const badge=isPaid?'<span class="badge bp">مدفوع</span>':isTrial?'<span class="badge bt">تجربة</span>':u.trial_ends_at?'<span class="badge be">منتهية</span>':'<span class="badge bn">—</span>';
+    const conf=u.email_confirmed_at?'<span style="color:#86efac;font-size:10px;">✓</span>':'<span style="color:#fb923c;font-size:10px;">✗</span>';
+    const lastIn=u.last_sign_in_at?fmtD(u.last_sign_in_at):'<span style="color:#fb923c;">لم يدخل</span>';
+    const em=escH(u.email||'—');
+    return'<tr><td style="color:#ccc;direction:ltr;text-align:right;font-size:11px;">'+em+'</td><td>'+badge+'</td><td style="text-align:center;">'+conf+'</td><td style="color:#555;font-size:10px;">'+lastIn+'</td><td style="color:#444;font-size:10px;">'+fmtD(u.created_at)+'</td><td style="white-space:nowrap;"><button class="btn-sm q-ext" data-em="'+em+'" style="margin-left:3px;">+7</button><button class="btn-sm q-ban" data-em="'+em+'" style="color:#fca5a5;">حظر</button></td></tr>';
+  }).join(''):'<tr><td colspan="6" style="text-align:center;padding:18px;color:#444;">لا توجد نتائج</td></tr>';
 }
 
-// Event delegation for table row buttons (iOS-safe)
 document.getElementById('usersBody').addEventListener('click',function(e){
   const ext=e.target.closest('.q-ext');const ban=e.target.closest('.q-ban');
-  if(ext)quickExtend(ext.dataset.email);
-  if(ban)quickBan(ban.dataset.email);
+  if(ext)quickExtend(ext.dataset.em);
+  if(ban)quickBan(ban.dataset.em);
 });
-document.getElementById('srchUser').addEventListener('input',()=>renderUsers(allUsers));
-document.getElementById('fltStatus').addEventListener('change',()=>renderUsers(allUsers));
+document.getElementById('srchUser').addEventListener('input',()=>renderUsers(mergedUsers));
+document.getElementById('fltStatus').addEventListener('change',()=>renderUsers(mergedUsers));
 document.getElementById('btnExport').addEventListener('click',()=>{
-  if(!allUsers.length)return toast('لا يوجد بيانات للتصدير');
-  const csv=['email,created_at,trial_ends_at,paid',...allUsers.map(u=>[u.email||'',u.created_at||'',u.trial_ends_at||'',u.paddle_subscription_id?'yes':'no'].join(','))].join('\n');
+  if(!mergedUsers.length)return toast('لا يوجد بيانات');
+  const now=new Date().toISOString();
+  const csv=['email,confirmed,last_sign_in,created_at,status,subscription_id',...mergedUsers.map(u=>{
+    const st=u.paddle_subscription_id?'paid':u.trial_ends_at&&u.trial_ends_at>now?'trial':u.trial_ends_at?'expired':'registered';
+    return[u.email||'',u.email_confirmed_at?'yes':'no',u.last_sign_in_at||'',u.created_at||'',st,u.paddle_subscription_id||''].join(',');
+  })].join('\n');
   dl(csv,'warraq-users-'+new Date().toISOString().split('T')[0]+'.csv','text/csv');
-  toast('تم تصدير '+allUsers.length+' مستخدم ✅');
+  toast('تم تصدير '+mergedUsers.length+' مستخدم ✅');
 });
 
-// --- Items ---
-async function loadItems(){
-  if(!T.items){document.getElementById('itemStats').innerHTML='<div style="color:#666;grid-column:1/-1;padding:8px;">لم يُكتشف جدول العناصر — افتح تبويب 🗄️ الجداول</div>';return;}
-  document.getElementById('itemsList').innerHTML='<div class="spin"></div>';
-  try{
-    const[byType,recent]=await Promise.all([sbGet(T.items+'?select=type'),sbGet(T.items+'?select=type,created_at&order=created_at.desc&limit=30')]);
-    const tc={},cols={task:'#93c5fd',idea:'#fde68a',decision:'#86efac',note:'#f9a8d4'};
-    const labs={task:'مهمة',idea:'فكرة',decision:'قرار',note:'ملاحظة'};
-    byType.forEach(i=>{tc[i.type||'other']=(tc[i.type||'other']||0)+1;});
-    document.getElementById('itemStats').innerHTML=Object.entries(tc).map(([k,v])=>'<div class="stat" style="text-align:center;"><div style="font-size:28px;font-weight:700;color:'+(cols[k]||'#aaa')+';">'+v+'</div><div style="color:#666;font-size:12px;margin-top:4px;">'+(labs[k]||k)+'</div></div>').join('')||'<div style="color:#666;padding:8px;">لا يوجد عناصر بعد</div>';
-    document.getElementById('itemsList').innerHTML=recent.length?recent.map(i=>'<div class="row"><span style="color:'+(cols[i.type]||'#aaa')+';font-size:13px;">'+(labs[i.type]||i.type||'—')+'</span><span style="color:#555;font-size:11px;">'+fmtDate(i.created_at)+'</span></div>').join(''):'<div style="color:#555;padding:8px;">لا يوجد عناصر</div>';
-  }catch(e){document.getElementById('itemStats').innerHTML='<div style="color:#f87171;padding:8px;">'+e.message.substring(0,100)+'</div>';}
+// ── Outreach ──
+function loadOutreach(){
+  const now=new Date().toISOString(),in3d=new Date(Date.now()+3*864e5).toISOString();
+  const unconf=mergedUsers.filter(u=>!u.email_confirmed_at);
+  const neverBack=mergedUsers.filter(u=>u.email_confirmed_at&&(!u.last_sign_in_at||Math.abs(new Date(u.last_sign_in_at)-new Date(u.created_at))<5*60*1000));
+  const endSoon=mergedUsers.filter(u=>!u.paddle_subscription_id&&u.trial_ends_at&&u.trial_ends_at>now&&u.trial_ends_at<in3d);
+  const expired=mergedUsers.filter(u=>!u.paddle_subscription_id&&u.trial_ends_at&&u.trial_ends_at<=now);
+
+  const segs=[
+    {id:'s1',icon:'🔴',title:'لم يؤكدوا الإيميل',sub:'يحتاجون بريد تأكيد — تأكد من إعداد SMTP',data:unconf,c:'#fb923c'},
+    {id:'s2',icon:'💤',title:'سجلوا ولم يعودوا',sub:'دخلوا مرة عند التسجيل فقط',data:neverBack,c:'#93c5fd'},
+    {id:'s3',icon:'⚠️',title:'تجربتهم تنتهي خلال 3 أيام',sub:'وقت التحويل المثالي — أرسل عرضاً',data:endSoon,c:'#fde68a'},
+    {id:'s4',icon:'🔄',title:'انتهت تجربتهم ولم يشتركوا',sub:'أكبر فرصة للإيرادات',data:expired,c:'#f9a8d4'},
+  ];
+
+  document.getElementById('outreachGrid').innerHTML=segs.map(s=>{
+    const emails=s.data.map(u=>u.email||'').filter(Boolean);
+    return'<div class="seg">'+
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">'+
+      '<div><b style="color:'+s.c+';">'+s.icon+' '+s.title+'</b><div style="color:#444;font-size:10px;margin-top:2px;">'+s.sub+'</div></div>'+
+      '<div style="font-size:26px;font-weight:700;color:'+s.c+';">'+s.data.length+'</div></div>'+
+      '<div style="display:flex;gap:5px;flex-wrap:wrap;">'+
+      '<button class="btn-sm cp-seg" data-emails="'+escH(emails.join(','))+'" style="color:'+s.c+';">نسخ الإيميلات</button>'+
+      '<button class="btn-sm ex-seg" data-emails="'+escH(emails.join('\n'))+'" data-id="'+s.id+'">↓ CSV</button>'+
+      (emails.length?'<button class="btn-sm tog-seg" data-id="'+s.id+'">عرض القائمة</button>':'')+
+      '</div>'+
+      '<div class="elist" id="el-'+s.id+'" style="display:none;">'+escH(emails.join('\n'))+'</div>'+
+      '</div>';
+  }).join('');
+
+  document.getElementById('outreachGrid').addEventListener('click',function(e){
+    const cp=e.target.closest('.cp-seg'),ex=e.target.closest('.ex-seg'),tg=e.target.closest('.tog-seg');
+    if(cp){
+      const list=cp.dataset.emails.split(',').filter(Boolean);
+      navigator.clipboard.writeText(list.join('\n')).then(()=>toast('نسخ '+list.length+' إيميل ✅')).catch(()=>toast('تعذّر النسخ'));
+    }
+    if(ex){dl(['email',ex.dataset.emails].join('\n'),'warraq-'+ex.dataset.id+'-'+new Date().toISOString().split('T')[0]+'.csv','text/csv');toast('تم التصدير ✅');}
+    if(tg){const el=document.getElementById('el-'+tg.dataset.id);if(el)el.style.display=el.style.display==='none'?'block':'none';}
+  },{once:false});
 }
 
-// --- Notifications ---
-document.getElementById('notifTarget').addEventListener('change',function(){
-  document.getElementById('notifEmail').style.display=this.value==='single'?'block':'none';
-});
+// ── Notifications ──
+document.getElementById('notifTarget').addEventListener('change',function(){document.getElementById('notifEmail').style.display=this.value==='single'?'block':'none';});
 document.getElementById('btnSendNotif').addEventListener('click',async()=>{
-  if(!T.notif)return toast('جدول الإشعارات غير موجود — راجع تبويب 🗄️ الجداول');
+  if(!T.notif)return toast('جدول الإشعارات غير موجود');
   if(!T.users)return toast('جدول المستخدمين غير موجود');
   const target=document.getElementById('notifTarget').value;
   const title=document.getElementById('notifTitle').value.trim();
   const body=document.getElementById('notifBody').value.trim();
-  if(!title||!body)return toast('أدخل العنوان والنص أولاً');
-  const targetLabel=target==='all'?'كل المستخدمين':target==='trial'?'مستخدمي التجربة':document.getElementById('notifEmail').value;
-  if(!confirm('إرسال إشعار لـ "'+targetLabel+"؟\n\nالعنوان: "+title))return;
+  if(!title||!body)return toast('أدخل العنوان والنص');
+  const lbl=target==='all'?'كل المستخدمين':target==='trial'?'مستخدمي التجربة':document.getElementById('notifEmail').value;
+  if(!confirm('إرسال إشعار لـ "'+lbl+'"؟'))return;
   document.getElementById('notifResult').textContent='جاري الإرسال...';
   try{
     const now=new Date().toISOString();let users=[];
@@ -425,48 +577,44 @@ document.getElementById('btnSendNotif').addEventListener('click',async()=>{
     for(const u of users)await sbPost(T.notif,{user_id:u.id,type:'admin',title,body,read:false});
     document.getElementById('notifResult').textContent='✅ تم الإرسال لـ '+users.length+' مستخدم';
     document.getElementById('notifTitle').value='';document.getElementById('notifBody').value='';
-    toast('تم إرسال '+users.length+' إشعار ✅');
+    toast(users.length+' إشعار ✅');
   }catch(e){document.getElementById('notifResult').textContent='';toast('خطأ: '+e.message.substring(0,60));}
 });
 
-// --- Actions ---
+// ── Actions ──
 async function doExtend(email,days){
-  if(!T.users)return toast('جدول المستخدمين غير موجود');
-  if(!email)return toast('أدخل الإيميل');
+  if(!T.users)return toast('جدول المستخدمين غير موجود');if(!email)return toast('أدخل الإيميل');
   try{
     const rows=await sbGet(T.users+'?select=id,trial_ends_at&email=eq.'+encodeURIComponent(email));
     if(!rows.length)return toast('المستخدم غير موجود ❌');
     const base=rows[0].trial_ends_at&&rows[0].trial_ends_at>new Date().toISOString()?new Date(rows[0].trial_ends_at):new Date();
     base.setDate(base.getDate()+days);
     await sbPatch(T.users,'email=eq.'+encodeURIComponent(email),{trial_ends_at:base.toISOString()});
-    toast('تم تمديد '+email+' بـ +'+days+' أيام ✅');loadAll();
+    toast('تم تمديد '+email+' +'+days+' أيام ✅');loadAll();
   }catch(e){toast('خطأ: '+e.message.substring(0,80));}
 }
-
-document.getElementById('btnExtend').addEventListener('click',()=>{
-  doExtend(document.getElementById('extEmail').value.trim(),parseInt(document.getElementById('extDays').value));
-});
+document.getElementById('btnExtend').addEventListener('click',()=>doExtend(document.getElementById('extEmail').value.trim(),parseInt(document.getElementById('extDays').value)));
 document.getElementById('extEmail').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btnExtend').click();});
 
 document.getElementById('btnLookup').addEventListener('click',async()=>{
-  if(!T.users)return toast('جدول المستخدمين غير موجود');
-  const email=document.getElementById('lookEmail').value.trim(),res=document.getElementById('lookResult');
+  const email=document.getElementById('lookEmail').value.trim();
+  const res=document.getElementById('lookResult');
   if(!email)return;res.style.display='none';
-  try{
-    const rows=await sbGet(T.users+'?select=*&email=eq.'+encodeURIComponent(email));
-    if(!rows.length){res.innerHTML='<span style="color:#f87171;">المستخدم غير موجود</span>';res.style.display='block';return;}
-    const u=rows[0],cnt=T.items?await sbCount(T.items+'?select=id&user_id=eq.'+u.id):'—';
-    res.innerHTML=[
-      '📧 <span style="direction:ltr;display:inline-block;">'+(u.email||'—')+'</span> <button class="btn-sm cp-btn" data-val="'+(u.email||'')+'" style="font-size:10px;padding:2px 7px;">نسخ</button>',
-      '🆔 '+(u.id||'').substring(0,18)+'… <button class="btn-sm cp-btn" data-val="'+(u.id||'')+'" style="font-size:10px;padding:2px 7px;">نسخ</button>',
-      '📅 تسجيل: '+fmtDate(u.created_at),
-      '⏳ انتهاء التجربة: '+(u.trial_ends_at?fmtDate(u.trial_ends_at):'—'),
-      '💳 Paddle ID: '+(u.paddle_subscription_id||'—'),
-      '📝 عدد العناصر: '+cnt,
-      '🚫 محظور: '+(u.banned?'<span style="color:#fca5a5;">✓ نعم</span>':'لا'),
-    ].join('<br>');
-    res.style.display='block';
-  }catch(e){res.innerHTML='<span style="color:#f87171;">'+e.message+'</span>';res.style.display='block';}
+  const u=mergedUsers.find(x=>x.email===email);
+  const cnt=T.items&&u?await sbCount(T.items+'?select=id&user_id=eq.'+u.id).catch(()=>'—'):'—';
+  if(!u){res.innerHTML='<span style="color:#f87171;">المستخدم غير موجود</span>';res.style.display='block';return;}
+  res.innerHTML=[
+    '📧 '+escH(email)+' <button class="btn-sm cp-btn" data-val="'+escH(email)+'" style="font-size:10px;padding:2px 6px;">نسخ</button>',
+    '🆔 '+(u.id||'—').substring(0,20)+'...<button class="btn-sm cp-btn" data-val="'+escH(u.id||'')+'" style="font-size:10px;padding:2px 6px;margin-right:4px;">نسخ</button>',
+    '📅 تسجيل: '+fmtD(u.created_at),
+    '✉️ تأكيد الإيميل: '+(u.email_confirmed_at?fmtD(u.email_confirmed_at):'<span style="color:#fb923c;">لم يؤكد</span>'),
+    '🕐 آخر دخول: '+(u.last_sign_in_at?fmtD(u.last_sign_in_at):'<span style="color:#fb923c;">لم يدخل أبداً</span>'),
+    '⏳ انتهاء التجربة: '+(u.trial_ends_at?fmtD(u.trial_ends_at):'—'),
+    '💳 Paddle: '+(u.paddle_subscription_id||'—'),
+    '📝 عناصر: '+cnt,
+    '🚫 محظور: '+(u.banned?'<span style="color:#fca5a5;">نعم</span>':'لا'),
+  ].join('<br>');
+  res.style.display='block';
 });
 document.getElementById('lookEmail').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btnLookup').click();});
 document.getElementById('lookResult').addEventListener('click',function(e){
@@ -477,44 +625,35 @@ document.getElementById('lookResult').addEventListener('click',function(e){
 
 document.getElementById('btnBan').addEventListener('click',async()=>{
   if(!T.users)return toast('جدول المستخدمين غير موجود');
-  const email=document.getElementById('banEmail').value.trim(),reason=document.getElementById('banReason').value;
-  if(!email)return toast('أدخل الإيميل');
-  if(!confirm('تعطيل حساب '+email+'؟\nهذا سيمنعه من الدخول.'))return;
-  try{await sbPatch(T.users,'email=eq.'+encodeURIComponent(email),{banned:true,ban_reason:reason||null});toast('تم تعطيل '+email+' 🚫');loadAll();}
+  const email=document.getElementById('banEmail').value.trim();if(!email)return toast('أدخل الإيميل');
+  if(!confirm('تعطيل '+email+'؟'))return;
+  try{await sbPatch(T.users,'email=eq.'+encodeURIComponent(email),{banned:true,ban_reason:document.getElementById('banReason').value||null});toast('تم تعطيل '+email+' 🚫');loadAll();}
   catch(e){toast('خطأ: '+e.message.substring(0,80));}
 });
 document.getElementById('btnUnban').addEventListener('click',async()=>{
   if(!T.users)return toast('جدول المستخدمين غير موجود');
-  const email=document.getElementById('unbanEmail').value.trim();
-  if(!email)return toast('أدخل الإيميل');
+  const email=document.getElementById('unbanEmail').value.trim();if(!email)return toast('أدخل الإيميل');
   try{await sbPatch(T.users,'email=eq.'+encodeURIComponent(email),{banned:false,ban_reason:null});toast('تم تفعيل '+email+' ✅');loadAll();}
   catch(e){toast('خطأ: '+e.message.substring(0,80));}
 });
 
-function quickExtend(email){
-  document.getElementById('extEmail').value=email;document.getElementById('extDays').value='7';
-  switchToTab('actions');doExtend(email,7);
-}
-function quickBan(email){
-  document.getElementById('banEmail').value=email;document.getElementById('banReason').value='';
-  switchToTab('actions');
-  setTimeout(()=>document.getElementById('btnBan').click(),80);
-}
+function quickExtend(email){document.getElementById('extEmail').value=email;document.getElementById('extDays').value='7';switchTab('actions');doExtend(email,7);}
+function quickBan(email){document.getElementById('banEmail').value=email;switchTab('actions');setTimeout(()=>document.getElementById('btnBan').click(),80);}
 
-// --- Explorer ---
+// ── Explorer ──
 async function loadExplorer(){
   const el=document.getElementById('tableList');el.innerHTML='<div class="spin"></div>';
   try{
     const r=await fetch(SB_URL+'/rest/v1/',{headers:{'apikey':SB_KEY}});
     const spec=await r.json();
     const tables=Object.keys(spec.paths||{}).map(p=>p.replace(/^\//,'').split('?')[0]).filter(Boolean);
-    if(!tables.length){el.innerHTML='<div style="color:#666;">لم يتم اكتشاف أي جداول</div>';return;}
-    el.innerHTML='<div id="tblChips" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">'+
-      tables.map(t=>'<span class="chip-tbl" data-tbl="'+escH(t)+'">'+escH(t)+'</span>').join('')+
-      '</div><div style="color:#555;font-size:12px;margin-bottom:12px;">اضغط على أي جدول لاستعراضه ↓ ('+tables.length+' جدول)</div>'+
-      '<div style="padding-top:12px;border-top:1px solid #1e1e1e;font-size:12px;color:#666;">المستخدمون: <b style="color:#c9a84c;">'+(T.users||'غير محدد')+'</b> &nbsp;|&nbsp; العناصر: <b style="color:#c9a84c;">'+(T.items||'غير محدد')+'</b> &nbsp;|&nbsp; الإشعارات: <b style="color:#c9a84c;">'+(T.notif||'غير محدد')+'</b></div>';
+    if(!tables.length){el.innerHTML='<div style="color:#555;">لا جداول</div>';return;}
+    el.innerHTML='<div id="tblChips" style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;">'+
+      tables.map(t=>'<span class="chip" data-tbl="'+escH(t)+'">'+escH(t)+'</span>').join('')+
+      '</div><div style="color:#444;font-size:11px;">'+tables.length+' جدول — اضغط للاستعراض</div>'+
+      '<div style="margin-top:10px;padding-top:10px;border-top:1px solid #1a1a1a;font-size:11px;color:#444;">المستخدمون: <b style="color:#c9a84c;">'+(T.users||'—')+'</b> | العناصر: <b style="color:#c9a84c;">'+(T.items||'—')+'</b> | الإشعارات: <b style="color:#c9a84c;">'+(T.notif||'—')+'</b></div>';
     document.getElementById('tblChips').addEventListener('click',function(e){
-      const chip=e.target.closest('.chip-tbl');
+      const chip=e.target.closest('.chip');
       if(chip){document.getElementById('exploreTable').value=chip.dataset.tbl;document.getElementById('btnExplore').click();}
     });
   }catch(e){el.innerHTML='<div style="color:#f87171;">'+e.message+'</div>';}
@@ -524,22 +663,23 @@ document.getElementById('btnExplore').addEventListener('click',async()=>{
   if(!tbl)return;el.innerHTML='<div class="spin"></div>';
   try{
     const data=await sbGet(tbl+'?select=*&limit='+lim);
-    if(!data.length){el.innerHTML='<div style="color:#666;padding:12px;">الجدول فارغ</div>';return;}
+    if(!data.length){el.innerHTML='<div style="color:#555;padding:10px;">فارغ</div>';return;}
     const cols=Object.keys(data[0]);
-    el.innerHTML='<div style="overflow:auto;max-height:400px;"><table class="tbl"><thead><tr>'+cols.map(c=>'<th>'+escH(c)+'</th>').join('')+'</tr></thead><tbody>'+
-      data.map(row=>'<tr>'+cols.map(c=>{const v=row[c];return'<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#aaa;">'+(v===null?'<i style="color:#2a2a2a;">null</i>':escH(String(v).substring(0,100)))+'</td>';}).join('')+'</tr>').join('')+
-      '</tbody></table></div><div style="color:#555;font-size:11px;margin-top:8px;padding:4px;">'+data.length+' صف — الجدول: '+escH(tbl)+'</div>';
-  }catch(e){el.innerHTML='<div style="color:#f87171;padding:12px;">'+e.message+'</div>';}
+    el.innerHTML='<div style="overflow:auto;max-height:360px;"><table class="tbl"><thead><tr>'+cols.map(c=>'<th>'+escH(c)+'</th>').join('')+'</tr></thead><tbody>'+
+      data.map(row=>'<tr>'+cols.map(c=>{const v=row[c];return'<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#888;">'+(v===null?'<i style="color:#2a2a2a;">null</i>':escH(String(v).substring(0,100)))+'</td>';}).join('')+'</tr>').join('')+
+      '</tbody></table></div><div style="color:#444;font-size:10px;margin-top:6px;">'+data.length+' صف</div>';
+  }catch(e){el.innerHTML='<div style="color:#f87171;padding:10px;">'+e.message+'</div>';}
 });
 document.getElementById('exploreTable').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('btnExplore').click();});
 
-// --- Utilities ---
-function fmtDate(d){if(!d)return'—';try{return new Date(d).toLocaleDateString('ar-SA',{year:'2-digit',month:'short',day:'numeric'});}catch{return d;}}
+// ── Utils ──
+function fmtD(d){if(!d)return'—';try{return new Date(d).toLocaleDateString('ar-SA',{year:'2-digit',month:'short',day:'numeric'});}catch{return d;}}
+function fmtM(n){return Number(n).toLocaleString('ar-SA',{maximumFractionDigits:0});}
 function escH(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function dl(content,name,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();}
+function dl(c,n,t){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click();}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';clearTimeout(t._t);t._t=setTimeout(()=>t.style.display='none',3500);}
 
-// --- Auto-login from session ---
+// ── Auto-login ──
 (async()=>{
   try{
     const u=sessionStorage.getItem('su'),k=sessionStorage.getItem('sk');
@@ -547,7 +687,9 @@ function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t
       SB_URL=u;SB_KEY=k;
       document.getElementById('loginScreen').style.display='none';
       document.getElementById('dash').style.display='block';
-      await discoverTables();loadAll();
+      await discoverTables();
+      await Promise.allSettled([fetchAuthUsers(),fetchProfiles()]);
+      merge();loadAll();
     }
   }catch{}
 })();
