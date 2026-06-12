@@ -215,14 +215,16 @@ document.getElementById('btnLogin').addEventListener('click', function() {
 
   err.textContent = 'جاري الاتصال...';
 
-  sb('profiles', '?select=id&limit=1').then(() => {
+  fetch(SB_URL + '/rest/v1/', {
+    headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY }
+  }).then(r => {
+    if (!r.ok && r.status === 401) throw new Error('المفتاح غير صحيح');
     try { sessionStorage.setItem('su', SB_URL); sessionStorage.setItem('sk', SB_KEY); } catch {}
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('dash').style.display = 'block';
     loadAll();
   }).catch(e => {
-    const msg = (e.message || '').substring(0, 80);
-    err.textContent = 'فشل الاتصال — تحقق من URL و Key' + (msg ? ': ' + msg : '');
+    err.textContent = 'فشل الاتصال: ' + (e.message || 'تحقق من URL و Key');
   });
 });
 
