@@ -1,0 +1,881 @@
+diff --git a/CLAUDE.md b/CLAUDE.md
+new file mode 100644
+index 0000000..9a1dd61
+--- /dev/null
++++ b/CLAUDE.md
+@@ -0,0 +1,64 @@
++# CLAUDE.md
++
++This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
++
++## Project Overview
++
++**briverr.com** is a static marketing website for a Saudi Arabian influencer marketing agency. No build system, no framework, no package manager — pure HTML, CSS, and vanilla JavaScript served directly via GitHub Pages.
++
++## Pages
++
++- `index.html` — Main landing page (hero, stats, how-it-works, brands section, influencers section, quote, footer)
++- `register.html` — 3-step influencer registration form that submits via WhatsApp (`wa.me`)
++
++## Development
++
++Open files directly in a browser — there is no dev server, build step, or compilation.
++
++To preview locally with a simple server (avoids some browser restrictions on `file://`):
++```bash
++python3 -m http.server 8080
++```
++
++There are no tests, linters, or CI configured.
++
++## Design System
++
++All CSS lives in `<style>` blocks inside each HTML file. CSS custom properties define the design tokens:
++
++```css
++--black: #0E0E0D
++--maroon: #8D4343      /* primary brand color */
++--maroon-l: #a85555    /* lighter maroon for hover states */
++--white: #FAFAF8
++--gray: #6b6b6b
++--light: #F5F4F0
++```
++
++**Fonts** (loaded from Google Fonts):
++- `Tajawal` — body text (Arabic)
++- `Cairo` — Arabic headings
++- `Montserrat` — English accents, numbers, stats
++- `Cormorant Garamond` — italic taglines/quotes
++
++## Key Conventions
++
++**Language & direction**: All pages use `lang="ar" dir="rtl"`. Content is Arabic-primary with English used selectively (brand names, stats, taglines).
++
++**Responsive breakpoint**: Single breakpoint at `max-width: 768px` handles all mobile layout changes (hamburger menu, stacked buttons, reduced padding).
++
++**JavaScript patterns**: No libraries. State is managed by toggling `.active` and `.open` CSS classes. The registration form collects selections from `.chip-opt` elements into hidden inputs, then encodes everything into a WhatsApp `wa.me` URL on submit.
++
++**Class naming**: Loosely BEM-inspired — section prefixes like `.sec-title`/`.sec-sub`, component prefixes like `.bcard`, `.chip`, `.chip-opt`, `.step-n`.
++
++## Architecture Notes
++
++### Register Form Flow
++The multi-step form in `register.html` uses JS to show/hide `.step-1`, `.step-2`, `.step-3` divs and update progress dot indicators. On final submit, it builds a WhatsApp message string from all collected form values and opens `https://wa.me/<number>?text=<encoded>`.
++
++### Navigation
++The hamburger menu in both pages toggles `.open` on `.nav-links` to show/hide the mobile nav. The CTA button in the nav links to `register.html`.
++
++## Deployment
++
++Pushing to `main` deploys automatically via GitHub Pages. The `CNAME` file sets the custom domain to `briverr.com`.
+diff --git a/warraq-glyph-prompts.md b/warraq-glyph-prompts.md
+new file mode 100644
+index 0000000..9f17f8f
+--- /dev/null
++++ b/warraq-glyph-prompts.md
+@@ -0,0 +1,414 @@
++# ورق — Glyph Prompt Pack
++### 28 برومت جاهز لتوليد سلسلة الصور الفنية الأرشيفية
++
++---
++
++## قبل البدء — القواعد الثابتة لكل البرومتات
++
++**الرمز في كل برومت:**
++> The Arabic word **ورق** written in elegant thick serif Arabic calligraphy, three letters forming one word
++
++**المقاس:** Square 1:1  
++**الأداة:** ChatGPT (DALL-E 3) أو Midjourney أو Ideogram  
++**عدد الصور:** ولّد كل برومت **مرتين** للحصول على تنوع
++
++---
++
++## خطة الـ 14 صورة
++
++| الخطوة | التفصيل |
++|--------|---------|
++| اختر 7 برومتات | من القائمة أدناه حسب ذوقك |
++| ولّد كل برومت مرتين | = 14 صورة |
++| اختر الأفضل | احذف المتشابهة أو الضعيفة |
++| ادخل HypeAFrames | 8-12 fps |
++
++---
++
++## البرومتات الـ 28
++
++---
++
++### 01 — النباتات العشبية
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange separate vintage botanical flowers, 
++rose stems, leaves, and delicate herbarium clippings along the word's 
++strokes and curves, leaving ivory paper gaps between them. 
++Warm aged paper background, flat archival scan, antique botanical 
++illustration style, muted reds and greens, soft shadows. 
++The word must read clearly through object placement, not a filled mask. 
++Square 1:1 format.
++```
++
++---
++
++### 02 — الطوابع البريدية
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange separate vintage postage stamps 
++along the word's path, with overlapping corners, worn paper edges, 
++cancellation marks, faded reds, blues, yellows, and greens. 
++Brown archival paper background, flat lay scan, soft shadows. 
++The word should emerge from stamp placement, with visible gaps. 
++Square 1:1 format.
++```
++
++---
++
++### 03 — مخطط الطيف الضوئي
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Build the word from horizontal black 
++spectral-analysis bars, thin measurement lines, tiny scientific labels, 
++and colored light bands on aged cream paper. Archival laboratory chart 
++aesthetic, flat scan, precise grid alignment, subtle grain. 
++Keep the word readable through gaps and bar placement. 
++Square 1:1 format.
++```
++
++---
++
++### 04 — خريطة المدينة القديمة
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Create the word from dense antique city map 
++blocks and street grids arranged around its contour, leaving the inside 
++and key negative spaces as clean ivory paper. Black ink cartography, 
++old urban plan, flat scanned paper, tiny streets and blocks. 
++The word reads through map fragments and empty space. 
++Square 1:1 format.
++```
++
++---
++
++### 05 — مخطط الآلة الميكانيكية
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange antique mechanical parts, 
++patent-diagram fragments, levers, hinges, gears, small numbered labels, 
++and black ink technical drawings along the word structure. 
++Warm aged technical manual page, flat scan, delicate linework. 
++Do not fill the word; create it from separate mechanical specimens. 
++Square 1:1 format.
++```
++
++---
++
++### 06 — جزر الخريطة الممزقة
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Form the word from torn island-map fragments, 
++coastlines, roads, contour lines, black ink borders, and pale map paper. 
++White or ivory background with faint geographic markings. 
++The word should look like a chain of map islands following the exact path 
++of the Arabic calligraphy. Square 1:1 format.
++```
++
++---
++
++### 07 — المخطط المعماري الأزرق
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Build the word from white architectural 
++blueprint drawings on deep cyan-blue paper: floor plans, ship plans, 
++section marks, measurement lines, technical labels, and structural curves. 
++Flat blueprint scan, slightly faded, precise and archival. 
++Keep the word centered and readable. Square 1:1 format.
++```
++
++---
++
++### 08 — السيانوتايب النباتي
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange thin white botanical twigs, roots, 
++stems, and branching plant silhouettes on deep blue cyanotype paper. 
++Minimal, elegant, scientific specimen print. The word must be readable 
++from branch placement and negative space, not a filled shape. 
++Square 1:1 format.
++```
++
++---
++
++### 09 — شبكة الجذور المضيئة
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Create the word from luminous green-white 
++plant roots, fungal mycelium, fine branching filaments, and organic 
++tendrils on a dark blue scientific background. Microscopy-inspired, 
++glowing biological specimen, high detail, slightly translucent, 
++with visible gaps between branches. Square 1:1 format.
++```
++
++---
++
++### 10 — شبكة النقاط الحمراء
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Construct the word from evenly spaced red 
++circular dots on a white graph-paper grid. Minimal archival design, 
++precise dot placement, flat scan, faint gray grid lines, clean composition. 
++The word should read clearly from the dots only. Square 1:1 format.
++```
++
++---
++
++### 11 — البلورات المجهرية
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange golden translucent crystal shards 
++and microscopic mineral fragments along the word's path on a pale 
++lavender-blue microscope-slide background. Soft refraction, chromatic 
++edges, shallow scientific imaging look, slightly blurred optical scan. 
++Keep word readable. Square 1:1 format.
++```
++
++---
++
++### 12 — عينات الفطر
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange separate mushroom caps, stems, 
++sliced gills, spores, and small fungi specimens along the word's strokes 
++and curves. White archival background, biological specimen flat lay, 
++soft shadows, natural browns, creams, and muted reds. 
++Leave gaps between mushrooms. Square 1:1 format.
++```
++
++---
++
++### 13 — عينات الخنافس
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange pinned beetles, dark insects, legs, 
++antennae, and specimen fragments along the word's geometry. 
++Pale museum specimen background, macro entomology plate, glossy black 
++shells, fine detail, delicate shadows, small scale marker. 
++The word emerges from separate insects. Square 1:1 format.
++```
++
++---
++
++### 14 — دوائر الأشعة السينية
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Create the word from x-ray-like circuit 
++board components, chips, wires, capacitors, and rectangular electronic 
++parts. Monochrome black, gray, and white, medical scan aesthetic, 
++flat technical image, semi-transparent circuitry. 
++The word should be visible through component arrangement. 
++Square 1:1 format.
++```
++
++---
++
++### 15 — مستعمرات طبق البتري الأحمر
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange red bacterial colonies inside a 
++circular petri dish so the colonies trace the word's path. 
++Dark agar background, transparent glass rim, macro lab photograph, 
++glossy red colonies, scientific specimen look. 
++The word must read from colony clusters, not a solid fill. 
++Square 1:1 format.
++```
++
++---
++
++### 16 — الخلايا الفلورية البرتقالية
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Build the word from glowing orange circular 
++cells and tiny particles inside dark blue translucent tissue shapes, 
++like fluorescence microscopy. Black scientific background, blue cell 
++membranes, orange luminous organelles, grainy microscope texture. 
++Keep word clear through the cluster layout. Square 1:1 format.
++```
++
++---
++
++### 17 — هياكل الأسماك بالأشعة
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange translucent x-ray fish skeletons 
++along the word's strokes and curves on a dark charcoal radiograph 
++background. White skeletal detail, ghostly fins, scientific museum 
++imaging, soft glow, flat scan. 
++The word should be readable from fish placement and curvature. 
++Square 1:1 format.
++```
++
++---
++
++### 18 — أشعة الأجهزة الإلكترونية
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Compose the word from translucent blue 
++x-ray scans of small electronic devices, circuit boards, wires, screws, 
++and plastic housings. Deep blue radiographic background, glowing cyan 
++components, technical forensic scan aesthetic. 
++The word emerges from separate scanned objects. Square 1:1 format.
++```
++
++---
++
++### 19 — كولاج بطاقات التاروت
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange antique tarot cards, playing cards, 
++illustrated medieval cards, round medallions, and paper fragments around 
++the word's contour, leaving a dark central negative space. 
++Warm brown archival background, flat collage scan, worn paper, 
++muted reds, yellows, greens, and ink. Square 1:1 format.
++```
++
++---
++
++### 20 — سيانوتايب الفراء
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange white fern leaves and botanical 
++cyanotype silhouettes along the word's strokes and curves on deep blue 
++paper. Crisp leaf edges, archival cyanotype print, flat scan, 
++minimal scientific beauty. Preserve the word's readability through 
++leaf placement and negative space. Square 1:1 format.
++```
++
++---
++
++### 21 — النباتات الداكنة على الأرضية الفاحمة
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange separate pressed flowers, colorful 
++leaves, stems, seed pods, and small botanical clippings on a dark 
++charcoal paper background. Museum herbarium flat lay, soft shadows, 
++muted natural colors. The word should feel discovered from sparse 
++botanical objects. Square 1:1 format.
++```
++
++---
++
++### 22 — مستعمرات طبق البتري الأخضر
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange pale green bacterial or fungal 
++colonies inside a circular petri dish so the colony clusters trace 
++the word. Dark green agar, transparent glass rim, macro lab photograph, 
++soft biological texture. Leave negative space between colony groups 
++so the word remains readable. Square 1:1 format.
++```
++
++---
++
++### 23 — الفراشات والعث
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange separate pinned butterflies and 
++moths around and along the word's strokes, perimeter, arms, curves, 
++endpoints, and negative spaces, leaving ivory paper visible between them. 
++Vintage natural-history plate, delicate shadows, muted reds, yellows, 
++greens, and blacks. Do not fill the word as a texture. 
++Square 1:1 format.
++```
++
++---
++
++### 24 — العملات الأثرية
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange individual antique coins, 
++medallions, seals, and small metallic tokens along the word's strokes, 
++perimeter, endpoints, curves, and negative spaces. 
++Leave visible ivory paper between coins. Museum archive scan, 
++aged silver and brass tones, detailed engravings. Square 1:1 format.
++```
++
++---
++
++### 25 — شرائط النوتة الموسيقية
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange antique sheet music strips, 
++musical notes, staff-line fragments, aged manuscript scraps, and ink 
++details around and along the word's strokes and contours. 
++Warm ivory paper, flat scanned archival page, fine black ink. 
++The word must be created by placement, not a filled cutout. 
++Square 1:1 format.
++```
++
++---
++
++### 26 — الخزف والفخار
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange individual antique porcelain vases, 
++plates, ceramic fragments, painted motifs, handles, and decorative shards 
++along the word's structure. Museum catalog scan, warm ivory paper, 
++soft shadows, muted blue, green, cream, and gold tones. 
++Leave paper visible between objects. Square 1:1 format.
++```
++
++---
++
++### 27 — التوت والأعشاب
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange separate vintage berry branches, 
++grapes, currants, leaves, stems, and herbarium-style botanical clippings 
++around and along the word's strokes, arms, curves, endpoints, and 
++negative spaces. Aged paper background, natural-history specimen style, 
++muted reds and greens. Square 1:1 format.
++```
++
++---
++
++### 28 — التايبوغرافي الأرشيفي
++```
++Use the Arabic word ورق written in elegant thick serif Arabic calligraphy 
++as an invisible layout guide. Arrange antique serif letterforms, tiny 
++book-text fragments, ornamental borders, manuscript flourishes, engraved 
++decorations, and illuminated initial details around and along the word's 
++strokes, contours, endpoints, and negative spaces. 
++Warm ivory paper, archival scan, fine ink texture. Square 1:1 format.
++```
++
++---
++
++## خطة توليد الـ 14 صورة
++
++### الخطوة 1 — اختر 7 برومتات متنوعة
++مثال مثالي لتنوع بصري:
++- 01 النباتات (دافئ)
++- 08 السيانوتايب (بارد)
++- 10 النقاط (هندسي)
++- 17 الأسماك (غامق)
++- 23 الفراشات (ناعم)
++- 25 الموسيقى (كلاسيكي)
++- 28 التايبوغرافي (أدبي)
++
++### الخطوة 2 — ولّد كل برومت مرتين
++= **14 صورة** بأساليب متنوعة
++
++### الخطوة 3 — احفظ بـ 1:1 أبيض أو كريم للخلفية
++
++---
++
++## تجميع الفيديو في HypeAFrames
++
++```
++الإعدادات المثالية:
++├── FPS: 8 أو 12
++├── مدة الفريم: 0.12 - 0.18 ثانية
++├── Zoom: 103-108% (خفيف)
++├── Transition: Cross-dissolve قصير جداً أو Hard cut
++├── Overlay: Paper grain أو Scan noise خفيف
++└── SFX: Camera shutter + paper rustle
++```
++
++**ترتيب الفريمات:**
++ابدأ بالأكثر هدوءاً (نباتات/موسيقى) → انتقل للأكثر حدة (أشعة/خلايا) → اختم بالأرشيفي
++
++---
++
++*استخدم النسخة الكريمية من لوقو ورق (1024×1024) كمرجع للرمز في كل برومت*
+diff --git a/warraq-technical-reference.md b/warraq-technical-reference.md
+new file mode 100644
+index 0000000..9d9fb46
+--- /dev/null
++++ b/warraq-technical-reference.md
+@@ -0,0 +1,353 @@
++# ورق — الوثيقة التقنية المرجعية
++### نسخة: 1.0 | تاريخ الإنشاء: يونيو 2026
++### سرية — للشركاء والفريق التقني فقط
++
++---
++
++## فهرس المحتويات
++
++1. [نظرة عامة على المشروع](#١-نظرة-عامة-على-المشروع)
++2. [الدومين وأين اشتريناه](#٢-الدومين)
++3. [منصة البناء — Lovable](#٣-منصة-البناء)
++4. [الكود والتقنيات المستخدمة](#٤-الكود-والتقنيات)
++5. [قاعدة البيانات — Supabase](#٥-قاعدة-البيانات)
++6. [أدوات الذكاء الاصطناعي](#٦-أدوات-الذكاء-الاصطناعي)
++7. [المدفوعات — Paddle](#٧-المدفوعات)
++8. [لوحة تحكم الأدمن](#٨-لوحة-تحكم-الأدمن)
++9. [النشر والاستضافة](#٩-النشر-والاستضافة)
++10. [جميع الحسابات والخدمات](#١٠-جميع-الحسابات-والخدمات)
++11. [في حالات الطوارئ](#١١-في-حالات-الطوارئ)
++
++---
++
++## ١. نظرة عامة على المشروع
++
++| البند | التفاصيل |
++|-------|----------|
++| اسم المشروع | ورق (Warraq) |
++| وصف المشروع | تطبيق إنتاجية عربي — يسجّل الصوت، يحوّله لنص، يصنّفه ذكاء اصطناعياً إلى مهام وأفكار وقرارات |
++| الجمهور المستهدف | مستخدمون عرب، سوق سعودي أولاً |
++| نموذج الإيرادات | اشتراك شهري/سنوي مع تجربة مجانية 21 يوم |
++| مرحلة المشروع | [يرجى التعبئة: ما قبل الإطلاق / بيتا / إطلاق رسمي] |
++| تاريخ الإطلاق المتوقع | [يرجى التعبئة] |
++| الشركاء المؤسسون | [يرجى التعبئة: الأسماء والأدوار] |
++
++---
++
++## ٢. الدومين
++
++| البند | التفاصيل |
++|-------|----------|
++| اسم الدومين | [يرجى التعبئة — مثال: warraq.app] |
++| مزود الدومين (Registrar) | [يرجى التعبئة — مثال: Namecheap / GoDaddy / Cloudflare / STC] |
++| تاريخ الشراء | [يرجى التعبئة] |
++| تاريخ انتهاء الصلاحية | [يرجى التعبئة — مهم جداً للتجديد] |
++| الإيميل المسجل عليه | [يرجى التعبئة] |
++| أين ربطنا DNS | [يرجى التعبئة — مثال: Cloudflare / Vercel / مزود الدومين مباشرة] |
++| الـ Nameservers الحالية | [يرجى التعبئة] |
++
++### ملاحظة مهمة:
++> إذا انتهى الدومين ولم يُجدَّد، سيُعرض للبيع للعموم خلال 30-60 يوماً. اضبط التجديد التلقائي الآن.
++
++---
++
++## ٣. منصة البناء
++
++### Lovable (منصة البناء الأساسية)
++
++| البند | التفاصيل |
++|-------|----------|
++| الموقع | https://lovable.dev |
++| نوع الحساب | [يرجى التعبئة: Free / Pro / Teams] |
++| الإيميل المسجل | [يرجى التعبئة] |
++| اسم المشروع داخل Lovable | [يرجى التعبئة] |
++| رابط المشروع في Lovable | [يرجى التعبئة] |
++
++### ماذا تبني Lovable؟
++Lovable تولّد كود React/TypeScript وتربطه بـ Supabase تلقائياً. الكود الناتج هو ملكك الكاملة ويمكن تصديره في أي وقت.
++
++### تصدير الكود (مهم للطوارئ):
++في حال توقفت Lovable أو أردت الاستقلالية الكاملة:
++1. افتح مشروعك في Lovable
++2. اضغط على **Export to GitHub** أو **Download Code**
++3. احتفظ بنسخة من الكود في مكان آمن دورياً
++
++---
++
++## ٤. الكود والتقنيات
++
++### المكدس التقني (Tech Stack)
++
++```
++الواجهة الأمامية (Frontend):
++├── React (مكتبة واجهة المستخدم)
++├── TypeScript (لغة البرمجة — JavaScript مع أنواع)
++├── Tailwind CSS (تنسيق الواجهات)
++└── Vite (أداة البناء والتطوير)
++
++الخلفية (Backend):
++└── Supabase (قاعدة بيانات + مصادقة + realtime + storage)
++
++المدفوعات:
++└── Paddle (معالج المدفوعات والاشتراكات)
++
++الذكاء الاصطناعي:
++└── [يرجى التعبئة — OpenAI / Anthropic / Groq / غيره]
++```
++
++### مستودع الكود (Code Repository)
++
++| البند | التفاصيل |
++|-------|----------|
++| المنصة | [يرجى التعبئة: GitHub / GitLab / داخل Lovable فقط] |
++| رابط المستودع | [يرجى التعبئة] |
++| الفرع الرئيسي | [يرجى التعبئة: main / master] |
++| من لديه الوصول | [يرجى التعبئة: قائمة بالأشخاص] |
++
++### بنية الصفحات الرئيسية
++
++```
++/               — الصفحة الرئيسية
++/briefing       — صفحة التسجيل الصوتي (الواجهة الأساسية)
++/items          — قائمة العناصر المصنّفة (مهام / أفكار / قرارات)
++/profile        — الملف الشخصي والإعدادات
++/onboarding     — استقبال المستخدم الجديد (3 خطوات)
++```
++
++---
++
++## ٥. قاعدة البيانات
++
++### Supabase — البنية التحتية الكاملة للبيانات
++
++| البند | التفاصيل |
++|-------|----------|
++| الموقع | https://supabase.com |
++| رابط الداشبورد | https://app.supabase.com |
++| الإيميل المسجل | [يرجى التعبئة] |
++| اسم المشروع | [يرجى التعبئة] |
++| Project URL | [يرجى التعبئة — شكله: https://xxxx.supabase.co] |
++| Region (موقع السيرفر) | [يرجى التعبئة — مثال: Frankfurt / Singapore] |
++| الخطة الحالية | [يرجى التعبئة: Free / Pro / Team] |
++| تكلفة الخطة | [يرجى التعبئة: $0 / $25/شهر / غيره] |
++
++### ماذا يخزن Supabase؟
++
++| الجدول | ماذا يخزن |
++|--------|----------|
++| `users` / `profiles` | بيانات المستخدمين (اسم، إيميل، تاريخ التسجيل) |
++| `items` | العناصر المصنّفة (مهام، أفكار، قرارات) |
++| `recordings` | سجل التسجيلات الصوتية أو النصوص المحوّلة |
++| `notifications` | الإشعارات لكل مستخدم |
++| `subscriptions` | حالة الاشتراك المرتبطة بـ Paddle |
++| [يرجى إضافة جداول أخرى] | — |
++
++### مفاتيح API (لا تشاركها أبداً علناً)
++
++| المفتاح | أين تجده | الاستخدام |
++|---------|----------|----------|
++| `SUPABASE_URL` | Supabase Dashboard → Settings → API | ربط التطبيق بقاعدة البيانات |
++| `SUPABASE_ANON_KEY` | Supabase Dashboard → Settings → API | للعمليات العامة (يمكن نشره) |
++| `SUPABASE_SERVICE_KEY` | Supabase Dashboard → Settings → API | للعمليات الإدارية (سري جداً ❌) |
++
++> **تحذير**: مفتاح `SERVICE_KEY` يمنح وصولاً كاملاً لقاعدة البيانات. لا تضعه أبداً في كود الواجهة الأمامية.
++
++### النسخ الاحتياطي (Backup)
++
++- Supabase Pro يقدم نسخ احتياطي تلقائي يومي
++- يُنصح بتفعيل **Point-in-Time Recovery** من الداشبورد
++- [يرجى التعبئة: هل هو مفعّل؟ نعم / لا]
++
++---
++
++## ٦. أدوات الذكاء الاصطناعي
++
++### خدمات AI المستخدمة في ورق
++
++| الخدمة | الغرض | الموقع |
++|--------|--------|--------|
++| [يرجى التعبئة] | تحويل الصوت إلى نص (Speech-to-Text) | — |
++| [يرجى التعبئة] | تصنيف النص (مهمة / فكرة / قرار) | — |
++| [يرجى التعبئة] | استخلاص المعنى وتلخيص المحتوى | — |
++
++### احتمالات شائعة للتعبئة:
++
++| الخدمة | الاستخدام الشائع |
++|--------|-----------------|
++| **OpenAI Whisper** | تحويل الصوت لنص بالعربية |
++| **OpenAI GPT-4o** | التصنيف والتحليل |
++| **Anthropic Claude** | الاستخلاص والتلخيص |
++| **Groq** | معالجة سريعة وأرخص |
++| **ElevenLabs** | تحويل النص لصوت (إن وُجد) |
++
++### إدارة مفاتيح AI
++
++| البند | التفاصيل |
++|-------|----------|
++| أين تُخزّن المفاتيح | [يرجى التعبئة: Supabase Edge Functions / Vercel Env / Lovable Secrets] |
++| من لديه الوصول لها | [يرجى التعبئة] |
++| الحد الشهري للاستهلاك | [يرجى التعبئة: هل وضعت سقفاً للإنفاق؟] |
++
++---
++
++## ٧. المدفوعات
++
++### Paddle — معالج المدفوعات والاشتراكات
++
++| البند | التفاصيل |
++|-------|----------|
++| الموقع | https://paddle.com |
++| رابط الداشبورد | https://vendors.paddle.com |
++| الإيميل المسجل | [يرجى التعبئة] |
++| Vendor ID | [يرجى التعبئة] |
++| بيئة العمل الحالية | [يرجى التعبئة: Sandbox (اختبار) / Live (حقيقي)] |
++
++### خطط الاشتراك
++
++| الخطة | السعر الشهري | السعر السنوي | ما تتضمن |
++|-------|-------------|-------------|---------|
++| [يرجى التعبئة] | [يرجى التعبئة] ر.س | [يرجى التعبئة] ر.س | [يرجى التعبئة] |
++| [يرجى التعبئة] | [يرجى التعبئة] ر.س | [يرجى التعبئة] ر.س | [يرجى التعبئة] |
++
++### التجربة المجانية
++- المدة: **21 يوماً** من تاريخ التسجيل
++- لا يُطلب بيانات بطاقة عند التسجيل: [يرجى التعبئة: نعم / لا]
++- ما يحدث بعد انتهاء التجربة: [يرجى التعبئة]
++
++### أين تذهب الأموال؟
++
++| البند | التفاصيل |
++|-------|----------|
++| الحساب البنكي المربوط | [يرجى التعبئة: البنك / رقم الحساب — للشريك المالي فقط] |
++| عملة الاستلام | [يرجى التعبئة: SAR / USD / EUR] |
++| دورة الدفع (Payout) | [يرجى التعبئة: أسبوعية / شهرية] |
++| عمولة Paddle | حوالي 5% + رسوم ثابتة لكل معاملة |
++| الحد الأدنى للسحب | [يرجى التعبئة] |
++
++### مراجعة المعاملات المالية
++
++للوصول لتقارير الإيرادات:
++1. سجّل دخول على https://vendors.paddle.com
++2. من القائمة: **Reports → Transactions**
++3. يمكن تصدير تقرير شهري بصيغة CSV أو PDF
++4. للضريبة والفوترة: **Reports → Invoices**
++
++> **مهم للمحاسبة**: Paddle تحصيل ضريبة القيمة المضافة (VAT) نيابةً عنك في معظم الدول. تأكد من وضع رقمك الضريبي السعودي في إعدادات الحساب.
++
++---
++
++## ٨. لوحة تحكم الأدمن
++
++### الداشبورد التشغيلي
++
++| الداشبورد | الرابط | الغرض |
++|-----------|--------|--------|
++| Supabase | https://app.supabase.com | مراقبة قاعدة البيانات، المستخدمين، الأداء |
++| Paddle | https://vendors.paddle.com | المعاملات، الاشتراكات، الإيرادات |
++| Lovable | https://lovable.dev | إدارة الكود والنشر |
++| [يرجى التعبئة — AI Dashboard] | [يرجى التعبئة] | مراقبة استهلاك الذكاء الاصطناعي |
++
++### مؤشرات تحتاج مراقبة دورية
++
++| المؤشر | أين تجده | التكرار |
++|--------|----------|---------|
++| عدد المستخدمين الجدد | Supabase → Authentication | يومي |
++| الاشتراكات الفعّالة | Paddle → Subscriptions | أسبوعي |
++| الإيرادات الشهرية (MRR) | Paddle → Reports | شهري |
++| استهلاك قاعدة البيانات | Supabase → Settings → Usage | شهري |
++| استهلاك AI API | [لوحة تحكم مزود AI] | أسبوعي |
++| الأخطاء البرمجية | [يرجى التعبئة: Sentry / Console / Lovable logs] | يومي |
++
++---
++
++## ٩. النشر والاستضافة
++
++### أين يعيش التطبيق؟
++
++| البند | التفاصيل |
++|-------|----------|
++| منصة الاستضافة | [يرجى التعبئة: Lovable Hosting / Vercel / Netlify] |
++| رابط المشروع المنشور | [يرجى التعبئة] |
++| طريقة النشر | [يرجى التعبئة: تلقائي من Lovable / يدوي] |
++| متى يتم النشر؟ | [يرجى التعبئة: عند كل تعديل في Lovable / يدوياً] |
++
++### بيئات العمل (Environments)
++
++| البيئة | الرابط | الغرض |
++|--------|--------|--------|
++| Production (الإنتاج) | [يرجى التعبئة] | المستخدمون الحقيقيون |
++| Staging / Preview | [يرجى التعبئة] | الاختبار قبل النشر |
++
++---
++
++## ١٠. جميع الحسابات والخدمات
++
++### قائمة شاملة بكل حساب مستخدم في المشروع
++
++| الخدمة | الرابط | الإيميل المسجل | من يملكه |
++|--------|--------|----------------|---------|
++| Lovable | https://lovable.dev | [يرجى التعبئة] | [يرجى التعبئة] |
++| Supabase | https://supabase.com | [يرجى التعبئة] | [يرجى التعبئة] |
++| Paddle | https://paddle.com | [يرجى التعبئة] | [يرجى التعبئة] |
++| مزود الدومين | [يرجى التعبئة] | [يرجى التعبئة] | [يرجى التعبئة] |
++| GitHub (الكود) | https://github.com | [يرجى التعبئة] | [يرجى التعبئة] |
++| OpenAI / AI Provider | [يرجى التعبئة] | [يرجى التعبئة] | [يرجى التعبئة] |
++| Google Analytics | https://analytics.google.com | [يرجى التعبئة] | [يرجى التعبئة] |
++| [خدمة أخرى] | — | — | — |
++
++---
++
++## ١١. في حالات الطوارئ
++
++### سيناريو: الموقع توقف
++
++```
++١. تحقق من Lovable Dashboard — هل هناك مشكلة في النشر؟
++٢. تحقق من Supabase Status: https://status.supabase.com
++٣. تحقق من Paddle Status: https://www.paddle.com/status  
++٤. تواصل مع الدعم التقني الأول: [يرجى التعبئة — الاسم والرقم]
++```
++
++### سيناريو: اختُرق حساب
++
++```
++١. غيّر كلمة مرور الإيميل الرئيسي فوراً
++٢. أوقف مفاتيح Supabase API من الداشبورد (Regenerate Keys)
++٣. أوقف مفاتيح Paddle من الداشبورد
++٤. أبلّغ Supabase Support: support@supabase.io
++٥. راجع جميع المعاملات المالية على Paddle
++```
++
++### سيناريو: خسارة الوصول للحسابات
++
++```
++لكل خدمة، احتفظ بـ:
++- الإيميل الاحتياطي للاسترداد
++- رموز الاسترداد (Recovery Codes) للمصادقة الثنائية
++- رقم الهاتف المسجل
++
++المسؤول الاحتياطي (Backup Admin): [يرجى التعبئة — اسم وبيانات التواصل]
++```
++
++### جهات التواصل التقني
++
++| الجهة | بيانات التواصل | متى تتصل بهم |
++|-------|---------------|-------------|
++| دعم Supabase | support@supabase.io | مشاكل قاعدة البيانات |
++| دعم Paddle | support@paddle.com | مشاكل المدفوعات |
++| دعم Lovable | [يرجى التعبئة] | مشاكل البناء والنشر |
++| المطور التقني | [يرجى التعبئة] | أي مشكلة برمجية |
++
++---
++
++## ملاحظات ختامية
++
++### كيف تحافظ على هذه الوثيقة محدّثة؟
++- **راجع هذا الملف** عند أي تغيير في الخدمات أو الحسابات
++- **شارك نسخة** مع كل شريك جديد عند انضمامه
++- **لا تضع** كلمات المرور هنا — استخدم مدير كلمات المرور مثل 1Password أو Bitwarden
++- **احفظ نسخة** في مكانين على الأقل (Google Drive + Local)
++
++---
++
++*آخر تحديث: [يرجى التعبئة] | بقلم: [يرجى التعبئة]*
+diff --git a/warraq_glyph_1024.png b/warraq_glyph_1024.png
+new file mode 100644
+index 0000000..bad373a
+Binary files /dev/null and b/warraq_glyph_1024.png differ
+diff --git a/warraq_glyph_1200.png b/warraq_glyph_1200.png
+new file mode 100644
+index 0000000..8067388
+Binary files /dev/null and b/warraq_glyph_1200.png differ
+diff --git a/warraq_glyph_800.png b/warraq_glyph_800.png
+new file mode 100644
+index 0000000..60e4a3b
+Binary files /dev/null and b/warraq_glyph_800.png differ
+diff --git a/warraq_glyph_cream_1024.png b/warraq_glyph_cream_1024.png
+new file mode 100644
+index 0000000..5666ee8
+Binary files /dev/null and b/warraq_glyph_cream_1024.png differ
+diff --git a/warraq_glyph_cream_1200.png b/warraq_glyph_cream_1200.png
+new file mode 100644
+index 0000000..266dfdd
+Binary files /dev/null and b/warraq_glyph_cream_1200.png differ
+diff --git a/warraq_glyph_cream_800.png b/warraq_glyph_cream_800.png
+new file mode 100644
+index 0000000..aa9f6ab
+Binary files /dev/null and b/warraq_glyph_cream_800.png differ
+diff --git a/warraq_logo.png b/warraq_logo.png
+new file mode 100644
+index 0000000..3a94294
+Binary files /dev/null and b/warraq_logo.png differ
+diff --git a/warraq_logo_white.png b/warraq_logo_white.png
+new file mode 100644
+index 0000000..3e7f040
+Binary files /dev/null and b/warraq_logo_white.png differ
