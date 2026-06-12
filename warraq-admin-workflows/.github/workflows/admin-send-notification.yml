@@ -1,0 +1,82 @@
+name: 📧 Admin — إرسال إشعار للمستخدمين
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'المستهدفون'
+        required: true
+        type: choice
+        options:
+          - single_user
+          - all_trial
+          - all_users
+      email:
+        description: 'إيميل المستخدم (فقط لو اخترت single_user)'
+        required: false
+        type: string
+      title:
+        description: 'عنوان الإشعار'
+        required: true
+        type: string
+      body:
+        description: 'نص الإشعار'
+        required: true
+        type: string
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: إرسال الإشعار
+        run: |
+          TARGET="${{ github.event.inputs.target }}"
+          NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          COUNT=0
+
+          if [ "$TARGET" = "single_user" ]; then
+            USER_ID=$(curl -s \
+              "${{ secrets.SUPABASE_URL }}/rest/v1/profiles?select=id&email=eq.${{ github.event.inputs.email }}" \
+              -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+              -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data[0]['id'] if data else '')")
+
+            if [ -n "$USER_ID" ]; then
+              curl -s -X POST \
+                "${{ secrets.SUPABASE_URL }}/rest/v1/notifications" \
+                -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+                -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+                -H "Content-Type: application/json" \
+                -d "{\"user_id\": \"$USER_ID\", \"type\": \"admin\", \"title\": \"${{ github.event.inputs.title }}\", \"body\": \"${{ github.event.inputs.body }}\", \"read\": false}"
+              COUNT=1
+            fi
+
+          else
+            if [ "$TARGET" = "all_trial" ]; then
+              QUERY="profiles?select=id&trial_ends_at=gte.$NOW"
+            else
+              QUERY="profiles?select=id"
+            fi
+
+            USER_IDS=$(curl -s \
+              "${{ secrets.SUPABASE_URL }}/rest/v1/$QUERY" \
+              -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+              -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" | python3 -c "import sys,json; data=json.load(sys.stdin); print('\n'.join([u['id'] for u in data]))")
+
+            while IFS= read -r USER_ID; do
+              if [ -n "$USER_ID" ]; then
+                curl -s -X POST \
+                  "${{ secrets.SUPABASE_URL }}/rest/v1/notifications" \
+                  -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+                  -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+                  -H "Content-Type: application/json" \
+                  -d "{\"user_id\": \"$USER_ID\", \"type\": \"admin\", \"title\": \"${{ github.event.inputs.title }}\", \"body\": \"${{ github.event.inputs.body }}\", \"read\": false}"
+                COUNT=$((COUNT + 1))
+              fi
+            done <<< "$USER_IDS"
+          fi
+
+          echo "## 📧 تم إرسال الإشعار" >> $GITHUB_STEP_SUMMARY
+          echo "- العنوان: ${{ github.event.inputs.title }}" >> $GITHUB_STEP_SUMMARY
+          echo "- المستهدفون: $TARGET" >> $GITHUB_STEP_SUMMARY
+          echo "- العدد: $COUNT مستخدم" >> $GITHUB_STEP_SUMMARY
+          echo "- بواسطة: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,44 @@
+name: 🔍 Admin — بحث عن مستخدم
+
+on:
+  workflow_dispatch:
+    inputs:
+      email:
+        description: 'إيميل المستخدم'
+        required: true
+        type: string
+
+jobs:
+  lookup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: بحث في Supabase
+        run: |
+          RESULT=$(curl -s \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/profiles?select=id,email,created_at,trial_ends_at,onboarded_at&email=eq.${{ github.event.inputs.email }}" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}")
+
+          echo "## نتيجة البحث" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
+          echo "$RESULT" | python3 -m json.tool >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+      - name: عناصر المستخدم
+        run: |
+          USER_ID=$(curl -s \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/profiles?select=id&email=eq.${{ github.event.inputs.email }}" \
+            -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data[0]['id'] if data else '')")
+
+          if [ -n "$USER_ID" ]; then
+            ITEMS=$(curl -s \
+              "${{ secrets.SUPABASE_URL }}/rest/v1/items?select=type,created_at&user_id=eq.$USER_ID&order=created_at.desc&limit=10" \
+              -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+              -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}")
+
+            echo "## آخر 10 عناصر" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
+            echo "$ITEMS" | python3 -m json.tool >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          fi

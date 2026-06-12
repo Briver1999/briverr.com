@@ -1,0 +1,39 @@
+name: 💾 Admin — نسخ احتياطي لقاعدة البيانات
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * 0'  # كل أحد الساعة 2 فجراً
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: تصدير جميع الجداول
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          mkdir -p backup
+
+          for TABLE in profiles items notifications; do
+            echo "تصدير جدول: $TABLE"
+            curl -s \
+              "${{ secrets.SUPABASE_URL }}/rest/v1/$TABLE?select=*" \
+              -H "apikey: ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+              -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_KEY }}" \
+              -H "Accept: text/csv" \
+              > "backup/${TABLE}_${DATE}.csv"
+
+            COUNT=$(tail -n +2 "backup/${TABLE}_${DATE}.csv" | wc -l)
+            echo "✅ $TABLE: $COUNT صف" >> $GITHUB_STEP_SUMMARY
+          done
+
+          echo "## 💾 نسخة احتياطية مكتملة" >> $GITHUB_STEP_SUMMARY
+          echo "- التاريخ: $DATE" >> $GITHUB_STEP_SUMMARY
+          echo "- الجداول: profiles, items, notifications" >> $GITHUB_STEP_SUMMARY
+
+      - name: حفظ النسخة الاحتياطية
+        uses: actions/upload-artifact@v4
+        with:
+          name: db-backup-${{ github.run_number }}
+          path: backup/
+          retention-days: 30
