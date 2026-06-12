@@ -39,7 +39,6 @@
     <input id="adminPass" class="input mb-6" placeholder="كلمة سر الداشبورد" type="password" />
     <button onclick="login()" class="btn-primary w-full py-3 text-lg">دخول</button>
     <div id="loginError" class="text-red-400 text-sm mt-4 hidden"></div>
-    <div class="mt-6 text-xs text-gray-600">كلمة السر الافتراضية: warraq-admin-2026</div>
   </div>
 </div>
 
@@ -227,22 +226,49 @@ const ADMIN_PASSWORD = 'warraq-admin-2026';
 let supabase = null;
 let allUsers = [];
 
+// Brute-force protection
+const MAX_ATTEMPTS = 3;
+const LOCKOUT_MS = 5 * 60 * 1000; // 5 minutes
+
+function getLoginState() {
+  const raw = localStorage.getItem('_la');
+  return raw ? JSON.parse(raw) : { attempts: 0, lockedUntil: 0 };
+}
+function setLoginState(state) {
+  localStorage.setItem('_la', JSON.stringify(state));
+}
+
 function login() {
+  const state = getLoginState();
+  if (Date.now() < state.lockedUntil) {
+    const mins = Math.ceil((state.lockedUntil - Date.now()) / 60000);
+    showLoginError(`محاولات كثيرة. انتظر ${mins} دقيقة`);
+    return;
+  }
+
   const url = document.getElementById('supabaseUrl').value.trim();
   const key = document.getElementById('serviceKey').value.trim();
   const pass = document.getElementById('adminPass').value;
 
   if (pass !== ADMIN_PASSWORD) {
-    document.getElementById('loginError').textContent = 'كلمة السر غلط';
-    document.getElementById('loginError').classList.remove('hidden');
+    state.attempts = (state.attempts || 0) + 1;
+    if (state.attempts >= MAX_ATTEMPTS) {
+      state.lockedUntil = Date.now() + LOCKOUT_MS;
+      state.attempts = 0;
+      setLoginState(state);
+      showLoginError('تم القفل 5 دقائق بسبب محاولات متكررة');
+    } else {
+      setLoginState(state);
+      showLoginError(`كلمة السر غلط (${MAX_ATTEMPTS - state.attempts} محاولة متبقية)`);
+    }
     return;
   }
   if (!url || !key) {
-    document.getElementById('loginError').textContent = 'أدخل Supabase URL و Service Key';
-    document.getElementById('loginError').classList.remove('hidden');
+    showLoginError('أدخل Supabase URL و Service Key');
     return;
   }
 
+  setLoginState({ attempts: 0, lockedUntil: 0 });
   supabase = window.supabase.createClient(url, key);
   sessionStorage.setItem('sb_url', url);
   sessionStorage.setItem('sb_key', key);
@@ -250,6 +276,12 @@ function login() {
   document.getElementById('loginScreen').classList.add('hidden');
   document.getElementById('dashboard').classList.remove('hidden');
   loadAll();
+}
+
+function showLoginError(msg) {
+  const el = document.getElementById('loginError');
+  el.textContent = msg;
+  el.classList.remove('hidden');
 }
 
 function logout() {
